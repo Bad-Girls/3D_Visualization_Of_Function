@@ -6,4 +6,12 @@ SELECT
   `train_sample1`.`unit_sales` AS `ts_unit_sales`,
   `train_sample1`.`onpromotion` AS `ts_onpromotion`,
   `items`.`family` AS `i_family`,
- 
+  `items`.`class` AS `i_class`,
+  `items`.`perishable` AS `i_perishable`,
+  `stores`.`city` AS `s_city`,
+  `stores`.`state` AS `s_state`,
+  `stores`.`type` AS `s_type`,
+  `stores`.`cluster` AS `s_cluster`,
+  `oil`.`dcoilwtico` AS `o_dcoilwtico`,
+  `transactions`.`transactions` AS `t_transactions`,
+   CASE WHEN h1.description IS NOT NULL THEN 1 ELSE 0 END A
