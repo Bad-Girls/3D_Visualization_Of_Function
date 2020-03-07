@@ -22,4 +22,8 @@ SELECT
    h1.transferred AS h_transferred
 FROM
   `train_sample1` JOIN `items` ON`items`.`item_nbr` = `train_sample1`.`item_nbr`
-  JOIN `stores` ON `stores`.`store_nbr` = `train_sample1`.`sto
+  JOIN `stores` ON `stores`.`store_nbr` = `train_sample1`.`store_nbr`
+  LEFT JOIN `oil` ON `oil`.`date` = `train_sample1`.`date`
+  LEFT JOIN `transactions` ON `transactions`.`date` = `train_sample1`.`date` AND `transactions`.`store_nbr` = `train_sample1`.`store_nbr`
+  LEFT JOIN holidays_events AS h1 ON h1.date = train_sample1.date
+  LEFT JOIN holidays_events AS h2 ON h2.date = train_s
