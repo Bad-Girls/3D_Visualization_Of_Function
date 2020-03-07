@@ -26,4 +26,7 @@ FROM
   LEFT JOIN `oil` ON `oil`.`date` = `train_sample1`.`date`
   LEFT JOIN `transactions` ON `transactions`.`date` = `train_sample1`.`date` AND `transactions`.`store_nbr` = `train_sample1`.`store_nbr`
   LEFT JOIN holidays_events AS h1 ON h1.date = train_sample1.date
-  LEFT JOIN holidays_events AS h2 ON h2.date = train_s
+  LEFT JOIN holidays_events AS h2 ON h2.date = train_sample1.date AND h1.description > h2.description
+WHERE
+  h2.date IS NULL
+
