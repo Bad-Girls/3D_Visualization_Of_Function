@@ -20,4 +20,12 @@ for( $i=200; $i< 340; $i++ ){
   $statement = $pdo->prepare("SELECT * FROM EatingWellRecipe WHERE PageNumber=?");
   $page_id = $i;
   $statement->execute([$page_id]);
-  $existing = $statem
+  $existing = $statement->fetch();
+  if( !$existing ){
+    $url = "http://www.eatingwell.com/recipes/?page=$page_id";
+    $crawler = $client->request('GET', $url);
+    $urls = array();
+    $crawler->filter('a[data-internal-referrer-link="recipe hub"]')->each(function ($node) {
+      global $pdo;
+      global $page_id;
+      $url = $node->at
