@@ -28,4 +28,11 @@ for( $i=200; $i< 340; $i++ ){
     $crawler->filter('a[data-internal-referrer-link="recipe hub"]')->each(function ($node) {
       global $pdo;
       global $page_id;
-      $url = $node->at
+      $url = $node->attr("href");
+      $id_pattern = '/.*\/recipe\/([0-9]+).*/';
+      if( preg_match( $id_pattern, $url ) ){
+        $id = preg_replace( $id_pattern, '$1', $url );
+
+        $rc_q = $pdo->prepare("SELECT * FROM EatingWellRecipe WHERE RecipeNumber=?");
+        $rc_q->execute([(int)$id]);
+        $existing_r = $rc_q->fetch()
