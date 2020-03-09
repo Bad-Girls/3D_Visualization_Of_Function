@@ -35,4 +35,14 @@ for( $i=200; $i< 340; $i++ ){
 
         $rc_q = $pdo->prepare("SELECT * FROM EatingWellRecipe WHERE RecipeNumber=?");
         $rc_q->execute([(int)$id]);
-        $existing_r = $rc_q->fetch()
+        $existing_r = $rc_q->fetch();
+        if( !$existing_r ){
+          $r_q = $pdo->prepare( "INSERT INTO EatingWellRecipe (RecipeNumber,RecipeName,Url,PageNumber) VALUES (?,?,?,?)" );
+          $r_q->execute([$id,NULL,$url,$page_id]);
+        }
+      }
+    });
+  }
+}
+
+echo 'ff';
