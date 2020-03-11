@@ -1,3 +1,3 @@
 <?php
 
-echo '
+echo 'i eat kittens for bfast';
