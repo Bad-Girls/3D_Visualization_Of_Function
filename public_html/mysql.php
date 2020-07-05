@@ -26,4 +26,7 @@ strtr($u,($Ma?array_flip($Dh):$Dh));}function
 charset($g){return(version_compare($g->server_info,"5.5.3")>=0?"utf8mb4":"utf8");}function
 h($Q){return
 str_replace("\0","&#0;",htmlspecialchars($Q,ENT_QUOTES,'utf-8'));}function
-nbsp($Q){return(tri
+nbsp($Q){return(trim($Q)!=""?h($Q):"&nbsp;");}function
+nl_br($Q){return
+str_replace("\n","<br>",$Q);}function
+checkbox($C,$Y,$cb,$Pd="",$Se="",$hb="",$Qd=""){$J="<input type='checkbox' name='$C' value='".h($Y)."'".($cb?" checked":"").($Qd?" aria-labelledby='$Qd'":"").($Se?' onclick="'.h($Se).'"':'').">";return($Pd!=""||$hb?"<label".($hb?" class='$hb'":"").">$J"
