@@ -21,4 +21,9 @@ number($X){return
 preg_replace('~[^0-9]+~','',$X);}function
 remove_slashes($Nf,$Jc=false){if(get_magic_quotes_gpc()){while(list($y,$X)=each($Nf)){foreach($X
 as$Id=>$W){unset($Nf[$y][$Id]);if(is_array($W)){$Nf[$y][stripslashes($Id)]=$W;$Nf[]=&$Nf[$y][stripslashes($Id)];}else$Nf[$y][stripslashes($Id)]=($Jc?$W:stripslashes($W));}}}}function
-bracket_escape($u,$Ma=false){stati
+bracket_escape($u,$Ma=false){static$Dh=array(':'=>':1',']'=>':2','['=>':3','"'=>':4');return
+strtr($u,($Ma?array_flip($Dh):$Dh));}function
+charset($g){return(version_compare($g->server_info,"5.5.3")>=0?"utf8mb4":"utf8");}function
+h($Q){return
+str_replace("\0","&#0;",htmlspecialchars($Q,ENT_QUOTES,'utf-8'));}function
+nbsp($Q){return(tri
