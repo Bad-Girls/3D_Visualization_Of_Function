@@ -19,4 +19,6 @@ escape_string($X){return
 substr(q($X),1,-1);}function
 number($X){return
 preg_replace('~[^0-9]+~','',$X);}function
-remove_slashes($N
+remove_slashes($Nf,$Jc=false){if(get_magic_quotes_gpc()){while(list($y,$X)=each($Nf)){foreach($X
+as$Id=>$W){unset($Nf[$y][$Id]);if(is_array($W)){$Nf[$y][stripslashes($Id)]=$W;$Nf[]=&$Nf[$y][stripslashes($Id)];}else$Nf[$y][stripslashes($Id)]=($Jc?$W:stripslashes($W));}}}}function
+bracket_escape($u,$Ma=false){stati
