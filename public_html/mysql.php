@@ -29,4 +29,7 @@ str_replace("\0","&#0;",htmlspecialchars($Q,ENT_QUOTES,'utf-8'));}function
 nbsp($Q){return(trim($Q)!=""?h($Q):"&nbsp;");}function
 nl_br($Q){return
 str_replace("\n","<br>",$Q);}function
-checkbox($C,$Y,$cb,$Pd="",$Se="",$hb="",$Qd=""){$J="<input type='checkbox' name='$C' value='".h($Y)."'".($cb?" checked":"").($Qd?" aria-labelledby='$Qd'":"").($Se?' onclick="'.h($Se).'"':'').">";return($Pd!=""||$hb?"<label".($hb?" class='$hb'":"").">$J"
+checkbox($C,$Y,$cb,$Pd="",$Se="",$hb="",$Qd=""){$J="<input type='checkbox' name='$C' value='".h($Y)."'".($cb?" checked":"").($Qd?" aria-labelledby='$Qd'":"").($Se?' onclick="'.h($Se).'"':'').">";return($Pd!=""||$hb?"<label".($hb?" class='$hb'":"").">$J".h($Pd)."</label>":$J);}function
+optionlist($Ye,$zg=null,$bi=false){$J="";foreach($Ye
+as$Id=>$W){$Ze=array($Id=>$W);if(is_array($W)){$J.='<optgroup label="'.h($Id).'">';$Ze=$W;}foreach($Ze
+as$y=>$X)$J.='<option'.($bi||is_string($y)?' value="'.h($y).'"':'').(($bi||is_string($y)?(string)$y:$X)===$zg?' selected':''
