@@ -32,4 +32,6 @@ str_replace("\n","<br>",$Q);}function
 checkbox($C,$Y,$cb,$Pd="",$Se="",$hb="",$Qd=""){$J="<input type='checkbox' name='$C' value='".h($Y)."'".($cb?" checked":"").($Qd?" aria-labelledby='$Qd'":"").($Se?' onclick="'.h($Se).'"':'').">";return($Pd!=""||$hb?"<label".($hb?" class='$hb'":"").">$J".h($Pd)."</label>":$J);}function
 optionlist($Ye,$zg=null,$bi=false){$J="";foreach($Ye
 as$Id=>$W){$Ze=array($Id=>$W);if(is_array($W)){$J.='<optgroup label="'.h($Id).'">';$Ze=$W;}foreach($Ze
-as$y=>$X)$J.='<option'.($bi||is_string($y)?' value="'.h($y).'"':'').(($bi||is_string($y)?(string)$y:$X)===$zg?' selected':''
+as$y=>$X)$J.='<option'.($bi||is_string($y)?' value="'.h($y).'"':'').(($bi||is_string($y)?(string)$y:$X)===$zg?' selected':'').'>'.h($X);if(is_array($W))$J.='</optgroup>';}return$J;}function
+html_select($C,$Ye,$Y="",$Re=true,$Qd=""){if($Re)return"<select name='".h($C)."'".(is_string($Re)?' onchange="'.h($Re).'"':"").($Qd?" aria-labelledby='$Qd'":"").">".optionlist($Ye,$Y)."</select>";$J="";foreach($Ye
+as$y=>$X)$J.="<label><input type='radio' name='".h($C)."' valu
