@@ -36,4 +36,6 @@ as$y=>$X)$J.='<option'.($bi||is_string($y)?' value="'.h($y).'"':'').(($bi||is_st
 html_select($C,$Ye,$Y="",$Re=true,$Qd=""){if($Re)return"<select name='".h($C)."'".(is_string($Re)?' onchange="'.h($Re).'"':"").($Qd?" aria-labelledby='$Qd'":"").">".optionlist($Ye,$Y)."</select>";$J="";foreach($Ye
 as$y=>$X)$J.="<label><input type='radio' name='".h($C)."' value='".h($y)."'".($y==$Y?" checked":"").">".h($X)."</label>";return$J;}function
 select_input($Ia,$Ye,$Y="",$_f=""){return($Ye?"<select$Ia><option value=''>$_f".optionlist($Ye,$Y,true)."</select>":"<input$Ia size='10' value='".h($Y)."' placeholder='$_f'>");}function
-confirm(){return" onclick=\"return confirm('"
+confirm(){return" onclick=\"return confirm('".'Are you sure?'."');\"";}function
+print_fieldset($t,$Xd,$mi=false,$Se=""){echo"<fieldset><legend><a href='#fieldset-$t' onclick=\"".h($Se)."return !toggle('fieldset-$t');\">$Xd</a></legend><div id='fieldset-$t'".($mi?"":" class='hidden'").">\n";}function
+bold($Ua,$hb=""){return($Ua?" class='active $hb'":($hb?" class='$hb'":"
