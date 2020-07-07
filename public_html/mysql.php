@@ -38,4 +38,8 @@ as$y=>$X)$J.="<label><input type='radio' name='".h($C)."' value='".h($y)."'".($y
 select_input($Ia,$Ye,$Y="",$_f=""){return($Ye?"<select$Ia><option value=''>$_f".optionlist($Ye,$Y,true)."</select>":"<input$Ia size='10' value='".h($Y)."' placeholder='$_f'>");}function
 confirm(){return" onclick=\"return confirm('".'Are you sure?'."');\"";}function
 print_fieldset($t,$Xd,$mi=false,$Se=""){echo"<fieldset><legend><a href='#fieldset-$t' onclick=\"".h($Se)."return !toggle('fieldset-$t');\">$Xd</a></legend><div id='fieldset-$t'".($mi?"":" class='hidden'").">\n";}function
-bold($Ua,$hb=""){return($Ua?" class='active $hb'":($hb?" class='$hb'":"
+bold($Ua,$hb=""){return($Ua?" class='active $hb'":($hb?" class='$hb'":""));}function
+odd($J=' class="odd"'){static$s=0;if(!$J)$s=-1;return($s++%2?$J:'');}function
+js_escape($Q){return
+addcslashes($Q,"\r\n'\\/");}function
+json_row($y,$X=null){static$Kc=true;if($Kc)echo"{";if($y!=""){echo($Kc?"":",")."\n\t\"".addcslashes($y,"\r\n\t\"\\/").'": '.($X!==null?'"'.addcslashes($X,"\r\n\"\\/").'"'
