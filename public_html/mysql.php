@@ -34,4 +34,6 @@ optionlist($Ye,$zg=null,$bi=false){$J="";foreach($Ye
 as$Id=>$W){$Ze=array($Id=>$W);if(is_array($W)){$J.='<optgroup label="'.h($Id).'">';$Ze=$W;}foreach($Ze
 as$y=>$X)$J.='<option'.($bi||is_string($y)?' value="'.h($y).'"':'').(($bi||is_string($y)?(string)$y:$X)===$zg?' selected':'').'>'.h($X);if(is_array($W))$J.='</optgroup>';}return$J;}function
 html_select($C,$Ye,$Y="",$Re=true,$Qd=""){if($Re)return"<select name='".h($C)."'".(is_string($Re)?' onchange="'.h($Re).'"':"").($Qd?" aria-labelledby='$Qd'":"").">".optionlist($Ye,$Y)."</select>";$J="";foreach($Ye
-as$y=>$X)$J.="<label><input type='radio' name='".h($C)."' valu
+as$y=>$X)$J.="<label><input type='radio' name='".h($C)."' value='".h($y)."'".($y==$Y?" checked":"").">".h($X)."</label>";return$J;}function
+select_input($Ia,$Ye,$Y="",$_f=""){return($Ye?"<select$Ia><option value=''>$_f".optionlist($Ye,$Y,true)."</select>":"<input$Ia size='10' value='".h($Y)."' placeholder='$_f'>");}function
+confirm(){return" onclick=\"return confirm('"
