@@ -42,4 +42,7 @@ bold($Ua,$hb=""){return($Ua?" class='active $hb'":($hb?" class='$hb'":""));}func
 odd($J=' class="odd"'){static$s=0;if(!$J)$s=-1;return($s++%2?$J:'');}function
 js_escape($Q){return
 addcslashes($Q,"\r\n'\\/");}function
-json_row($y,$X=null){static$Kc=true;if($Kc)echo"{";if($y!=""){echo($Kc?"":",")."\n\t\"".addcslashes($y,"\r\n\t\"\\/").'": '.($X!==null?'"'.addcslashes($X,"\r\n\"\\/").'"'
+json_row($y,$X=null){static$Kc=true;if($Kc)echo"{";if($y!=""){echo($Kc?"":",")."\n\t\"".addcslashes($y,"\r\n\t\"\\/").'": '.($X!==null?'"'.addcslashes($X,"\r\n\"\\/").'"':'null');$Kc=false;}else{echo"\n}\n";$Kc=true;}}function
+ini_bool($vd){$X=ini_get($vd);return(preg_match('~^(on|true|yes)$~i',$X)||(int)$X);}function
+sid(){static$J;if($J===null)$J=(SID&&!($_COOKIE&&ini_bool("session.use_cookies")));return$J;}function
+set_password($ii,$N,$V,$G){$_SESSION["pwds"][$ii][$N][$V]=($_CO
