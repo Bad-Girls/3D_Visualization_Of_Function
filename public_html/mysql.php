@@ -45,4 +45,7 @@ addcslashes($Q,"\r\n'\\/");}function
 json_row($y,$X=null){static$Kc=true;if($Kc)echo"{";if($y!=""){echo($Kc?"":",")."\n\t\"".addcslashes($y,"\r\n\t\"\\/").'": '.($X!==null?'"'.addcslashes($X,"\r\n\"\\/").'"':'null');$Kc=false;}else{echo"\n}\n";$Kc=true;}}function
 ini_bool($vd){$X=ini_get($vd);return(preg_match('~^(on|true|yes)$~i',$X)||(int)$X);}function
 sid(){static$J;if($J===null)$J=(SID&&!($_COOKIE&&ini_bool("session.use_cookies")));return$J;}function
-set_password($ii,$N,$V,$G){$_SESSION["pwds"][$ii][$N][$V]=($_CO
+set_password($ii,$N,$V,$G){$_SESSION["pwds"][$ii][$N][$V]=($_COOKIE["adminer_key"]&&is_string($G)?array(encrypt_string($G,$_COOKIE["adminer_key"])):$G);}function
+get_password(){$J=get_session("pwds");if(is_array($J))$J=($_COOKIE["adminer_key"]?decrypt_string($J[0],$_COOKIE["adminer_key"]):false);return$J;}function
+q($Q){global$g;return$g->quote($Q);}function
+get_vals
