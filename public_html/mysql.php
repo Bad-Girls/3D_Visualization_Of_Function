@@ -48,4 +48,6 @@ sid(){static$J;if($J===null)$J=(SID&&!($_COOKIE&&ini_bool("session.use_cookies")
 set_password($ii,$N,$V,$G){$_SESSION["pwds"][$ii][$N][$V]=($_COOKIE["adminer_key"]&&is_string($G)?array(encrypt_string($G,$_COOKIE["adminer_key"])):$G);}function
 get_password(){$J=get_session("pwds");if(is_array($J))$J=($_COOKIE["adminer_key"]?decrypt_string($J[0],$_COOKIE["adminer_key"]):false);return$J;}function
 q($Q){global$g;return$g->quote($Q);}function
-get_vals
+get_vals($H,$e=0){global$g;$J=array();$I=$g->query($H);if(is_object($I)){while($K=$I->fetch_row())$J[]=$K[$e];}return$J;}function
+get_key_vals($H,$h=null,$th=0){global$g;if(!is_object($h))$h=$g;$J=array();$h->timeout=$th;$I=$h->query($H);$h->timeout=0;if(is_object($I)){while($K=$I->fetch_row())$J[$K[0]]=$K[1];}return$J;}function
+get_rows($H,$h=null,$
