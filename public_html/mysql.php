@@ -50,4 +50,6 @@ get_password(){$J=get_session("pwds");if(is_array($J))$J=($_COOKIE["adminer_key"
 q($Q){global$g;return$g->quote($Q);}function
 get_vals($H,$e=0){global$g;$J=array();$I=$g->query($H);if(is_object($I)){while($K=$I->fetch_row())$J[]=$K[$e];}return$J;}function
 get_key_vals($H,$h=null,$th=0){global$g;if(!is_object($h))$h=$g;$J=array();$h->timeout=$th;$I=$h->query($H);$h->timeout=0;if(is_object($I)){while($K=$I->fetch_row())$J[$K[0]]=$K[1];}return$J;}function
-get_rows($H,$h=null,$
+get_rows($H,$h=null,$n="<p class='error'>"){global$g;$tb=(is_object($h)?$h:$g);$J=array();$I=$tb->query($H);if(is_object($I)){while($K=$I->fetch_assoc())$J[]=$K;}elseif(!$I&&!is_object($h)&&$n&&defined("PAGE_HEADER"))echo$n.error()."\n";return$J;}function
+unique_array($K,$w){foreach($w
+as$v){if(preg_match("~PRIMARY|UNIQUE~",$v["type"])){$J=array();foreach($v["columns"]as$y){
