@@ -52,4 +52,8 @@ get_vals($H,$e=0){global$g;$J=array();$I=$g->query($H);if(is_object($I)){while($
 get_key_vals($H,$h=null,$th=0){global$g;if(!is_object($h))$h=$g;$J=array();$h->timeout=$th;$I=$h->query($H);$h->timeout=0;if(is_object($I)){while($K=$I->fetch_row())$J[$K[0]]=$K[1];}return$J;}function
 get_rows($H,$h=null,$n="<p class='error'>"){global$g;$tb=(is_object($h)?$h:$g);$J=array();$I=$tb->query($H);if(is_object($I)){while($K=$I->fetch_assoc())$J[]=$K;}elseif(!$I&&!is_object($h)&&$n&&defined("PAGE_HEADER"))echo$n.error()."\n";return$J;}function
 unique_array($K,$w){foreach($w
-as$v){if(preg_match("~PRIMARY|UNIQUE~",$v["type"])){$J=array();foreach($v["columns"]as$y){
+as$v){if(preg_match("~PRIMARY|UNIQUE~",$v["type"])){$J=array();foreach($v["columns"]as$y){if(!isset($K[$y]))continue
+2;$J[$y]=$K[$y];}return$J;}}}function
+escape_key($y){if(preg_match('(^([\w(]+)('.str_replace("_",".*",preg_quote(idf_escape("_"))).')([ \w)]+)$)',$y,$B))return$B[1].idf_escape(idf_unescape($B[2])).$B[3];return
+idf_escape($y);}function
+where($Z,$p=array()){global$g,$x;$J=array();foreach((array)$Z["where"]a
