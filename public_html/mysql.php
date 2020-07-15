@@ -60,4 +60,7 @@ where($Z,$p=array()){global$g,$x;$J=array();foreach((array)$Z["where"]as$y=>$X){
 implode(" AND ",$J);}function
 where_check($X,$p=array()){parse_str($X,$ab);remove_slashes(array(&$ab));return
 where($ab,$p);}function
-where_link($s,$e,$Y,$Ue="="){return"&where%5B$s%5D%5Bcol%5D=".urlencode($e)
+where_link($s,$e,$Y,$Ue="="){return"&where%5B$s%5D%5Bcol%5D=".urlencode($e)."&where%5B$s%5D%5Bop%5D=".urlencode(($Y!==null?$Ue:"IS NULL"))."&where%5B$s%5D%5Bval%5D=".urlencode($Y);}function
+convert_fields($f,$p,$M=array()){$J="";foreach($f
+as$y=>$X){if($M&&!in_array(idf_escape($y),$M))continue;$Fa=convert_field($p[$y]);if($Fa)$J.=", $Fa AS ".idf_escape($y);}return$J;}function
+cooki
