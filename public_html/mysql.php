@@ -63,4 +63,6 @@ where($ab,$p);}function
 where_link($s,$e,$Y,$Ue="="){return"&where%5B$s%5D%5Bcol%5D=".urlencode($e)."&where%5B$s%5D%5Bop%5D=".urlencode(($Y!==null?$Ue:"IS NULL"))."&where%5B$s%5D%5Bval%5D=".urlencode($Y);}function
 convert_fields($f,$p,$M=array()){$J="";foreach($f
 as$y=>$X){if($M&&!in_array(idf_escape($y),$M))continue;$Fa=convert_field($p[$y]);if($Fa)$J.=", $Fa AS ".idf_escape($y);}return$J;}function
-cooki
+cookie($C,$Y,$ae=2592000){global$ba;return
+header("Set-Cookie: $C=".urlencode($Y).($ae?"; expires=".gmdate("D, d M Y H:i:s",time()+$ae)." GMT":"")."; path=".preg_replace('~\\?.*~','',$_SERVER["REQUEST_URI"]).($ba?"; secure":"")."; HttpOnly; SameSite=lax",false);}function
+restart_session(){if(!ini_bool("session.use_co
