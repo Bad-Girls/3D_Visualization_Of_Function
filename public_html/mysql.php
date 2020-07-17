@@ -69,4 +69,6 @@ restart_session(){if(!ini_bool("session.use_cookies"))session_start();}function
 stop_session(){if(!ini_bool("session.use_cookies"))session_write_close();}function&get_session($y){return$_SESSION[$y][DRIVER][SERVER][$_GET["username"]];}function
 set_session($y,$X){$_SESSION[$y][DRIVER][SERVER][$_GET["username"]]=$X;}function
 auth_url($ii,$N,$V,$m=null){global$Wb;preg_match('~([^?]*)\\??(.*)~',remove_from_uri(implode("|",array_keys($Wb))."|username|".($m!==null?"db|":"").session_name()),$B);return"$B[1]?".(sid()?SID."&":"").($ii!="server"||$N!=""?urlencode($ii)."=".urlencode($N)."&":"")."username=".urlencode($V).($m!=""?"&db=".urlencode($m):"").($B[2]?"&$B[2]":"");}function
-is_ajax(){return(
+is_ajax(){return($_SERVER["HTTP_X_REQUESTED_WITH"]=="XMLHttpRequest");}function
+redirect($A,$pe=null){if($pe!==null){restart_session();$_SESSION["messages"][preg_replace('~^[^?]*~','',($A!==null?$A:$_SERVER["REQUEST_URI"]))][]=$pe;}if($A!==null){if($A=="")$A=".";header("Location: $A");exit;}}function
+query_redirect($H,$A,$pe,$Xf=true,$vc=true,$Cc=false,$sh=""){gl
