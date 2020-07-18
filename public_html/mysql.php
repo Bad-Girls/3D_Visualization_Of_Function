@@ -71,4 +71,8 @@ set_session($y,$X){$_SESSION[$y][DRIVER][SERVER][$_GET["username"]]=$X;}function
 auth_url($ii,$N,$V,$m=null){global$Wb;preg_match('~([^?]*)\\??(.*)~',remove_from_uri(implode("|",array_keys($Wb))."|username|".($m!==null?"db|":"").session_name()),$B);return"$B[1]?".(sid()?SID."&":"").($ii!="server"||$N!=""?urlencode($ii)."=".urlencode($N)."&":"")."username=".urlencode($V).($m!=""?"&db=".urlencode($m):"").($B[2]?"&$B[2]":"");}function
 is_ajax(){return($_SERVER["HTTP_X_REQUESTED_WITH"]=="XMLHttpRequest");}function
 redirect($A,$pe=null){if($pe!==null){restart_session();$_SESSION["messages"][preg_replace('~^[^?]*~','',($A!==null?$A:$_SERVER["REQUEST_URI"]))][]=$pe;}if($A!==null){if($A=="")$A=".";header("Location: $A");exit;}}function
-query_redirect($H,$A,$pe,$Xf=true,$vc=true,$Cc=false,$sh=""){gl
+query_redirect($H,$A,$pe,$Xf=true,$vc=true,$Cc=false,$sh=""){global$g,$n,$b;if($vc){$Sg=microtime(true);$Cc=!$g->query($H);$sh=format_time($Sg);}$Qg="";if($H)$Qg=$b->messageQuery($H,$sh);if($Cc){$n=error().$Qg;return
+false;}if($Xf)redirect($A,$pe.$Qg);return
+true;}function
+queries($H){global$g;static$Rf=array();static$Sg;if(!$Sg)$Sg=microtime(true);if($H===null)return
+array(i
