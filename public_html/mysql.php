@@ -75,4 +75,10 @@ query_redirect($H,$A,$pe,$Xf=true,$vc=true,$Cc=false,$sh=""){global$g,$n,$b;if($
 false;}if($Xf)redirect($A,$pe.$Qg);return
 true;}function
 queries($H){global$g;static$Rf=array();static$Sg;if(!$Sg)$Sg=microtime(true);if($H===null)return
-array(i
+array(implode("\n",$Rf),format_time($Sg));$Rf[]=(preg_match('~;$~',$H)?"DELIMITER ;;\n$H;\nDELIMITER ":$H).";";return$g->query($H);}function
+apply_queries($H,$T,$rc='table'){foreach($T
+as$R){if(!queries("$H ".$rc($R)))return
+false;}return
+true;}function
+queries_redirect($A,$pe,$Xf){list($Rf,$sh)=queries(null);return
+query_redirect($Rf,$A,$p
