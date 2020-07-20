@@ -89,4 +89,5 @@ substr(preg_replace("~(?<=[?&])($nf".(SID?"":"|".session_name()).")=[^&]*&~",'',
 pagination($E,$Cb){return" ".($E==$Cb?$E+1:'<a href="'.h(remove_from_uri("page").($E?"&page=$E".($_GET["next"]?"&next=".urlencode($_GET["next"]):""):"")).'">'.($E+1)."</a>");}function
 get_file($y,$Jb=false){$Hc=$_FILES[$y];if(!$Hc)return
 null;foreach($Hc
-as$y=>$X)$Hc[$y]=(array)$X;$J='';foreach($Hc["error"]as$y=>$n){if($n)return$n;$C=$Hc["name"][$y];$_h=$Hc["tmp_name"][$y];$vb=f
+as$y=>$X)$Hc[$y]=(array)$X;$J='';foreach($Hc["error"]as$y=>$n){if($n)return$n;$C=$Hc["name"][$y];$_h=$Hc["tmp_name"][$y];$vb=file_get_contents($Jb&&preg_match('~\\.gz$~',$C)?"compress.zlib://$_h":$_h);if($Jb){$Sg=substr($vb,0,3);if(function_exists("iconv")&&preg_match("~^\xFE\xFF|^\xFF\xFE~",$Sg,$dg))$vb=iconv("utf-16","utf-8",$vb);elseif($Sg=="\xEF\xBB\xBF")$vb=substr($vb,3);$J.=$vb."\n\n";}else$J.=$vb;}return$J;}function
+upload_error($n){$me=($n==UPLOAD_ERR_INI_SIZE?ini_get("upload_ma
