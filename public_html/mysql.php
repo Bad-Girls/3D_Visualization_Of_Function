@@ -81,4 +81,9 @@ as$R){if(!queries("$H ".$rc($R)))return
 false;}return
 true;}function
 queries_redirect($A,$pe,$Xf){list($Rf,$sh)=queries(null);return
-query_redirect($Rf,$A,$p
+query_redirect($Rf,$A,$pe,$Xf,false,!$Xf,$sh);}function
+format_time($Sg){return
+sprintf('%.3f s',max(0,microtime(true)-$Sg));}function
+remove_from_uri($nf=""){return
+substr(preg_replace("~(?<=[?&])($nf".(SID?"":"|".session_name()).")=[^&]*&~",'',"$_SERVER[REQUEST_URI]&"),0,-1);}function
+pagination($E,$Cb){return" ".($E==$Cb?$E+1:'<a href="'.h(remove_from_ur
