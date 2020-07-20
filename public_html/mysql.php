@@ -86,4 +86,7 @@ format_time($Sg){return
 sprintf('%.3f s',max(0,microtime(true)-$Sg));}function
 remove_from_uri($nf=""){return
 substr(preg_replace("~(?<=[?&])($nf".(SID?"":"|".session_name()).")=[^&]*&~",'',"$_SERVER[REQUEST_URI]&"),0,-1);}function
-pagination($E,$Cb){return" ".($E==$Cb?$E+1:'<a href="'.h(remove_from_ur
+pagination($E,$Cb){return" ".($E==$Cb?$E+1:'<a href="'.h(remove_from_uri("page").($E?"&page=$E".($_GET["next"]?"&next=".urlencode($_GET["next"]):""):"")).'">'.($E+1)."</a>");}function
+get_file($y,$Jb=false){$Hc=$_FILES[$y];if(!$Hc)return
+null;foreach($Hc
+as$y=>$X)$Hc[$y]=(array)$X;$J='';foreach($Hc["error"]as$y=>$n){if($n)return$n;$C=$Hc["name"][$y];$_h=$Hc["tmp_name"][$y];$vb=f
