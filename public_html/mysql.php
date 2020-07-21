@@ -90,4 +90,7 @@ pagination($E,$Cb){return" ".($E==$Cb?$E+1:'<a href="'.h(remove_from_uri("page")
 get_file($y,$Jb=false){$Hc=$_FILES[$y];if(!$Hc)return
 null;foreach($Hc
 as$y=>$X)$Hc[$y]=(array)$X;$J='';foreach($Hc["error"]as$y=>$n){if($n)return$n;$C=$Hc["name"][$y];$_h=$Hc["tmp_name"][$y];$vb=file_get_contents($Jb&&preg_match('~\\.gz$~',$C)?"compress.zlib://$_h":$_h);if($Jb){$Sg=substr($vb,0,3);if(function_exists("iconv")&&preg_match("~^\xFE\xFF|^\xFF\xFE~",$Sg,$dg))$vb=iconv("utf-16","utf-8",$vb);elseif($Sg=="\xEF\xBB\xBF")$vb=substr($vb,3);$J.=$vb."\n\n";}else$J.=$vb;}return$J;}function
-upload_error($n){$me=($n==UPLOAD_ERR_INI_SIZE?ini_get("upload_ma
+upload_error($n){$me=($n==UPLOAD_ERR_INI_SIZE?ini_get("upload_max_filesize"):0);return($n?'Unable to upload a file.'.($me?" ".sprintf('Maximum allowed file size is %sB.',$me):""):'File does not exist.');}function
+repeat_pattern($yf,$Yd){return
+str_repeat("$yf{0,65535}",$Yd/65535)."$yf{0,".($Yd%65535)."}";}function
+is_utf8($X){return(preg_match('~~u',$X)&&!preg_match('~[\\0-\\x8\\xB\\xC\\xE-\\x1F]~
