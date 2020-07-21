@@ -93,4 +93,8 @@ as$y=>$X)$Hc[$y]=(array)$X;$J='';foreach($Hc["error"]as$y=>$n){if($n)return$n;$C
 upload_error($n){$me=($n==UPLOAD_ERR_INI_SIZE?ini_get("upload_max_filesize"):0);return($n?'Unable to upload a file.'.($me?" ".sprintf('Maximum allowed file size is %sB.',$me):""):'File does not exist.');}function
 repeat_pattern($yf,$Yd){return
 str_repeat("$yf{0,65535}",$Yd/65535)."$yf{0,".($Yd%65535)."}";}function
-is_utf8($X){return(preg_match('~~u',$X)&&!preg_match('~[\\0-\\x8\\xB\\xC\\xE-\\x1F]~
+is_utf8($X){return(preg_match('~~u',$X)&&!preg_match('~[\\0-\\x8\\xB\\xC\\xE-\\x1F]~',$X));}function
+shorten_utf8($Q,$Yd=80,$Yg=""){if(!preg_match("(^(".repeat_pattern("[\t\r\n -\x{10FFFF}]",$Yd).")($)?)u",$Q,$B))preg_match("(^(".repeat_pattern("[\t\r\n -~]",$Yd).")($)?)",$Q,$B);return
+h($B[1]).$Yg.(isset($B[2])?"":"<i>...</i>");}function
+format_number($X){return
+strtr(number_format($X,0,".",'
