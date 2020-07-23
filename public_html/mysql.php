@@ -97,4 +97,9 @@ is_utf8($X){return(preg_match('~~u',$X)&&!preg_match('~[\\0-\\x8\\xB\\xC\\xE-\\x
 shorten_utf8($Q,$Yd=80,$Yg=""){if(!preg_match("(^(".repeat_pattern("[\t\r\n -\x{10FFFF}]",$Yd).")($)?)u",$Q,$B))preg_match("(^(".repeat_pattern("[\t\r\n -~]",$Yd).")($)?)",$Q,$B);return
 h($B[1]).$Yg.(isset($B[2])?"":"<i>...</i>");}function
 format_number($X){return
-strtr(number_format($X,0,".",'
+strtr(number_format($X,0,".",','),preg_split('~~u','0123456789',-1,PREG_SPLIT_NO_EMPTY));}function
+friendly_url($X){return
+preg_replace('~[^a-z0-9_]~i','-',$X);}function
+hidden_fields($Nf,$od=array()){while(list($y,$X)=each($Nf)){if(!in_array($y,$od)){if(is_array($X)){foreach($X
+as$Id=>$W)$Nf[$y."[$Id]"]=$W;}else
+echo'<input type="hidden" name="'.h($y).'" value
