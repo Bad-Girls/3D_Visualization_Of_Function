@@ -102,4 +102,6 @@ friendly_url($X){return
 preg_replace('~[^a-z0-9_]~i','-',$X);}function
 hidden_fields($Nf,$od=array()){while(list($y,$X)=each($Nf)){if(!in_array($y,$od)){if(is_array($X)){foreach($X
 as$Id=>$W)$Nf[$y."[$Id]"]=$W;}else
-echo'<input type="hidden" name="'.h($y).'" value
+echo'<input type="hidden" name="'.h($y).'" value="'.h($X).'">';}}}function
+hidden_fields_get(){echo(sid()?'<input type="hidden" name="'.session_name().'" value="'.h(session_id()).'">':''),(SERVER!==null?'<input type="hidden" name="'.DRIVER.'" value="'.h(SERVER).'">':""),'<input type="hidden" name="username" value="'.h($_GET["username"]).'">';}function
+table_status1($R,$Dc=false){
