@@ -114,4 +114,7 @@ process_input($o){global$b;$u=bracket_escape($o["field"]);$r=$_POST["function"][
 false;if($Y=="")return"NULL";return+$Y;}if($o["auto_increment"]&&$Y=="")return
 null;if($r=="orig")return($o["on_update"]=="CURRENT_TIMESTAMP"?idf_escape($o["field"]):false);if($r=="NULL")return"NULL";if($o["type"]=="set")return
 array_sum((array)$Y);if($r=="json"){$r="";$Y=json_decode($Y,true);if(!is_array($Y))return
-false;ret
+false;return$Y;}if(preg_match('~blob|bytea|raw|file~',$o["type"])&&ini_bool("file_uploads")){$Hc=get_file("fields-$u");if(!is_string($Hc))return
+false;return
+q($Hc);}return$b->processInput($o,$Y,$r);}function
+fields_from_edit(){global$Vb;$J=array();foreach((array)$_POST["field_keys"]as$y=>$X){if($X!=""){$X=bracket_esc
