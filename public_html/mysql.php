@@ -117,4 +117,5 @@ array_sum((array)$Y);if($r=="json"){$r="";$Y=json_decode($Y,true);if(!is_array($
 false;return$Y;}if(preg_match('~blob|bytea|raw|file~',$o["type"])&&ini_bool("file_uploads")){$Hc=get_file("fields-$u");if(!is_string($Hc))return
 false;return
 q($Hc);}return$b->processInput($o,$Y,$r);}function
-fields_from_edit(){global$Vb;$J=array();foreach((array)$_POST["field_keys"]as$y=>$X){if($X!=""){$X=bracket_esc
+fields_from_edit(){global$Vb;$J=array();foreach((array)$_POST["field_keys"]as$y=>$X){if($X!=""){$X=bracket_escape($X);$_POST["function"][$X]=$_POST["field_funs"][$y];$_POST["fields"][$X]=$_POST["field_vals"][$y];}}foreach((array)$_POST["fields"]as$y=>$X){$C=bracket_escape($y,1);$J[$C]=array("field"=>$C,"privileges"=>array("insert"=>1,"update"=>1),"null"=>1,"auto_increment"=>($y==$Vb->primary),);}return$J;}function
+search_tables(){global$b,$g;$_G
