@@ -126,4 +126,8 @@ implode(($_POST["format"]=="csv"?",":($_POST["format"]=="tsv"?"\t":";")),$K)."\r
 apply_sql_function($r,$e){return($r?($r=="unixepoch"?"DATETIME($e, '$r')":($r=="count distinct"?"COUNT(DISTINCT ":strtoupper("$r("))."$e)"):$e);}function
 get_temp_dir(){$J=ini_get("upload_tmp_dir");if(!$J){if(function_exists('sys_get_temp_dir'))$J=sys_get_temp_dir();else{$Ic=@tempnam("","");if(!$Ic)return
 false;$J=dirname($Ic);unlink($Ic);}}return$J;}function
-password_file($i){$Ic=get_temp_dir()."/adminer.key";$J=@file
+password_file($i){$Ic=get_temp_dir()."/adminer.key";$J=@file_get_contents($Ic);if($J||!$i)return$J;$Vc=@fopen($Ic,"w");if($Vc){chmod($Ic,0660);$J=rand_string();fwrite($Vc,$J);fclose($Vc);}return$J;}function
+rand_string(){return
+md5(uniqid(mt_rand(),true));}function
+select_value($X,$_,$o,$rh){global$b,$ba;if(is_array($X)){$J="";foreach($X
+as$Id=>$W)$J.="<tr>".($X!=array_values($X)?"
