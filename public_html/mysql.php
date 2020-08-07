@@ -123,4 +123,7 @@ dump_headers($md,$ye=false){global$b;$J=$b->dumpHeaders($md,$ye);$lf=$_POST["out
 dump_csv($K){foreach($K
 as$y=>$X){if(preg_match("~[\"\n,;\t]~",$X)||$X==="")$K[$y]='"'.str_replace('"','""',$X).'"';}echo
 implode(($_POST["format"]=="csv"?",":($_POST["format"]=="tsv"?"\t":";")),$K)."\r\n";}function
-apply_sql_function($r,$e){return($r?($r=="unixepoch"?"DATETIME($e, '$r')":($r=="count distinct"?"COUNT(DISTIN
+apply_sql_function($r,$e){return($r?($r=="unixepoch"?"DATETIME($e, '$r')":($r=="count distinct"?"COUNT(DISTINCT ":strtoupper("$r("))."$e)"):$e);}function
+get_temp_dir(){$J=ini_get("upload_tmp_dir");if(!$J){if(function_exists('sys_get_temp_dir'))$J=sys_get_temp_dir();else{$Ic=@tempnam("","");if(!$Ic)return
+false;$J=dirname($Ic);unlink($Ic);}}return$J;}function
+password_file($i){$Ic=get_temp_dir()."/adminer.key";$J=@file
