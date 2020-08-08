@@ -135,4 +135,5 @@ is_mail($ic){$Ga='[-a-z0-9!#$%&\'*+/=?^_`{|}~]';$Ub='[a-z0-9]([-a-z0-9]{0,61}[a-
 is_string($ic)&&preg_match("(^$yf(,\\s*$yf)*\$)i",$ic);}function
 is_url($Q){$Ub='[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])';return(preg_match("~^(https?)://($Ub?\\.)+$Ub(:\\d+)?(/.*)?(\\?.*)?(#.*)?\$~i",$Q,$B)?strtolower($B[1]):"");}function
 is_shortable($o){return
-preg_match('~char|text|l
+preg_match('~char|text|lob|geometry|point|linestring|polygon|string|bytea~',$o["type"]);}function
+count_rows($R,$Z,$Cd,$ad){global$x;$H=" FROM ".table($R).($Z?" WHERE ".implode(" AND ",$Z):"");return($Cd&&($x=="sql"||count($ad)==1)?"SELECT COUNT(DISTINCT ".implode(", ",$ad).")$H":"SELECT COUNT(*)".($Cd?" FROM (SELECT 
