@@ -130,4 +130,5 @@ password_file($i){$Ic=get_temp_dir()."/adminer.key";$J=@file_get_contents($Ic);i
 rand_string(){return
 md5(uniqid(mt_rand(),true));}function
 select_value($X,$_,$o,$rh){global$b,$ba;if(is_array($X)){$J="";foreach($X
-as$Id=>$W)$J.="<tr>".($X!=array_values($X)?"<th>".h($Id):"")."<td>".select_value($W,$_,$o,$rh);return"<table cellspacing='0'>$J</table>";}if(!$_)$_=$b->selectLink($X,$o);if($_===null){if(is_mail($X))$_="mailto:$X";if($Pf=is_url($X))$_=(($Pf=="http"&&$ba)||preg_match('~WebKit|Firefox~i',$_SERVER["HTTP_USER_AGENT"])?$X:"https://www.adminer.org/redi
+as$Id=>$W)$J.="<tr>".($X!=array_values($X)?"<th>".h($Id):"")."<td>".select_value($W,$_,$o,$rh);return"<table cellspacing='0'>$J</table>";}if(!$_)$_=$b->selectLink($X,$o);if($_===null){if(is_mail($X))$_="mailto:$X";if($Pf=is_url($X))$_=(($Pf=="http"&&$ba)||preg_match('~WebKit|Firefox~i',$_SERVER["HTTP_USER_AGENT"])?$X:"https://www.adminer.org/redirect/?url=".urlencode($X));}$J=$b->editVal($X,$o);if($J!==null){if($J==="")$J="&nbsp;";elseif(!is_utf8($J))$J="\0";elseif($rh!=""&&is_shortable($o))$J=shorten_utf8($J,max(0,+$rh));else$J=h($J);}return$b->selectVal($J,$_,$o,$X);}function
+is_mail($ic){$Ga='[-a-z0-9!#$%&\'*+/=?^_`{|}~]';$Ub='[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])';$yf=
