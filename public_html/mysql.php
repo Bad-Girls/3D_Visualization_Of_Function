@@ -145,4 +145,6 @@ var timeout = setTimeout(function () {
 </script>
 ';}else$h=null;ob_flush();flush();$J=@get_key_vals($H,$h,$th);if($h){echo"<script type='text/javascript'>clearTimeout(timeout);</script>\n";ob_flush();flush();}return
 array_keys($J);}function
-get_token(){$Uf=rand(1,1e6);re
+get_token(){$Uf=rand(1,1e6);return($Uf^$_SESSION["token"]).":$Uf";}function
+verify_token(){list($Ah,$Uf)=explode(":",$_POST["token"]);return($Uf^$_SESSION["token"])==$Ah;}function
+lzw_decompress($Qa){$Qb=256;$Ra=8;$jb=array();$ig=0;$jg=0;for($s=0;$s<strlen($Qa);$s++){$ig=($ig<<8)+ord($Qa[$s]);$jg+=8;if($jg>=$Ra){$jg-=$Ra;$jb[]=$i
