@@ -139,4 +139,10 @@ preg_match('~char|text|lob|geometry|point|linestring|polygon|string|bytea~',$o["
 count_rows($R,$Z,$Cd,$ad){global$x;$H=" FROM ".table($R).($Z?" WHERE ".implode(" AND ",$Z):"");return($Cd&&($x=="sql"||count($ad)==1)?"SELECT COUNT(DISTINCT ".implode(", ",$ad).")$H":"SELECT COUNT(*)".($Cd?" FROM (SELECT 1$H$bd) x":$H));}function
 slow_query($H){global$b,$Ah;$m=$b->database();$th=$b->queryTimeout();if(support("kill")&&is_object($h=connect())&&($m==""||$h->select_db($m))){$Nd=$h->result(connection_id());echo'<script type="text/javascript">
 var timeout = setTimeout(function () {
-	ajax(\'',js_escape(ME),'script=k
+	ajax(\'',js_escape(ME),'script=kill\', function () {
+	}, \'token=',$Ah,'&kill=',$Nd,'\');
+}, ',1000*$th,');
+</script>
+';}else$h=null;ob_flush();flush();$J=@get_key_vals($H,$h,$th);if($h){echo"<script type='text/javascript'>clearTimeout(timeout);</script>\n";ob_flush();flush();}return
+array_keys($J);}function
+get_token(){$Uf=rand(1,1e6);re
