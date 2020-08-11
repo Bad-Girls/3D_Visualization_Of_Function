@@ -147,4 +147,6 @@ var timeout = setTimeout(function () {
 array_keys($J);}function
 get_token(){$Uf=rand(1,1e6);return($Uf^$_SESSION["token"]).":$Uf";}function
 verify_token(){list($Ah,$Uf)=explode(":",$_POST["token"]);return($Uf^$_SESSION["token"])==$Ah;}function
-lzw_decompress($Qa){$Qb=256;$Ra=8;$jb=array();$ig=0;$jg=0;for($s=0;$s<strlen($Qa);$s++){$ig=($ig<<8)+ord($Qa[$s]);$jg+=8;if($jg>=$Ra){$jg-=$Ra;$jb[]=$i
+lzw_decompress($Qa){$Qb=256;$Ra=8;$jb=array();$ig=0;$jg=0;for($s=0;$s<strlen($Qa);$s++){$ig=($ig<<8)+ord($Qa[$s]);$jg+=8;if($jg>=$Ra){$jg-=$Ra;$jb[]=$ig>>$jg;$ig&=(1<<$jg)-1;$Qb++;if($Qb>>$Ra)$Ra++;}}$Pb=range("\0","\xFF");$J="";foreach($jb
+as$s=>$ib){$hc=$Pb[$ib];if(!isset($hc))$hc=$qi.$qi[0];$J.=$hc;if($s)$Pb[]=$qi.$hc[0];$qi=$hc;}return$J;}function
+on_help($ob,$Hg=0){return" onmouseover='helpMouseover(this, event, ".h($ob).", $Hg);' onmouseout='he
