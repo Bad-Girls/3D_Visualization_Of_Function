@@ -151,4 +151,5 @@ lzw_decompress($Qa){$Qb=256;$Ra=8;$jb=array();$ig=0;$jg=0;for($s=0;$s<strlen($Qa
 as$s=>$ib){$hc=$Pb[$ib];if(!isset($hc))$hc=$qi.$qi[0];$J.=$hc;if($s)$Pb[]=$qi.$hc[0];$qi=$hc;}return$J;}function
 on_help($ob,$Hg=0){return" onmouseover='helpMouseover(this, event, ".h($ob).", $Hg);' onmouseout='helpMouseout(this, event);'";}function
 edit_form($a,$p,$K,$Wh){global$b,$x,$Ah,$n;$dh=$b->tableName(table_status1($a,true));page_header(($Wh?'Edit':'Insert'),$n,array("select"=>array($a,$dh)),$dh);if($K===false)echo"<p class='error'>".'No rows.'."\n";echo'<form action="" method="post" enctype="multipart/form-data" id="form">
-';if(!$p)echo"<p clas
+';if(!$p)echo"<p class='error'>".'You have no privileges to update this table.'."\n";else{echo"<table cellspacing='0' onkeydown='return editingKeydown(event);'>\n";foreach($p
+as$C=>$o){echo"<tr><th>".$b->fieldName($o);$Kb=$_GET["set"][bracket_escape($C)];if($Kb===null){$Kb=$o["default"];if($o["type"]=="bit"&&preg_match("~^b'([01]*)'\$~",$Kb,$dg))$Kb=$dg[1];}$Y=
