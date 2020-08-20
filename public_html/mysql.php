@@ -156,4 +156,4 @@ as$C=>$o){echo"<tr><th>".$b->fieldName($o);$Kb=$_GET["set"][bracket_escape($C)];
 <input type="hidden" name="save" value="1">
 <input type="hidden" name="token" value="',$Ah,'">
 </form>
-';}global$b,$g,$Wb,$ec,$oc,$n,$Xc,$cd,$ba,$wd,$x,$ca,$Rd,$Qe,$zf,$Vg,$gd,$Ah,$Fh,$Oh,$Vh,$ia;if(!$_SERVER["REQUEST_URI"])$_SERVER["REQUEST_URI"]=$_SERVER["ORIG_PATH_INFO"];if(!strpos($_SERVER["REQUEST_URI"],'?')&&$_SERVER["QUERY_STRING"]!="")$_SERVER["REQUE
+';}global$b,$g,$Wb,$ec,$oc,$n,$Xc,$cd,$ba,$wd,$x,$ca,$Rd,$Qe,$zf,$Vg,$gd,$Ah,$Fh,$Oh,$Vh,$ia;if(!$_SERVER["REQUEST_URI"])$_SERVER["REQUEST_URI"]=$_SERVER["ORIG_PATH_INFO"];if(!strpos($_SERVER["REQUEST_URI"],'?')&&$_SERVER["QUERY_STRING"]!="")$_SERVER["REQUEST_URI"].="?$_SERVER[QUERY_STRING]";$ba=$_SERVER["HTTPS"]&&strcasecmp($_SERVER["HTTPS"],"off");@ini_set("session.use_trans_sid",false);session_cache_limiter("");if(!defined("SID")){session_name("adminer_sid");$F=array(0,preg_replace('~\\?.*~','',$_SERVER["REQUEST_URI"]),"",$ba);if(version_compare(PHP_VERSION,'5.2.0')>=0)$F[]=true;call_user_fu
