@@ -158,4 +158,9 @@ as$C=>$o){echo"<tr><th>".$b->fieldName($o);$Kb=$_GET["set"][bracket_escape($C)];
 </form>
 ';}global$b,$g,$Wb,$ec,$oc,$n,$Xc,$cd,$ba,$wd,$x,$ca,$Rd,$Qe,$zf,$Vg,$gd,$Ah,$Fh,$Oh,$Vh,$ia;if(!$_SERVER["REQUEST_URI"])$_SERVER["REQUEST_URI"]=$_SERVER["ORIG_PATH_INFO"];if(!strpos($_SERVER["REQUEST_URI"],'?')&&$_SERVER["QUERY_STRING"]!="")$_SERVER["REQUEST_URI"].="?$_SERVER[QUERY_STRING]";$ba=$_SERVER["HTTPS"]&&strcasecmp($_SERVER["HTTPS"],"off");@ini_set("session.use_trans_sid",false);session_cache_limiter("");if(!defined("SID")){session_name("adminer_sid");$F=array(0,preg_replace('~\\?.*~','',$_SERVER["REQUEST_URI"]),"",$ba);if(version_compare(PHP_VERSION,'5.2.0')>=0)$F[]=true;call_user_func_array('session_set_cookie_params',$F);session_start();}remove_slashes(array(&$_GET,&$_POST,&$_COOKIE),$Jc);if(get_magic_quotes_runtime())set_magic_quotes_runtime(false);@set_time_limit(0);@ini_set("zend.ze1_compatibility_mode",false);@ini_set("precision",20);function
 get_lang(){return'en';}function
-lang($Eh,$He=null){if(is_array($Eh))
+lang($Eh,$He=null){if(is_array($Eh)){$Bf=($He==1?0:1);$Eh=$Eh[$Bf];}$Eh=str_replace("%d","%s",$Eh);$He=format_number($He);return
+sprintf($Eh,$He);}if(extension_loaded('pdo')){class
+Min_PDO
+extends
+PDO{var$_result,$server_info,$affected_rows,$errno,$error;function
+__construct(){global$b;$Bf=array_search("SQL",$b->operators);if($Bf!==false)unset($b->operators[$Bf]);
