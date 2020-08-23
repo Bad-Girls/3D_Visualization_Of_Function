@@ -163,4 +163,6 @@ sprintf($Eh,$He);}if(extension_loaded('pdo')){class
 Min_PDO
 extends
 PDO{var$_result,$server_info,$affected_rows,$errno,$error;function
-__construct(){global$b;$Bf=array_search("SQL",$b->operators);if($Bf!==false)unset($b->operators[$Bf]);
+__construct(){global$b;$Bf=array_search("SQL",$b->operators);if($Bf!==false)unset($b->operators[$Bf]);}function
+dsn($bc,$V,$G){try{parent::__construct($bc,$V,$G);}catch(Exception$tc){auth_error(h($tc->getMessage()));}$this->setAttribute(13,array('Min_PDOStatement'));$this->server_info=@$this->getAttribute(4);}function
+query($H,$Ph=false){$I=parent::query($H);$this->error="";if(!$I){list(,$this->errno,$this->error)=$thi
