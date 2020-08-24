@@ -165,4 +165,9 @@ extends
 PDO{var$_result,$server_info,$affected_rows,$errno,$error;function
 __construct(){global$b;$Bf=array_search("SQL",$b->operators);if($Bf!==false)unset($b->operators[$Bf]);}function
 dsn($bc,$V,$G){try{parent::__construct($bc,$V,$G);}catch(Exception$tc){auth_error(h($tc->getMessage()));}$this->setAttribute(13,array('Min_PDOStatement'));$this->server_info=@$this->getAttribute(4);}function
-query($H,$Ph=false){$I=parent::query($H);$this->error="";if(!$I){list(,$this->errno,$this->error)=$thi
+query($H,$Ph=false){$I=parent::query($H);$this->error="";if(!$I){list(,$this->errno,$this->error)=$this->errorInfo();return
+false;}$this->store_result($I);return$I;}function
+multi_query($H){return$this->_result=$this->query($H);}function
+store_result($I=null){if(!$I){$I=$this->_result;if(!$I)return
+false;}if($I->columnCount()){$I->num_rows=$I->rowCount();return$I;}$this->affected_rows=$I->rowCount();return
+true;}
