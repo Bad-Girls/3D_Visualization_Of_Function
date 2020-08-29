@@ -186,4 +186,9 @@ __construct($g){$this->_conn=$g;}function
 select($R,$M,$Z,$ad,$af=array(),$z=1,$E=0,$Jf=false){global$b,$x;$Cd=(count($ad)<count($M));$H=$b->selectQueryBuild($M,$Z,$ad,$af,$z,$E);if(!$H)$H="SELECT".limit(($_GET["page"]!="last"&&+$z&&$ad&&$Cd&&$x=="sql"?"SQL_CALC_FOUND_ROWS ":"").implode(", ",$M)."\nFROM ".table($R),($Z?"\nWHERE ".implode(" AND ",$Z):"").($ad&&$Cd?"\nGROUP BY ".implode(", ",$ad):"").($af?"\nORDER BY ".implode(", ",$af):""),($z!=""?+$z:null),($E?$z*$E:0),"\n");$Sg=microtime(true);$J=$this->_conn->query($H);if($Jf)echo$b->selectQuery($H,format_time($Sg));return$J;}function
 delete($R,$Sf,$z=0){$H="FROM ".table($R);return
 queries("DELETE".($z?limit1($H,$Sf):" $H$Sf"));}function
-update($R,$O,$Sf,$z=
+update($R,$O,$Sf,$z=0,$Ag="\n"){$gi=array();foreach($O
+as$y=>$X)$gi[]="$y = $X";$H=table($R)." SET$Ag".implode(",$Ag",$gi);return
+queries("UPDATE".($z?limit1($H,$Sf):" $H$Sf"));}function
+insert($R,$O){return
+queries("INSERT INTO ".table($R).($O?" (".implode(", ",array_keys($O)).")\nVALUES (".implode(", ",$O).")":" DEFAULT VALUES"));}function
+inse
