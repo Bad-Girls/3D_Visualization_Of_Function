@@ -183,4 +183,7 @@ fetch_row(){return$this->fetch(3);}function
 fetch_field(){$K=(object)$this->getColumnMeta($this->_offset++);$K->orgtable=$K->table;$K->orgname=$K->name;$K->charsetnr=(in_array("blob",(array)$K->flags)?63:0);return$K;}}}$Wb=array();class
 Min_SQL{var$_conn;function
 __construct($g){$this->_conn=$g;}function
-select($R,$M,$Z,$ad,$af=array(),$z=1,$E=0,$Jf=false){global$b,$x;$Cd=(count($ad)<count($M));$H=$b->selectQueryBuild($M,$Z,$ad,$af,$z,$E);if(!$H)$H="SELECT".limit(($_GET["page"]!="last"&&+$z&&$ad&&$Cd&&$x=="sql"?"SQL_CALC_FOUND_ROWS ":"").implode(", ",$M)."\nFROM ".table($R),($Z?"\nWHERE ".implode(" AND ",$Z):"").($ad&&$Cd?"\nGROUP BY ".implod
+select($R,$M,$Z,$ad,$af=array(),$z=1,$E=0,$Jf=false){global$b,$x;$Cd=(count($ad)<count($M));$H=$b->selectQueryBuild($M,$Z,$ad,$af,$z,$E);if(!$H)$H="SELECT".limit(($_GET["page"]!="last"&&+$z&&$ad&&$Cd&&$x=="sql"?"SQL_CALC_FOUND_ROWS ":"").implode(", ",$M)."\nFROM ".table($R),($Z?"\nWHERE ".implode(" AND ",$Z):"").($ad&&$Cd?"\nGROUP BY ".implode(", ",$ad):"").($af?"\nORDER BY ".implode(", ",$af):""),($z!=""?+$z:null),($E?$z*$E:0),"\n");$Sg=microtime(true);$J=$this->_conn->query($H);if($Jf)echo$b->selectQuery($H,format_time($Sg));return$J;}function
+delete($R,$Sf,$z=0){$H="FROM ".table($R);return
+queries("DELETE".($z?limit1($H,$Sf):" $H$Sf"));}function
+update($R,$O,$Sf,$z=
