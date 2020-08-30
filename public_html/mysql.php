@@ -191,4 +191,11 @@ as$y=>$X)$gi[]="$y = $X";$H=table($R)." SET$Ag".implode(",$Ag",$gi);return
 queries("UPDATE".($z?limit1($H,$Sf):" $H$Sf"));}function
 insert($R,$O){return
 queries("INSERT INTO ".table($R).($O?" (".implode(", ",array_keys($O)).")\nVALUES (".implode(", ",$O).")":" DEFAULT VALUES"));}function
-inse
+insertUpdate($R,$L,$Hf){return
+false;}function
+begin(){return
+queries("BEGIN");}function
+commit(){return
+queries("COMMIT");}function
+rollback(){return
+queries("ROLLBACK");}}$Wb["sqlite"]="SQLite 3";$Wb["sqlite2"]="SQLite 2";if(isset($_GET["sqlite"])||isset($_GET["sqlite2"])){$Ef=array((isset($_GET["sqlite"])?"SQLite3":"SQLite"),"PDO
