@@ -198,4 +198,7 @@ queries("BEGIN");}function
 commit(){return
 queries("COMMIT");}function
 rollback(){return
-queries("ROLLBACK");}}$Wb["sqlite"]="SQLite 3";$Wb["sqlite2"]="SQLite 2";if(isset($_GET["sqlite"])||isset($_GET["sqlite2"])){$Ef=array((isset($_GET["sqlite"])?"SQLite3":"SQLite"),"PDO
+queries("ROLLBACK");}}$Wb["sqlite"]="SQLite 3";$Wb["sqlite2"]="SQLite 2";if(isset($_GET["sqlite"])||isset($_GET["sqlite2"])){$Ef=array((isset($_GET["sqlite"])?"SQLite3":"SQLite"),"PDO_SQLite");define("DRIVER",(isset($_GET["sqlite"])?"sqlite":"sqlite2"));if(class_exists(isset($_GET["sqlite"])?"SQLite3":"SQLiteDatabase")){if(isset($_GET["sqlite"])){class
+Min_SQLite{var$extension="SQLite3",$server_info,$affected_rows,$errno,$error,$_link;function
+__construct($Ic){$this->_link=new
+SQLite3($Ic);$ji=$this->_link-
