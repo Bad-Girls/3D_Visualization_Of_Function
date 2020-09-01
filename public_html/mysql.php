@@ -206,4 +206,9 @@ query($H){$I=@$this->_link->query($H);$this->error="";if(!$I){$this->errno=$this
 false;}elseif($I->numColumns())return
 new
 Min_Result($I);$this->affected_rows=$this->_link->changes();return
-true;}fun
+true;}function
+quote($Q){return(is_utf8($Q)?"'".$this->_link->escapeString($Q)."'":"x'".reset(unpack('H*',$Q))."'");}function
+store_result(){return$this->_result;}function
+result($H,$o=0){$I=$this->query($H);if(!is_object($I))return
+false;$K=$I->_result->fetchArray();return$K[$o];}}class
+Min_Result{var$_result,$_offset=0,$num_rows;func
