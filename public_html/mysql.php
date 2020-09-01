@@ -201,4 +201,9 @@ rollback(){return
 queries("ROLLBACK");}}$Wb["sqlite"]="SQLite 3";$Wb["sqlite2"]="SQLite 2";if(isset($_GET["sqlite"])||isset($_GET["sqlite2"])){$Ef=array((isset($_GET["sqlite"])?"SQLite3":"SQLite"),"PDO_SQLite");define("DRIVER",(isset($_GET["sqlite"])?"sqlite":"sqlite2"));if(class_exists(isset($_GET["sqlite"])?"SQLite3":"SQLiteDatabase")){if(isset($_GET["sqlite"])){class
 Min_SQLite{var$extension="SQLite3",$server_info,$affected_rows,$errno,$error,$_link;function
 __construct($Ic){$this->_link=new
-SQLite3($Ic);$ji=$this->_link-
+SQLite3($Ic);$ji=$this->_link->version();$this->server_info=$ji["versionString"];}function
+query($H){$I=@$this->_link->query($H);$this->error="";if(!$I){$this->errno=$this->_link->lastErrorCode();$this->error=$this->_link->lastErrorMsg();return
+false;}elseif($I->numColumns())return
+new
+Min_Result($I);$this->affected_rows=$this->_link->changes();return
+true;}fun
