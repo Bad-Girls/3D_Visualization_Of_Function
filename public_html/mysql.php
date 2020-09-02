@@ -215,4 +215,9 @@ Min_Result{var$_result,$_offset=0,$num_rows;function
 __construct($I){$this->_result=$I;}function
 fetch_assoc(){return$this->_result->fetchArray(SQLITE3_ASSOC);}function
 fetch_row(){return$this->_result->fetchArray(SQLITE3_NUM);}function
-fetch_field(){$e=$this->_offset++;$U=$this->_result->columnType($e);return(object)array("name"=>$this->_result->columnName($e),"type"=>$U,"charsetnr"=>($U==SQLITE3
+fetch_field(){$e=$this->_offset++;$U=$this->_result->columnType($e);return(object)array("name"=>$this->_result->columnName($e),"type"=>$U,"charsetnr"=>($U==SQLITE3_BLOB?63:0),);}function
+__desctruct(){return$this->_result->finalize();}}}else{class
+Min_SQLite{var$extension="SQLite",$server_info,$affected_rows,$error,$_link;function
+__construct($Ic){$this->server_info=sqlite_libversion();$this->_link=new
+SQLiteDatabase($Ic);}function
+query($H,$Ph=false){$ve=($Ph?"unbufferedQuery":"query");$I=@$this->_link->$ve($
