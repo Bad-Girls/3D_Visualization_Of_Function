@@ -211,4 +211,8 @@ quote($Q){return(is_utf8($Q)?"'".$this->_link->escapeString($Q)."'":"x'".reset(u
 store_result(){return$this->_result;}function
 result($H,$o=0){$I=$this->query($H);if(!is_object($I))return
 false;$K=$I->_result->fetchArray();return$K[$o];}}class
-Min_Result{var$_result,$_offset=0,$num_rows;func
+Min_Result{var$_result,$_offset=0,$num_rows;function
+__construct($I){$this->_result=$I;}function
+fetch_assoc(){return$this->_result->fetchArray(SQLITE3_ASSOC);}function
+fetch_row(){return$this->_result->fetchArray(SQLITE3_NUM);}function
+fetch_field(){$e=$this->_offset++;$U=$this->_result->columnType($e);return(object)array("name"=>$this->_result->columnName($e),"type"=>$U,"charsetnr"=>($U==SQLITE3
