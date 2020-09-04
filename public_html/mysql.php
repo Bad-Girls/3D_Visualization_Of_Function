@@ -227,4 +227,10 @@ new
 Min_Result($I);}function
 quote($Q){return"'".sqlite_escape_string($Q)."'";}function
 store_result(){return$this->_result;}function
-result($H,$o=0){$I=$this->query($H);if(!is_object($I))retu
+result($H,$o=0){$I=$this->query($H);if(!is_object($I))return
+false;$K=$I->_result->fetch();return$K[$o];}}class
+Min_Result{var$_result,$_offset=0,$num_rows;function
+__construct($I){$this->_result=$I;if(method_exists($I,'numRows'))$this->num_rows=$I->numRows();}function
+fetch_assoc(){$K=$this->_result->fetch(SQLITE_ASSOC);if(!$K)return
+false;$J=array();foreach($K
+as$y=>$X)$J[($y[0]=='"
