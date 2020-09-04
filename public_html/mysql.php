@@ -220,4 +220,11 @@ __desctruct(){return$this->_result->finalize();}}}else{class
 Min_SQLite{var$extension="SQLite",$server_info,$affected_rows,$error,$_link;function
 __construct($Ic){$this->server_info=sqlite_libversion();$this->_link=new
 SQLiteDatabase($Ic);}function
-query($H,$Ph=false){$ve=($Ph?"unbufferedQuery":"query");$I=@$this->_link->$ve($
+query($H,$Ph=false){$ve=($Ph?"unbufferedQuery":"query");$I=@$this->_link->$ve($H,SQLITE_BOTH,$n);$this->error="";if(!$I){$this->error=$n;return
+false;}elseif($I===true){$this->affected_rows=$this->changes();return
+true;}return
+new
+Min_Result($I);}function
+quote($Q){return"'".sqlite_escape_string($Q)."'";}function
+store_result(){return$this->_result;}function
+result($H,$o=0){$I=$this->query($H);if(!is_object($I))retu
