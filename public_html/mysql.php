@@ -233,4 +233,6 @@ Min_Result{var$_result,$_offset=0,$num_rows;function
 __construct($I){$this->_result=$I;if(method_exists($I,'numRows'))$this->num_rows=$I->numRows();}function
 fetch_assoc(){$K=$this->_result->fetch(SQLITE_ASSOC);if(!$K)return
 false;$J=array();foreach($K
-as$y=>$X)$J[($y[0]=='"
+as$y=>$X)$J[($y[0]=='"'?idf_unescape($y):$y)]=$X;return$J;}function
+fetch_row(){return$this->_result->fetch(SQLITE_NUM);}function
+fetch_field(){$C=$this->_result->fieldName($this->_offset++);$yf='(\\[.*]|"(?:[^"]|"")*"|(.+))';if(preg_match("~^($yf\\.)?$yf\$~",$C,$B)){$R=($B[3]!=""?$B[3]:idf_unescape($B[2]));$C=($B[5]!=""?$B[5]:idf_unescape($B[4]));}return(object)array("name"=
