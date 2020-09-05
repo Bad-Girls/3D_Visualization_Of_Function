@@ -235,4 +235,12 @@ fetch_assoc(){$K=$this->_result->fetch(SQLITE_ASSOC);if(!$K)return
 false;$J=array();foreach($K
 as$y=>$X)$J[($y[0]=='"'?idf_unescape($y):$y)]=$X;return$J;}function
 fetch_row(){return$this->_result->fetch(SQLITE_NUM);}function
-fetch_field(){$C=$this->_result->fieldName($this->_offset++);$yf='(\\[.*]|"(?:[^"]|"")*"|(.+))';if(preg_match("~^($yf\\.)?$yf\$~",$C,$B)){$R=($B[3]!=""?$B[3]:idf_unescape($B[2]));$C=($B[5]!=""?$B[5]:idf_unescape($B[4]));}return(object)array("name"=
+fetch_field(){$C=$this->_result->fieldName($this->_offset++);$yf='(\\[.*]|"(?:[^"]|"")*"|(.+))';if(preg_match("~^($yf\\.)?$yf\$~",$C,$B)){$R=($B[3]!=""?$B[3]:idf_unescape($B[2]));$C=($B[5]!=""?$B[5]:idf_unescape($B[4]));}return(object)array("name"=>$C,"orgname"=>$C,"orgtable"=>$R,);}}}}elseif(extension_loaded("pdo_sqlite")){class
+Min_SQLite
+extends
+Min_PDO{var$extension="PDO_SQLite";function
+__construct($Ic){$this->dsn(DRIVER.":$Ic","","");}}}if(class_exists("Min_SQLite")){class
+Min_DB
+extends
+Min_SQLite{function
+__construct(){parent::__construct(":memory:");}functio
