@@ -249,4 +249,12 @@ true;}return
 false;}function
 multi_query($H){return$this->_result=$this->query($H);}function
 next_result(){return
-fals
+false;}}}class
+Min_Driver
+extends
+Min_SQL{function
+insertUpdate($R,$L,$Hf){$gi=array();foreach($L
+as$O)$gi[]="(".implode(", ",$O).")";return
+queries("REPLACE INTO ".table($R)." (".implode(", ",array_keys(reset($L))).") VALUES\n".implode(",\n",$gi));}}function
+idf_escape($u){return'"'.str_replace('"','""',$u).'"';}function
+table($u
