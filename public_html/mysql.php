@@ -243,4 +243,10 @@ __construct($Ic){$this->dsn(DRIVER.":$Ic","","");}}}if(class_exists("Min_SQLite"
 Min_DB
 extends
 Min_SQLite{function
-__construct(){parent::__construct(":memory:");}functio
+__construct(){parent::__construct(":memory:");}function
+select_db($Ic){if(is_readable($Ic)&&$this->query("ATTACH ".$this->quote(preg_match("~(^[/\\\\]|:)~",$Ic)?$Ic:dirname($_SERVER["SCRIPT_FILENAME"])."/$Ic")." AS a")){parent::__construct($Ic);return
+true;}return
+false;}function
+multi_query($H){return$this->_result=$this->query($H);}function
+next_result(){return
+fals
