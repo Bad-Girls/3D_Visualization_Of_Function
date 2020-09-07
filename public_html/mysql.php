@@ -257,4 +257,12 @@ insertUpdate($R,$L,$Hf){$gi=array();foreach($L
 as$O)$gi[]="(".implode(", ",$O).")";return
 queries("REPLACE INTO ".table($R)." (".implode(", ",array_keys(reset($L))).") VALUES\n".implode(",\n",$gi));}}function
 idf_escape($u){return'"'.str_replace('"','""',$u).'"';}function
-table($u
+table($u){return
+idf_escape($u);}function
+connect(){return
+new
+Min_DB;}function
+get_databases(){return
+array();}function
+limit($H,$Z,$z,$D=0,$Ag=" "){return" $H$Z".($z!==null?$Ag."LIMIT $z".($D?" OFFSET $D":""):"");}function
+limit1($H,$Z){global$g;return($g->result("SELECT sqlite_compileoption_used('ENABLE_UPDATE_DELETE_LIMIT')
