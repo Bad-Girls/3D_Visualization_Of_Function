@@ -292,4 +292,9 @@ error(){global$g;return
 h($g->error);}function
 check_sqlite_name($C){global$g;$Bc="db|sdb|sqlite";if(!preg_match("~^[^\\0]*\\.($Bc)\$~",$C)){$g->error=sprintf('Please use one of the extensions %s.',str_replace("|",", ",$Bc));return
 false;}return
-true
+true;}function
+create_database($m,$d){global$g;if(file_exists($m)){$g->error='File exists.';return
+false;}if(!check_sqlite_name($m))return
+false;try{$_=new
+Min_SQLite($m);}catch(Exception$tc){$g->error=$tc->getMessage();return
+false;}$_->query('PRAGMA encoding = "UTF-8"');$_->query('CREATE TABLE adminer (i)');$_->query('DROP 
