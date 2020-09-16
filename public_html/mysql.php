@@ -285,4 +285,11 @@ as$B){$J[""]["columns"][]=idf_unescape($B[2]).$B[4];$J[""]["descs"][]=(preg_matc
 foreign_keys($R){$J=array();foreach(get_rows("PRAGMA foreign_key_list(".table($R).")")as$K){$q=&$J[$K["id"]];if(!$q)$q=$K;$q["source"][]=$K["from"];$q["target"][]=$K["to"];}return$J;}function
 view($C){global$g;return
 array("select"=>preg_replace('~^(?:[^`"[]+|`[^`]*`|"[^"]*")* AS\\s+~iU','',$g->result("SELECT sql FROM sqlite_master WHERE name = ".q($C))));}function
-collations(){return(isset($_GET["create"])?get_vals("PRAGMA collat
+collations(){return(isset($_GET["create"])?get_vals("PRAGMA collation_list",1):array());}function
+information_schema($m){return
+false;}function
+error(){global$g;return
+h($g->error);}function
+check_sqlite_name($C){global$g;$Bc="db|sdb|sqlite";if(!preg_match("~^[^\\0]*\\.($Bc)\$~",$C)){$g->error=sprintf('Please use one of the extensions %s.',str_replace("|",", ",$Bc));return
+false;}return
+true
