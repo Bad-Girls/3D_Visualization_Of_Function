@@ -308,4 +308,10 @@ false;$g->__construct(":memory:");$g->error='File exists.';return@rename(DB,$C);
 auto_increment(){return" PRIMARY KEY".(DRIVER=="sqlite"?" AUTOINCREMENT":"");}function
 alter_table($R,$C,$p,$Pc,$qb,$mc,$d,$Ka,$tf){$ai=($R==""||$Pc);foreach($p
 as$o){if($o[0]!=""||!$o[1]||$o[2]){$ai=true;break;}}$c=array();$jf=array();foreach($p
-as$o){if($o[1]){$c[]=($ai?$o[1]:"ADD ".implode($o[1]));if($o[0]!="")$jf
+as$o){if($o[1]){$c[]=($ai?$o[1]:"ADD ".implode($o[1]));if($o[0]!="")$jf[$o[0]]=$o[1][0];}}if(!$ai){foreach($c
+as$X){if(!queries("ALTER TABLE ".table($R)." $X"))return
+false;}if($R!=$C&&!queries("ALTER TABLE ".table($R)." RENAME TO ".table($C)))return
+false;}elseif(!recreate_table($R,$C,$c,$jf,$Pc))return
+false;if($Ka)queries("UPDATE sqlite_sequence SET seq = $Ka WHERE name = ".q($C));return
+true;}function
+recreate_
