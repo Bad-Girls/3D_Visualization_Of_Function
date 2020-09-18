@@ -304,4 +304,8 @@ as$m){if(!@unlink($m)){$g->error='File exists.';return
 false;}}return
 true;}function
 rename_database($C,$d){global$g;if(!check_sqlite_name($C))return
-false;$g->__construct(":memory:");$g->error='File exists.';return@r
+false;$g->__construct(":memory:");$g->error='File exists.';return@rename(DB,$C);}function
+auto_increment(){return" PRIMARY KEY".(DRIVER=="sqlite"?" AUTOINCREMENT":"");}function
+alter_table($R,$C,$p,$Pc,$qb,$mc,$d,$Ka,$tf){$ai=($R==""||$Pc);foreach($p
+as$o){if($o[0]!=""||!$o[1]||$o[2]){$ai=true;break;}}$c=array();$jf=array();foreach($p
+as$o){if($o[1]){$c[]=($ai?$o[1]:"ADD ".implode($o[1]));if($o[0]!="")$jf
