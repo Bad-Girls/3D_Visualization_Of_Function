@@ -297,4 +297,11 @@ create_database($m,$d){global$g;if(file_exists($m)){$g->error='File exists.';ret
 false;}if(!check_sqlite_name($m))return
 false;try{$_=new
 Min_SQLite($m);}catch(Exception$tc){$g->error=$tc->getMessage();return
-false;}$_->query('PRAGMA encoding = "UTF-8"');$_->query('CREATE TABLE adminer (i)');$_->query('DROP 
+false;}$_->query('PRAGMA encoding = "UTF-8"');$_->query('CREATE TABLE adminer (i)');$_->query('DROP TABLE adminer');return
+true;}function
+drop_databases($l){global$g;$g->__construct(":memory:");foreach($l
+as$m){if(!@unlink($m)){$g->error='File exists.';return
+false;}}return
+true;}function
+rename_database($C,$d){global$g;if(!check_sqlite_name($C))return
+false;$g->__construct(":memory:");$g->error='File exists.';return@r
