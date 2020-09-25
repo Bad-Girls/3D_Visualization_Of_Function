@@ -316,4 +316,7 @@ false;if($Ka)queries("UPDATE sqlite_sequence SET seq = $Ka WHERE name = ".q($C))
 true;}function
 recreate_table($R,$C,$p,$jf,$Pc,$w=array()){if($R!=""){if(!$p){foreach(fields($R)as$y=>$o){$p[]=process_field($o,$o);$jf[$y]=idf_escape($y);}}$If=false;foreach($p
 as$o){if($o[6])$If=true;}$Zb=array();foreach($w
-as$y=>$X){if($X[2]=="DROP"){$Zb[$X[1]]=true;unset($w[$y]);}}foreach(indexes($R)as$Ld=>$v){$f=array();foreach($v["columns"]as$y=>$e){if(!$jf
+as$y=>$X){if($X[2]=="DROP"){$Zb[$X[1]]=true;unset($w[$y]);}}foreach(indexes($R)as$Ld=>$v){$f=array();foreach($v["columns"]as$y=>$e){if(!$jf[$e])continue
+2;$f[]=$jf[$e].($v["descs"][$y]?" DESC":"");}if(!$Zb[$Ld]){if($v["type"]!="PRIMARY"||!$If)$w[]=array($v["type"],$Ld,$f);}}foreach($w
+as$y=>$X){if($X[0]=="PRIMARY"){unset($w[$y]);$Pc[]="  PRIMARY KEY (".implode(", ",$X[2]).")";}}foreach(foreign_keys($R)as$Ld=>$q){foreach($q["source"]as$y=>$e){if(!$jf[$e])continue
+2;$q["source"][$y]=i
