@@ -314,4 +314,6 @@ false;}if($R!=$C&&!queries("ALTER TABLE ".table($R)." RENAME TO ".table($C)))ret
 false;}elseif(!recreate_table($R,$C,$c,$jf,$Pc))return
 false;if($Ka)queries("UPDATE sqlite_sequence SET seq = $Ka WHERE name = ".q($C));return
 true;}function
-recreate_
+recreate_table($R,$C,$p,$jf,$Pc,$w=array()){if($R!=""){if(!$p){foreach(fields($R)as$y=>$o){$p[]=process_field($o,$o);$jf[$y]=idf_escape($y);}}$If=false;foreach($p
+as$o){if($o[6])$If=true;}$Zb=array();foreach($w
+as$y=>$X){if($X[2]=="DROP"){$Zb[$X[1]]=true;unset($w[$y]);}}foreach(indexes($R)as$Ld=>$v){$f=array();foreach($v["columns"]as$y=>$e){if(!$jf
