@@ -319,4 +319,6 @@ as$o){if($o[6])$If=true;}$Zb=array();foreach($w
 as$y=>$X){if($X[2]=="DROP"){$Zb[$X[1]]=true;unset($w[$y]);}}foreach(indexes($R)as$Ld=>$v){$f=array();foreach($v["columns"]as$y=>$e){if(!$jf[$e])continue
 2;$f[]=$jf[$e].($v["descs"][$y]?" DESC":"");}if(!$Zb[$Ld]){if($v["type"]!="PRIMARY"||!$If)$w[]=array($v["type"],$Ld,$f);}}foreach($w
 as$y=>$X){if($X[0]=="PRIMARY"){unset($w[$y]);$Pc[]="  PRIMARY KEY (".implode(", ",$X[2]).")";}}foreach(foreign_keys($R)as$Ld=>$q){foreach($q["source"]as$y=>$e){if(!$jf[$e])continue
-2;$q["source"][$y]=i
+2;$q["source"][$y]=idf_unescape($jf[$e]);}if(!isset($Pc[" $Ld"]))$Pc[]=" ".format_foreign_key($q);}queries("BEGIN");}foreach($p
+as$y=>$o)$p[$y]="  ".implode($o);$p=array_merge($p,array_filter($Pc));if(!queries("CREATE TABLE ".table($R!=""?"adminer_$C":$C)." (\n".implode(",\n",$p)."\n)"))return
+false;if($R!=""){if($jf&&!queries("INS
