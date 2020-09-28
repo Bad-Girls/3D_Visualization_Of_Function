@@ -322,4 +322,10 @@ as$y=>$X){if($X[0]=="PRIMARY"){unset($w[$y]);$Pc[]="  PRIMARY KEY (".implode(", 
 2;$q["source"][$y]=idf_unescape($jf[$e]);}if(!isset($Pc[" $Ld"]))$Pc[]=" ".format_foreign_key($q);}queries("BEGIN");}foreach($p
 as$y=>$o)$p[$y]="  ".implode($o);$p=array_merge($p,array_filter($Pc));if(!queries("CREATE TABLE ".table($R!=""?"adminer_$C":$C)." (\n".implode(",\n",$p)."\n)"))return
 false;if($R!=""){if($jf&&!queries("INSERT INTO ".table("adminer_$C")." (".implode(", ",$jf).") SELECT ".implode(", ",array_map('idf_escape',array_keys($jf)))." FROM ".table($R)))return
-false;$Lh=array();foreach(triggers($R)as$Jh=>$uh){$Ih=trigger($Jh);$Lh[]="CREATE TRIGGER ".idf_escape($Jh)." ".implode(" ",$uh)." ON ".table($C)."\n$Ih[Statement]"
+false;$Lh=array();foreach(triggers($R)as$Jh=>$uh){$Ih=trigger($Jh);$Lh[]="CREATE TRIGGER ".idf_escape($Jh)." ".implode(" ",$uh)." ON ".table($C)."\n$Ih[Statement]";}if(!queries("DROP TABLE ".table($R)))return
+false;queries("ALTER TABLE ".table("adminer_$C")." RENAME TO ".table($C));if(!alter_indexes($C,$w))return
+false;foreach($Lh
+as$Ih){if(!queries($Ih))return
+false;}queries("COMMIT");}return
+true;}function
+index_sql($R,$U,$C,$f){return"CREATE $U ".($U!="INDEX"?"INDEX ":"").idf_escape(
