@@ -342,4 +342,5 @@ drop_tables($T){return
 apply_queries("DROP TABLE",$T);}function
 move_tables($T,$li,$lh){return
 false;}function
-trigger($C){global$g;if($C==
+trigger($C){global$g;if($C=="")return
+array("Statement"=>"BEGIN\n\t;\nEND");$u='(?:[^`"\\s]+|`[^`]*`|"[^"]*")+';$Kh=trigger_options();preg_match("~^CREATE\\s+TRIGGER\\s*$u\\s*(".implode("|",$Kh["Timing"]).")\\s+([a-z]+)(?:\\s+OF\\s+($u))?\\s+ON\\s*$u\\s*(?:FOR\\s+EACH\\s+ROW\\s)?(.*)~is",$g->result("SELECT sql FROM sqlite_master WHERE type = 'trigger' AND na
