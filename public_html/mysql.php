@@ -343,4 +343,6 @@ apply_queries("DROP TABLE",$T);}function
 move_tables($T,$li,$lh){return
 false;}function
 trigger($C){global$g;if($C=="")return
-array("Statement"=>"BEGIN\n\t;\nEND");$u='(?:[^`"\\s]+|`[^`]*`|"[^"]*")+';$Kh=trigger_options();preg_match("~^CREATE\\s+TRIGGER\\s*$u\\s*(".implode("|",$Kh["Timing"]).")\\s+([a-z]+)(?:\\s+OF\\s+($u))?\\s+ON\\s*$u\\s*(?:FOR\\s+EACH\\s+ROW\\s)?(.*)~is",$g->result("SELECT sql FROM sqlite_master WHERE type = 'trigger' AND na
+array("Statement"=>"BEGIN\n\t;\nEND");$u='(?:[^`"\\s]+|`[^`]*`|"[^"]*")+';$Kh=trigger_options();preg_match("~^CREATE\\s+TRIGGER\\s*$u\\s*(".implode("|",$Kh["Timing"]).")\\s+([a-z]+)(?:\\s+OF\\s+($u))?\\s+ON\\s*$u\\s*(?:FOR\\s+EACH\\s+ROW\\s)?(.*)~is",$g->result("SELECT sql FROM sqlite_master WHERE type = 'trigger' AND name = ".q($C)),$B);$Je=$B[3];return
+array("Timing"=>strtoupper($B[1]),"Event"=>strtoupper($B[2]).($Je?" OF":""),"Of"=>($Je[0]=='`'||$Je[0]=='"'?idf_unescape($Je):$Je),"Trigger"=>$C,"Statement"=>$B[4],);}function
+triggers($R){$J=array();$Kh=trigger_options();foreach(get_rows("SELECT * FROM sqlite_mast
