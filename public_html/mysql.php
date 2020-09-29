@@ -332,3 +332,14 @@ index_sql($R,$U,$C,$f){return"CREATE $U ".($U!="INDEX"?"INDEX ":"").idf_escape($
 alter_indexes($R,$c){foreach($c
 as$Hf){if($Hf[0]=="PRIMARY")return
 recreate_table($R,$R,array(),array(),array(),$c);}foreach(array_reverse($c)as$X){if(!queries($X[2]=="DROP"?"DROP INDEX ".idf_escape($X[1]):index_sql($R,$X[0],$X[1],"(".implode(", ",$X[2]).")")))return
+false;}return
+true;}function
+truncate_tables($T){return
+apply_queries("DELETE FROM",$T);}function
+drop_views($li){return
+apply_queries("DROP VIEW",$li);}function
+drop_tables($T){return
+apply_queries("DROP TABLE",$T);}function
+move_tables($T,$li,$lh){return
+false;}function
+trigger($C){global$g;if($C==
