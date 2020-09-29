@@ -328,4 +328,7 @@ false;foreach($Lh
 as$Ih){if(!queries($Ih))return
 false;}queries("COMMIT");}return
 true;}function
-index_sql($R,$U,$C,$f){return"CREATE $U ".($U!="INDEX"?"INDEX ":"").idf_escape(
+index_sql($R,$U,$C,$f){return"CREATE $U ".($U!="INDEX"?"INDEX ":"").idf_escape($C!=""?$C:uniqid($R."_"))." ON ".table($R)." $f";}function
+alter_indexes($R,$c){foreach($c
+as$Hf){if($Hf[0]=="PRIMARY")return
+recreate_table($R,$R,array(),array(),array(),$c);}foreach(array_reverse($c)as$X){if(!queries($X[2]=="DROP"?"DROP INDEX ".idf_escape($X[1]):index_sql($R,$X[0],$X[1],"(".implode(", ",$X[2]).")")))return
