@@ -347,4 +347,11 @@ array("Statement"=>"BEGIN\n\t;\nEND");$u='(?:[^`"\\s]+|`[^`]*`|"[^"]*")+';$Kh=tr
 array("Timing"=>strtoupper($B[1]),"Event"=>strtoupper($B[2]).($Je?" OF":""),"Of"=>($Je[0]=='`'||$Je[0]=='"'?idf_unescape($Je):$Je),"Trigger"=>$C,"Statement"=>$B[4],);}function
 triggers($R){$J=array();$Kh=trigger_options();foreach(get_rows("SELECT * FROM sqlite_master WHERE type = 'trigger' AND tbl_name = ".q($R))as$K){preg_match('~^CREATE\\s+TRIGGER\\s*(?:[^`"\\s]+|`[^`]*`|"[^"]*")+\\s*('.implode("|",$Kh["Timing"]).')\\s*(.*)\\s+ON\\b~iU',$K["sql"],$B);$J[$K["name"]]=array($B[1],$B[2]);}return$J;}function
 trigger_options(){return
-array("Timing"=>array("BEFORE","AFTER","INSTEAD OF"),"Event"=>array("INS
+array("Timing"=>array("BEFORE","AFTER","INSTEAD OF"),"Event"=>array("INSERT","UPDATE","UPDATE OF","DELETE"),"Type"=>array("FOR EACH ROW"),);}function
+routine($C,$U){}function
+routines(){}function
+routine_languages(){}function
+begin(){return
+queries("BEGIN");}function
+last_id(){global$g;return$g->result("SELECT LAST_INSERT_ROWID()");}function
+explain($g,$H){return$g->query("EXPLAIN QUERY PL
