@@ -354,4 +354,13 @@ routine_languages(){}function
 begin(){return
 queries("BEGIN");}function
 last_id(){global$g;return$g->result("SELECT LAST_INSERT_ROWID()");}function
-explain($g,$H){return$g->query("EXPLAIN QUERY PL
+explain($g,$H){return$g->query("EXPLAIN QUERY PLAN $H");}function
+found_rows($S,$Z){}function
+types(){return
+array();}function
+schemas(){return
+array();}function
+get_schema(){return"";}function
+set_schema($vg){return
+true;}function
+create_sql($R,$Ka){global$g;$J=$g->result("SELECT sql FROM sqlite_master WHERE type IN ('table', 'view') AND name = ".q($R));foreac
