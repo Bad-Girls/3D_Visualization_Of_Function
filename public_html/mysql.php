@@ -363,4 +363,8 @@ array();}function
 get_schema(){return"";}function
 set_schema($vg){return
 true;}function
-create_sql($R,$Ka){global$g;$J=$g->result("SELECT sql FROM sqlite_master WHERE type IN ('table', 'view') AND name = ".q($R));foreac
+create_sql($R,$Ka){global$g;$J=$g->result("SELECT sql FROM sqlite_master WHERE type IN ('table', 'view') AND name = ".q($R));foreach(indexes($R)as$C=>$v){if($C=='')continue;$J.=";\n\n".index_sql($R,$v['type'],$C,"(".implode(", ",array_map('idf_escape',$v['columns'])).")");}return$J;}function
+truncate_sql($R){return"DELETE FROM ".table($R);}function
+use_sql($k){}function
+trigger_sql($R,$Wg){return
+implode(get_vals("SELECT sql || ';;\n' FROM sqlite_master WHERE type = '
