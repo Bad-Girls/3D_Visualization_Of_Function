@@ -367,4 +367,5 @@ create_sql($R,$Ka){global$g;$J=$g->result("SELECT sql FROM sqlite_master WHERE t
 truncate_sql($R){return"DELETE FROM ".table($R);}function
 use_sql($k){}function
 trigger_sql($R,$Wg){return
-implode(get_vals("SELECT sql || ';;\n' FROM sqlite_master WHERE type = '
+implode(get_vals("SELECT sql || ';;\n' FROM sqlite_master WHERE type = 'trigger' AND tbl_name = ".q($R)));}function
+show_variables(){global$g;$J=array();foreach(array("auto_vacuum","cache_size","count_changes","default_cache_size","empty_result_callbacks","encoding","foreign_keys","full_column_names","fullfsync","journal_mode","journal_size_limit","legacy_file_format","locking_mode","page_size","
