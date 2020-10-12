@@ -373,4 +373,4 @@ show_status(){$J=array();foreach(get_vals("PRAGMA compile_options")as$Xe){list($
 convert_field($o){}function
 unconvert_field($o,$J){return$J;}function
 support($Ec){return
-preg_match('~^(columns|database|drop_col|dump|indexes|move_col|sql|status|table|trigger|variables|view|view_trigger)$~',$Ec);}$x="sqlite";$Oh=array("integer"=>0
+preg_match('~^(columns|database|drop_col|dump|indexes|move_col|sql|status|table|trigger|variables|view|view_trigger)$~',$Ec);}$x="sqlite";$Oh=array("integer"=>0,"real"=>0,"numeric"=>0,"text"=>0,"blob"=>0);$Vg=array_keys($Oh);$Vh=array();$Ve=array("=","<",">","<=",">=","!=","LIKE","LIKE %%","IN","IS NULL","NOT LIKE","NOT IN","IS NOT NULL","SQL");$Xc=array("hex","length","lower","round","unixepoch","upper");$cd=array("avg","count","count distinct","group_concat","max
