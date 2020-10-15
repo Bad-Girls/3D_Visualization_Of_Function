@@ -399,4 +399,8 @@ pg_fetch_assoc($this->_result);}function
 fetch_row(){return
 pg_fetch_row($this->_result);}function
 fetch_field(){$e=$this->_offset++;$J=new
-stdClass;if(function_exists('pg_field_table'))$J->orgtable=pg_field_ta
+stdClass;if(function_exists('pg_field_table'))$J->orgtable=pg_field_table($this->_result,$e);$J->name=pg_field_name($this->_result,$e);$J->orgname=$J->name;$J->type=pg_field_type($this->_result,$e);$J->charsetnr=($J->type=="bytea"?63:0);return$J;}function
+__destruct(){pg_free_result($this->_result);}}}elseif(extension_loaded("pdo_pgsql")){class
+Min_DB
+extends
+M
