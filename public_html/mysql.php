@@ -392,4 +392,11 @@ false;}function
 result($H,$o=0){$I=$this->query($H);if(!$I||!$I->num_rows)return
 false;return
 pg_fetch_result($I->_result,0,$o);}}class
-Min_Result{var$
+Min_Result{var$_result,$_offset=0,$num_rows;function
+__construct($I){$this->_result=$I;$this->num_rows=pg_num_rows($I);}function
+fetch_assoc(){return
+pg_fetch_assoc($this->_result);}function
+fetch_row(){return
+pg_fetch_row($this->_result);}function
+fetch_field(){$e=$this->_offset++;$J=new
+stdClass;if(function_exists('pg_field_table'))$J->orgtable=pg_field_ta
