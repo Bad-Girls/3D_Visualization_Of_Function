@@ -381,4 +381,15 @@ quote($Q){return"'".pg_escape_string($this->_link,$Q)."'";}function
 select_db($k){global$b;if($k==$b->database())return$this->_database;$J=@pg_connect("$this->_string dbname='".addcslashes($k,"'\\")."'",PGSQL_CONNECT_FORCE_NEW);if($J)$this->_link=$J;return$J;}function
 close(){$this->_link=@pg_connect("$this->_string dbname='postgres'");}function
 query($H,$Ph=false){$I=@pg_query($this->_link,$H);$this->error="";if(!$I){$this->error=pg_last_error($this->_link);return
-false;}elseif(!pg_num_fields($I)){$this->affecte
+false;}elseif(!pg_num_fields($I)){$this->affected_rows=pg_affected_rows($I);return
+true;}return
+new
+Min_Result($I);}function
+multi_query($H){return$this->_result=$this->query($H);}function
+store_result(){return$this->_result;}function
+next_result(){return
+false;}function
+result($H,$o=0){$I=$this->query($H);if(!$I||!$I->num_rows)return
+false;return
+pg_fetch_result($I->_result,0,$o);}}class
+Min_Result{var$
