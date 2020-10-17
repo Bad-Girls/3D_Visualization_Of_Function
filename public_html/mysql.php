@@ -406,4 +406,11 @@ extends
 Min_PDO{var$extension="PDO_PgSQL";function
 connect($N,$V,$G){global$b;$m=$b->database();$Q="pgsql:host='".str_replace(":","' port='",addcslashes($N,"'\\"))."' options='-c client_encoding=utf8'";$this->dsn("$Q dbname='".($m!=""?addcslashes($m,"'\\"):"postgres")."'",$V,$G);return
 true;}function
-select_db($k){glob
+select_db($k){global$b;return($b->database()==$k);}function
+close(){}}}class
+Min_Driver
+extends
+Min_SQL{function
+insertUpdate($R,$L,$Hf){global$g;foreach($L
+as$O){$Wh=array();$Z=array();foreach($O
+as$y=>$X){$Wh[]="$y = $X";if(isset($Hf[idf_unescape($y)]))$Z[]="$y = $X";}if(!(($Z&&queries("UPDATE ".table($R)." SET ".implode(", ",$Wh)." WHERE ".
