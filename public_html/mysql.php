@@ -403,4 +403,7 @@ stdClass;if(function_exists('pg_field_table'))$J->orgtable=pg_field_table($this-
 __destruct(){pg_free_result($this->_result);}}}elseif(extension_loaded("pdo_pgsql")){class
 Min_DB
 extends
-M
+Min_PDO{var$extension="PDO_PgSQL";function
+connect($N,$V,$G){global$b;$m=$b->database();$Q="pgsql:host='".str_replace(":","' port='",addcslashes($N,"'\\"))."' options='-c client_encoding=utf8'";$this->dsn("$Q dbname='".($m!=""?addcslashes($m,"'\\"):"postgres")."'",$V,$G);return
+true;}function
+select_db($k){glob
