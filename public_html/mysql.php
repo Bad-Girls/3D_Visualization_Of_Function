@@ -422,4 +422,9 @@ idf_escape($u);}function
 connect(){global$b,$Oh,$Vg;$g=new
 Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2])){if($g->server_info>=9){$g->query("SET application_name = 'Adminer'");if($g->server_info>=9.2){$Vg['Strings'][]="json";$Oh["json"]=4294967295;if($g->server_info>=9.4){$Vg['Strings'][]="jsonb";$Oh["jsonb"]=4294967295;}}}return$g;}return$g->error;}function
 get_databases(){return
-get_vals("
+get_vals("SELECT datname FROM pg_database WHERE has_database_privilege(datname, 'CONNECT') ORDER BY datname");}function
+limit($H,$Z,$z,$D=0,$Ag=" "){return" $H$Z".($z!==null?$Ag."LIMIT $z".($D?" OFFSET $D":""):"");}function
+limit1($H,$Z){return" $H$Z";}function
+db_collation($m,$mb){global$g;return$g->result("SHOW LC_COLLATE");}function
+engines(){return
+a
