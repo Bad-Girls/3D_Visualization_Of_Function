@@ -420,4 +420,6 @@ idf_escape($u){return'"'.str_replace('"','""',$u).'"';}function
 table($u){return
 idf_escape($u);}function
 connect(){global$b,$Oh,$Vg;$g=new
-Min_DB;$j=
+Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2])){if($g->server_info>=9){$g->query("SET application_name = 'Adminer'");if($g->server_info>=9.2){$Vg['Strings'][]="json";$Oh["json"]=4294967295;if($g->server_info>=9.4){$Vg['Strings'][]="jsonb";$Oh["jsonb"]=4294967295;}}}return$g;}return$g->error;}function
+get_databases(){return
+get_vals("
