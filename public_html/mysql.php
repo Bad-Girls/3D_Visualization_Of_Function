@@ -427,4 +427,10 @@ limit($H,$Z,$z,$D=0,$Ag=" "){return" $H$Z".($z!==null?$Ag."LIMIT $z".($D?" OFFSE
 limit1($H,$Z){return" $H$Z";}function
 db_collation($m,$mb){global$g;return$g->result("SHOW LC_COLLATE");}function
 engines(){return
-a
+array();}function
+logged_user(){global$g;return$g->result("SELECT user");}function
+tables_list(){$H="SELECT table_name, table_type FROM information_schema.tables WHERE table_schema = current_schema()";if(support('materializedview'))$H.="
+UNION ALL
+SELECT matviewname, 'MATERIALIZED VIEW'
+FROM pg_matviews
+WHERE schemaname = curren
