@@ -438,4 +438,8 @@ ORDER BY 1";return
 get_key_vals($H);}function
 count_tables($l){return
 array();}function
-table_status($C=""){$J=array();foreach(get_rows("SELECT c.relname AS \"Name\", CASE c.relkind WHEN 'r' THEN 'table' WHEN 'm' THEN 'materialized view' ELSE 'view' END AS \"Engine\", pg_relation_size(c.oid) AS \"Data_length\", p
+table_status($C=""){$J=array();foreach(get_rows("SELECT c.relname AS \"Name\", CASE c.relkind WHEN 'r' THEN 'table' WHEN 'm' THEN 'materialized view' ELSE 'view' END AS \"Engine\", pg_relation_size(c.oid) AS \"Data_length\", pg_total_relation_size(c.oid) - pg_relation_size(c.oid) AS \"Index_length\", obj_description(c.oid, 'pg_class') AS \"Comment\", c.relhasoids::int AS \"Oid\", c.reltuples as \"Rows\", n.nspname
+FROM pg_class c
+JOIN pg_namespace n ON(n.nspname = current_schema() AND n.oid = c.relnamespace)
+WHERE relkind IN ('r', 'm', 'v')
+".($C!=""?"AND re
