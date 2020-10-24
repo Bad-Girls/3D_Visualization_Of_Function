@@ -433,4 +433,9 @@ tables_list(){$H="SELECT table_name, table_type FROM information_schema.tables W
 UNION ALL
 SELECT matviewname, 'MATERIALIZED VIEW'
 FROM pg_matviews
-WHERE schemaname = curren
+WHERE schemaname = current_schema()";$H.="
+ORDER BY 1";return
+get_key_vals($H);}function
+count_tables($l){return
+array();}function
+table_status($C=""){$J=array();foreach(get_rows("SELECT c.relname AS \"Name\", CASE c.relkind WHEN 'r' THEN 'table' WHEN 'm' THEN 'materialized view' ELSE 'view' END AS \"Engine\", pg_relation_size(c.oid) AS \"Data_length\", p
