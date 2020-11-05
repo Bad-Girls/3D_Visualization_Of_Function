@@ -447,4 +447,8 @@ is_view($S){return
 in_array($S["Engine"],array("view","materialized view"));}function
 fk_support($S){return
 true;}function
-fields($R){$J=array();$Ba=array('timestamp without time zone'=>'timestamp','timestamp with time 
+fields($R){$J=array();$Ba=array('timestamp without time zone'=>'timestamp','timestamp with time zone'=>'timestamptz',);foreach(get_rows("SELECT a.attname AS field, format_type(a.atttypid, a.atttypmod) AS full_type, d.adsrc AS default, a.attnotnull::int, col_description(c.oid, a.attnum) AS comment
+FROM pg_class c
+JOIN pg_namespace n ON c.relnamespace = n.oid
+JOIN pg_attribute a ON c.oid = a.attrelid
+LEFT JOIN pg_attrde
