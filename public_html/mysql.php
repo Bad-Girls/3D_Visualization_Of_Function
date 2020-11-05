@@ -442,4 +442,9 @@ table_status($C=""){$J=array();foreach(get_rows("SELECT c.relname AS \"Name\", C
 FROM pg_class c
 JOIN pg_namespace n ON(n.nspname = current_schema() AND n.oid = c.relnamespace)
 WHERE relkind IN ('r', 'm', 'v')
-".($C!=""?"AND re
+".($C!=""?"AND relname = ".q($C):"ORDER BY c.oid"))as$K)$J[$K["Name"]]=$K;return($C!=""?$J[$C]:$J);}function
+is_view($S){return
+in_array($S["Engine"],array("view","materialized view"));}function
+fk_support($S){return
+true;}function
+fields($R){$J=array();$Ba=array('timestamp without time zone'=>'timestamp','timestamp with time 
