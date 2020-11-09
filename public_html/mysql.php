@@ -451,4 +451,9 @@ fields($R){$J=array();$Ba=array('timestamp without time zone'=>'timestamp','time
 FROM pg_class c
 JOIN pg_namespace n ON c.relnamespace = n.oid
 JOIN pg_attribute a ON c.oid = a.attrelid
-LEFT JOIN pg_attrde
+LEFT JOIN pg_attrdef d ON c.oid = d.adrelid AND a.attnum = d.adnum
+WHERE c.relname = ".q($R)."
+AND n.nspname = current_schema()
+AND NOT a.attisdropped
+AND a.attnum > 0
+ORDER BY a.attnum")as$K){preg_match('~([^([]+)(\((.*)\))?([a-z ]+)?((\[[0-9]*])*)$~',$K["full_type"],$B);list(,$U,$Yd,$K["length"],$va,$Ea)=$B;$K["length"].=$Ea;$bb=$U.$va;
