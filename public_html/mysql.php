@@ -478,4 +478,4 @@ rename_database($C,$d){return
 queries("ALTER DATABASE ".idf_escape(DB)." RENAME TO ".idf_escape($C));}function
 auto_increment(){return"";}function
 alter_table($R,$C,$p,$Pc,$qb,$mc,$d,$Ka,$tf){$c=array();$Rf=array();foreach($p
-as$o){$e=idf_escape($o[0]);$X=$o[1];if(!$X)$c[]="DROP $e";else{$fi=$X[5];unset($X[
+as$o){$e=idf_escape($o[0]);$X=$o[1];if(!$X)$c[]="DROP $e";else{$fi=$X[5];unset($X[5]);if(isset($X[6])&&$o[0]=="")$X[1]=($X[1]=="bigint"?" big":" ")."serial";if($o[0]=="")$c[]=($R!=""?"ADD ":"  ").implode($X);else{if($e!=$X[0])$Rf[]="ALTER TABLE ".table($R)." RENAME $e TO $X[0]";$c[]="ALTER $e TYPE$X[1]";if(!$X[6]){$c[]="ALTER $e ".($X[3]?"SET$X[3]":"DROP DEFAULT");$c[]="ALTER $e ".($X[2]==" NULL"?"DROP NOT
