@@ -468,4 +468,9 @@ array("select"=>trim($g->result("SELECT pg_get_viewdef(".q($C).")")));}function
 collations(){return
 array();}function
 information_schema($m){return($m=="information_schema");}function
-error(){global$g;$J=h($g->error);if(preg_match('~^(.*\\n)?([^\\n]*)\\n( *)\\^(\
+error(){global$g;$J=h($g->error);if(preg_match('~^(.*\\n)?([^\\n]*)\\n( *)\\^(\\n.*)?$~s',$J,$B))$J=$B[1].preg_replace('~((?:[^&]|&[^;]*;){'.strlen($B[3]).'})(.*)~','\\1<b>\\2</b>',$B[2]).$B[4];return
+nl_br($J);}function
+create_database($m,$d){return
+queries("CREATE DATABASE ".idf_escape($m).($d?" ENCODING ".idf_escape($d):""));}function
+drop_databases($l){global$g;$g->close();return
+apply_queries("DROP DATABASE",$l,'idf_escap
