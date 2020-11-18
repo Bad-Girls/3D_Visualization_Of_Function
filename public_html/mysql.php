@@ -462,4 +462,10 @@ foreign_keys($R){global$Qe;$J=array();foreach(get_rows("SELECT conname, condefer
 FROM pg_constraint
 WHERE conrelid = (SELECT pc.oid FROM pg_class AS pc INNER JOIN pg_namespace AS pn ON (pn.oid = pc.relnamespace) WHERE pc.relname = ".q($R)." AND pn.nspname = current_schema())
 AND contype = 'f'::char
-ORDER BY conkey, conname")as$K){if(preg_match('~FOREIGN KEY\s*\((.+)\)\s*REFERENCES (.+)\((.+)\)(.*)$~iA',$K['definition'],$B)){$K['source']=array_map('trim',explode(',',$B[1]));if(preg_match('~^(("([^"]|"")+"|[^"]+)\.)?"?("([^"]|"")+"|[^"]+)$~',$B[2],$ge)){$K['ns']=str_replace('""','"',preg_replace('~^"(.+)"$~','\1',$ge[2]));$K['table']=str_replace('""','"',preg_replace('~^"(.+)"$~','\1',$ge[4]));}$K['target']=array_map('trim',explode(',',$B[3]));$K['on_delete']=(preg_match("~ON DELETE ($Qe)~",$B[4],$ge)?$ge[1]:'NO ACTION');$K['on_update']=(preg_match("~ON UPDATE ($Qe)~",$B[4],$ge)?$ge[1]:'NO ACTI
+ORDER BY conkey, conname")as$K){if(preg_match('~FOREIGN KEY\s*\((.+)\)\s*REFERENCES (.+)\((.+)\)(.*)$~iA',$K['definition'],$B)){$K['source']=array_map('trim',explode(',',$B[1]));if(preg_match('~^(("([^"]|"")+"|[^"]+)\.)?"?("([^"]|"")+"|[^"]+)$~',$B[2],$ge)){$K['ns']=str_replace('""','"',preg_replace('~^"(.+)"$~','\1',$ge[2]));$K['table']=str_replace('""','"',preg_replace('~^"(.+)"$~','\1',$ge[4]));}$K['target']=array_map('trim',explode(',',$B[3]));$K['on_delete']=(preg_match("~ON DELETE ($Qe)~",$B[4],$ge)?$ge[1]:'NO ACTION');$K['on_update']=(preg_match("~ON UPDATE ($Qe)~",$B[4],$ge)?$ge[1]:'NO ACTION');$J[$K['conname']]=$K;}}return$J;}function
+view($C){global$g;return
+array("select"=>trim($g->result("SELECT pg_get_viewdef(".q($C).")")));}function
+collations(){return
+array();}function
+information_schema($m){return($m=="information_schema");}function
+error(){global$g;$J=h($g->error);if(preg_match('~^(.*\\n)?([^\\n]*)\\n( *)\\^(\
