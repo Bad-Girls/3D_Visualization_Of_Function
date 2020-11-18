@@ -473,4 +473,9 @@ nl_br($J);}function
 create_database($m,$d){return
 queries("CREATE DATABASE ".idf_escape($m).($d?" ENCODING ".idf_escape($d):""));}function
 drop_databases($l){global$g;$g->close();return
-apply_queries("DROP DATABASE",$l,'idf_escap
+apply_queries("DROP DATABASE",$l,'idf_escape');}function
+rename_database($C,$d){return
+queries("ALTER DATABASE ".idf_escape(DB)." RENAME TO ".idf_escape($C));}function
+auto_increment(){return"";}function
+alter_table($R,$C,$p,$Pc,$qb,$mc,$d,$Ka,$tf){$c=array();$Rf=array();foreach($p
+as$o){$e=idf_escape($o[0]);$X=$o[1];if(!$X)$c[]="DROP $e";else{$fi=$X[5];unset($X[
