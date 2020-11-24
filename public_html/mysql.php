@@ -483,4 +483,13 @@ as$H){if(!queries($H))return
 false;}return
 true;}function
 alter_indexes($R,$c){$i=array();$Xb=array();$Rf=array();foreach($c
-as$X){if($X[0]!="INDEX")$i[]=($X[2]=="DROP"?"\nDROP CONSTRAINT ".idf_escape($X[1]):"\nADD".($X[1]!=""?" CONSTRAINT ".idf_escape($X[1]):"")." $X[0] ".($X[0]=="PRIMARY"?"KEY ":"")."(".implode(", ",$X[2]).")");elseif($X[2]=="DROP")$Xb[]=idf_escape($X[1]);else$Rf[]="CREATE INDEX ".idf_escape($X[1]!=""?$X[1]:uniqid($R."_"))." ON ".table($R)." (".implode(", ",$X[2]).")";}if($i)array_unshift($Rf,"ALTER TABLE ".table
+as$X){if($X[0]!="INDEX")$i[]=($X[2]=="DROP"?"\nDROP CONSTRAINT ".idf_escape($X[1]):"\nADD".($X[1]!=""?" CONSTRAINT ".idf_escape($X[1]):"")." $X[0] ".($X[0]=="PRIMARY"?"KEY ":"")."(".implode(", ",$X[2]).")");elseif($X[2]=="DROP")$Xb[]=idf_escape($X[1]);else$Rf[]="CREATE INDEX ".idf_escape($X[1]!=""?$X[1]:uniqid($R."_"))." ON ".table($R)." (".implode(", ",$X[2]).")";}if($i)array_unshift($Rf,"ALTER TABLE ".table($R).implode(",",$i));if($Xb)array_unshift($Rf,"DROP INDEX ".implode(", ",$Xb));foreach($Rf
+as$H){if(!queries($H))return
+false;}return
+true;}function
+truncate_tables($T){return
+queries("TRUNCATE ".implode(", ",array_map('table',$T)));return
+true;}function
+drop_views($li){return
+drop_tables($li);}function
+drop_tables(
