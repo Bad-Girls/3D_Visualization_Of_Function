@@ -492,4 +492,10 @@ queries("TRUNCATE ".implode(", ",array_map('table',$T)));return
 true;}function
 drop_views($li){return
 drop_tables($li);}function
-drop_tables(
+drop_tables($T){foreach($T
+as$R){$P=table_status($R);if(!queries("DROP ".strtoupper($P["Engine"])." ".table($R)))return
+false;}return
+true;}function
+move_tables($T,$li,$lh){foreach(array_merge($T,$li)as$R){$P=table_status($R);if(!queries("ALTER ".strtoupper($P["Engine"])." ".table($R)." SET SCHEMA ".idf_escape($lh)))return
+false;}return
+tr
