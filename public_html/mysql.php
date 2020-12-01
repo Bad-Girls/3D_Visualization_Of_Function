@@ -498,4 +498,6 @@ false;}return
 true;}function
 move_tables($T,$li,$lh){foreach(array_merge($T,$li)as$R){$P=table_status($R);if(!queries("ALTER ".strtoupper($P["Engine"])." ".table($R)." SET SCHEMA ".idf_escape($lh)))return
 false;}return
-tr
+true;}function
+trigger($C,$R=null){if($C=="")return
+array("Statement"=>"EXECUTE PROCEDURE ()");if($R===null)$R=$_GET['trigger'];$L=get_rows('SELECT t.trigger_name AS "Trigger", t.action_timing AS "Timing", (SELECT STRING_AGG(event_manipulation, \' OR \') FROM information_schema.triggers WHERE event_object_table = t.event_object_table AN
