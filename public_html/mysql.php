@@ -512,4 +512,8 @@ JOIN pg_catalog.pg_proc p ON p.pronamespace = n.oid
 WHERE n.nspname = current_schema()
 ORDER BY p.proname');}function
 routine_languages(){return
-get_vals("SELECT l
+get_vals("SELECT langname FROM pg_catalog.pg_language");}function
+last_id(){return
+0;}function
+explain($g,$H){return$g->query("EXPLAIN $H");}function
+found_rows($S,$Z){global$g;if(preg_match("~ rows=([0-9]+)~",$g->result("EXPLAIN SELECT * FROM ".idf_escape($S["Name"]).($Z?" WHERE ".implode(" AND ",$Z):"")),$dg))
