@@ -506,4 +506,10 @@ triggers($R){$J=array();foreach(get_rows("SELECT * FROM information_schema.trigg
 trigger_options(){return
 array("Timing"=>array("BEFORE","AFTER"),"Event"=>array("INSERT","UPDATE","DELETE"),"Type"=>array("FOR EACH ROW","FOR EACH STATEMENT"),);}function
 routines(){return
-g
+get_rows('SELECT p.proname AS "ROUTINE_NAME", p.proargtypes AS "ROUTINE_TYPE", pg_catalog.format_type(p.prorettype, NULL) AS "DTD_IDENTIFIER"
+FROM pg_catalog.pg_namespace n
+JOIN pg_catalog.pg_proc p ON p.pronamespace = n.oid
+WHERE n.nspname = current_schema()
+ORDER BY p.proname');}function
+routine_languages(){return
+get_vals("SELECT l
