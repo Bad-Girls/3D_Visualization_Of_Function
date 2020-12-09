@@ -525,4 +525,7 @@ WHERE typnamespace = (SELECT oid FROM pg_namespace WHERE nspname = current_schem
 AND typtype IN ('b','d','e')
 AND typelem = 0");}function
 schemas(){return
-get_vals("SELECT nspname FROM pg_namespace ORDER BY nspname");}funct
+get_vals("SELECT nspname FROM pg_namespace ORDER BY nspname");}function
+get_schema(){global$g;return$g->result("SELECT current_schema()");}function
+set_schema($ug){global$g,$Oh,$Vg;$J=$g->query("SET search_path TO ".idf_escape($ug));foreach(types()as$U){if(!isset($Oh[$U])){$Oh[$U]=0;$Vg['User types'][]=$U;}}return$J;}function
+create_sql($R,$Ka){global$g;$J='';$kg=array();$Cg=arra
