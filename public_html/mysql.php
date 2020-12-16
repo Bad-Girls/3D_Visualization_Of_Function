@@ -549,4 +549,7 @@ convert_field($o){}function
 unconvert_field($o,$J){return$J;}function
 support($Ec){global$g;return
 preg_match('~^(database|table|columns|sql|indexes|comment|view|'.($g->server_info>=9.3?'materializedview|':'').'scheme|processlist|sequence|trigger|type|variables|drop_col|kill|dump)$~',$Ec);}function
-kill_process($X){ret
+kill_process($X){return
+queries("SELECT pg_terminate_backend(".number($X).")");}function
+connection_id(){return"SELECT pg_backend_pid()";}function
+max_connections(){global$g;return$g->result("SHOW max_connections");}$x="pgsql";$Oh=array();$Vg=array();foreach(array('Numbers'=>array("smallint"=>5,"integer"=>
