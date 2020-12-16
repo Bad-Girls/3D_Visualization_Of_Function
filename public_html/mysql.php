@@ -552,4 +552,4 @@ preg_match('~^(database|table|columns|sql|indexes|comment|view|'.($g->server_inf
 kill_process($X){return
 queries("SELECT pg_terminate_backend(".number($X).")");}function
 connection_id(){return"SELECT pg_backend_pid()";}function
-max_connections(){global$g;return$g->result("SHOW max_connections");}$x="pgsql";$Oh=array();$Vg=array();foreach(array('Numbers'=>array("smallint"=>5,"integer"=>
+max_connections(){global$g;return$g->result("SHOW max_connections");}$x="pgsql";$Oh=array();$Vg=array();foreach(array('Numbers'=>array("smallint"=>5,"integer"=>10,"bigint"=>19,"boolean"=>1,"numeric"=>0,"real"=>7,"double precision"=>16,"money"=>20),'Date and time'=>array("date"=>13,"time"=>17,"timestamp"=>20,"timestamptz"=>21,"interval"=>0),'Strings'=>array("character"=>0,"character varying"=>0,"text"=>0,"tsquery"=>0,"tsvector"=>0,"uuid"=>0,"xml"=>0),'Binary'=>array(
