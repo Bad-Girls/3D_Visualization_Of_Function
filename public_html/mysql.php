@@ -544,4 +544,9 @@ show_variables(){return
 get_key_vals("SHOW ALL");}function
 process_list(){global$g;return
 get_rows("SELECT * FROM pg_stat_activity ORDER BY ".($g->server_info<9.2?"procpid":"pid"));}function
-show_st
+show_status(){}function
+convert_field($o){}function
+unconvert_field($o,$J){return$J;}function
+support($Ec){global$g;return
+preg_match('~^(database|table|columns|sql|indexes|comment|view|'.($g->server_info>=9.3?'materializedview|':'').'scheme|processlist|sequence|trigger|type|variables|drop_col|kill|dump)$~',$Ec);}function
+kill_process($X){ret
