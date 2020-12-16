@@ -536,4 +536,12 @@ as$Mc=>$Lc)$kg[]="CONSTRAINT ".idf_escape($Mc)." $Lc[definition] ".($Lc['deferra
 as$qd=>$v){if($v['type']=='INDEX')$J.="\n\nCREATE INDEX ".idf_escape($qd)." ON ".idf_escape($P['nspname']).".".idf_escape($P['Name'])." USING btree (".implode(', ',array_map('idf_escape',$v['columns'])).");";}if($P['Comment'])$J.="\n\nCOMMENT ON TABLE ".idf_escape($P['nspname']).".".idf_escape($P['Name'])." IS ".q($P['Comment']).";";foreach($p
 as$Gc=>$o){if($o['comment'])$J.="\n\nCOMMENT ON COLUMN ".idf_escape($P['nspname']).".".idf_escape($P['Name']).".".idf_escape($Gc)." IS ".q($o['comment']).";";}foreach($Lh
 as$Hh=>$Gh){$Ih=trigger($Hh,$P['Name']);$J.="\n\nCREATE TRIGGER ".idf_escape($Ih['Trigger'])." $Ih[Timing] $Ih[Events] ON ".idf_escape($P["nspname"]).".".idf_escape($P['Name'])." $Ih[Type] $Ih[Statement];";}return
-rtrim($J,';');}func
+rtrim($J,';');}function
+trigger_sql($R,$Wg){$J="";return
+false;}function
+use_sql($k){return"\connect ".idf_escape($k);}function
+show_variables(){return
+get_key_vals("SHOW ALL");}function
+process_list(){global$g;return
+get_rows("SELECT * FROM pg_stat_activity ORDER BY ".($g->server_info<9.2?"procpid":"pid"));}function
+show_st
