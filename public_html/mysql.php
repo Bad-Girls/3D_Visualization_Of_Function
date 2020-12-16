@@ -534,4 +534,6 @@ as$Gc=>$o){$qf=idf_escape($o['field']).' '.$o['full_type'].(is_null($o['default'
 as$qd=>$v){switch($v['type']){case'UNIQUE':$kg[]="CONSTRAINT ".idf_escape($qd)." UNIQUE (".implode(', ',array_map('idf_escape',$v['columns'])).")";break;case'PRIMARY':$kg[]="CONSTRAINT ".idf_escape($qd)." PRIMARY KEY (".implode(', ',array_map('idf_escape',$v['columns'])).")";break;}}foreach($Nc
 as$Mc=>$Lc)$kg[]="CONSTRAINT ".idf_escape($Mc)." $Lc[definition] ".($Lc['deferrable']?'DEFERRABLE':'NOT DEFERRABLE');$J.=implode(",\n    ",$kg)."\n) WITH (oids = ".($P['Oid']?'true':'false').");";foreach($w
 as$qd=>$v){if($v['type']=='INDEX')$J.="\n\nCREATE INDEX ".idf_escape($qd)." ON ".idf_escape($P['nspname']).".".idf_escape($P['Name'])." USING btree (".implode(', ',array_map('idf_escape',$v['columns'])).");";}if($P['Comment'])$J.="\n\nCOMMENT ON TABLE ".idf_escape($P['nspname']).".".idf_escape($P['Name'])." IS ".q($P['Comment']).";";foreach($p
-as$Gc=>$o){if($o['comment'])$J.="\n\nCOMMENT ON COLUMN ".idf_escape($P[
+as$Gc=>$o){if($o['comment'])$J.="\n\nCOMMENT ON COLUMN ".idf_escape($P['nspname']).".".idf_escape($P['Name']).".".idf_escape($Gc)." IS ".q($o['comment']).";";}foreach($Lh
+as$Hh=>$Gh){$Ih=trigger($Hh,$P['Name']);$J.="\n\nCREATE TRIGGER ".idf_escape($Ih['Trigger'])." $Ih[Timing] $Ih[Events] ON ".idf_escape($P["nspname"]).".".idf_escape($P['Name'])." $Ih[Type] $Ih[Statement];";}return
+rtrim($J,';');}func
