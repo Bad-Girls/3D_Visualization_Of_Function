@@ -564,4 +564,12 @@ true;}function
 query($H,$Ph=false){$I=oci_parse($this->_link,$H);$this->error="";if(!$I){$n=oci_error($this->_link);$this->errno=$n["code"];$this->error=$n["message"];return
 false;}set_error_handler(array($this,'_error'));$J=@oci_execute($I);restore_error_handler();if($J){if(oci_num_fields($I))return
 new
-Min_Result($I);$this->affe
+Min_Result($I);$this->affected_rows=oci_num_rows($I);}return$J;}function
+multi_query($H){return$this->_result=$this->query($H);}function
+store_result(){return$this->_result;}function
+next_result(){return
+false;}function
+result($H,$o=1){$I=$this->query($H);if(!is_object($I)||!oci_fetch($I->_result))return
+false;return
+oci_result($I->_result,$o);}}class
+Min_Result{var$_result,$_offset=1,$n
