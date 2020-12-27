@@ -572,4 +572,11 @@ false;}function
 result($H,$o=1){$I=$this->query($H);if(!is_object($I)||!oci_fetch($I->_result))return
 false;return
 oci_result($I->_result,$o);}}class
-Min_Result{var$_result,$_offset=1,$n
+Min_Result{var$_result,$_offset=1,$num_rows;function
+__construct($I){$this->_result=$I;}function
+_convert($K){foreach((array)$K
+as$y=>$X){if(is_a($X,'OCI-Lob'))$K[$y]=$X->load();}return$K;}function
+fetch_assoc(){return$this->_convert(oci_fetch_assoc($this->_result));}function
+fetch_row(){return$this->_convert(oci_fetch_row($this->_result));}function
+fetch_field(){$e=$this->_offset++;$J=new
+stdClass;$J->name=oci_fi
