@@ -596,4 +596,8 @@ true;}}function
 idf_escape($u){return'"'.str_replace('"','""',$u).'"';}function
 table($u){return
 idf_escape($u);}function
-connect(){global$b;$g=
+connect(){global$b;$g=new
+Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2]))return$g;return$g->error;}function
+get_databases(){return
+get_vals("SELECT tablespace_name FROM user_tablespaces");}function
+limit($H,$Z,$z,$D=0,$Ag=" "){return($D?" * FROM (SELECT t.*, rownum AS rnum FROM (SELECT $H$Z) t WHERE rownum <= ".($z+$D).") WHERE rnum > $D"
