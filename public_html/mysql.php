@@ -600,4 +600,9 @@ connect(){global$b;$g=new
 Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2]))return$g;return$g->error;}function
 get_databases(){return
 get_vals("SELECT tablespace_name FROM user_tablespaces");}function
-limit($H,$Z,$z,$D=0,$Ag=" "){return($D?" * FROM (SELECT t.*, rownum AS rnum FROM (SELECT $H$Z) t WHERE rownum <= ".($z+$D).") WHERE rnum > $D"
+limit($H,$Z,$z,$D=0,$Ag=" "){return($D?" * FROM (SELECT t.*, rownum AS rnum FROM (SELECT $H$Z) t WHERE rownum <= ".($z+$D).") WHERE rnum > $D":($z!==null?" * FROM (SELECT $H$Z) WHERE rownum <= ".($z+$D):" $H$Z"));}function
+limit1($H,$Z){return" $H$Z";}function
+db_collation($m,$mb){global$g;return$g->result("SELECT value FROM nls_database_parameters WHERE parameter = 'NLS_CHARACTERSET'");}function
+engines(){return
+array();}function
+logged_user(){global$g;
