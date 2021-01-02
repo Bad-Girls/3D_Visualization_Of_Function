@@ -605,4 +605,11 @@ limit1($H,$Z){return" $H$Z";}function
 db_collation($m,$mb){global$g;return$g->result("SELECT value FROM nls_database_parameters WHERE parameter = 'NLS_CHARACTERSET'");}function
 engines(){return
 array();}function
-logged_user(){global$g;
+logged_user(){global$g;return$g->result("SELECT USER FROM DUAL");}function
+tables_list(){return
+get_key_vals("SELECT table_name, 'table' FROM all_tables WHERE tablespace_name = ".q(DB)."
+UNION SELECT view_name, 'view' FROM user_views
+ORDER BY 1");}function
+count_tables($l){return
+array();}function
+table_status($C=""){$J=array();$wg=q($C);foreach(get_rows
