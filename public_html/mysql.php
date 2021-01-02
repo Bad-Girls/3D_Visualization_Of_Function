@@ -612,4 +612,6 @@ UNION SELECT view_name, 'view' FROM user_views
 ORDER BY 1");}function
 count_tables($l){return
 array();}function
-table_status($C=""){$J=array();$wg=q($C);foreach(get_rows
+table_status($C=""){$J=array();$wg=q($C);foreach(get_rows('SELECT table_name "Name", \'table\' "Engine", avg_row_len * num_rows "Data_length", num_rows "Rows" FROM all_tables WHERE tablespace_name = '.q(DB).($C!=""?" AND table_name = $wg":"")."
+UNION SELECT view_name, 'view', 0, 0 FROM user_views".($C!=""?" WHERE view_name = $wg":"")."
+ORDER BY 1")as$K){if($C!="")return$K;$J[$
