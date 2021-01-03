@@ -619,4 +619,8 @@ is_view($S){return$S["Engine"]=="view";}function
 fk_support($S){return
 true;}function
 fields($R){$J=array();foreach(get_rows("SELECT * FROM all_tab_columns WHERE table_name = ".q($R)." ORDER BY column_id")as$K){$U=$K["DATA_TYPE"];$Yd="$K[DATA_PRECISION],$K[DATA_SCALE]";if($Yd==",")$Yd=$K["DATA_LENGTH"];$J[$K["COLUMN_NAME"]]=array("field"=>$K["COLUMN_NAME"],"full_type"=>$U.($Yd?"($Yd)":""),"type"=>strtolower($U),"length"=>$Yd,"default"=>$K["DATA_DEFAULT"],"null"=>($K["NULLABLE"]=="Y"),"privileges"=>array("insert"=>1,"select"=>1,"update"=>1),);}return$J;}function
-indexes($R,$h=null){$J=array();foreach(get_rows("SELECT uic.*, uc.constra
+indexes($R,$h=null){$J=array();foreach(get_rows("SELECT uic.*, uc.constraint_type
+FROM user_ind_columns uic
+LEFT JOIN user_constraints uc ON uic.index_name = uc.constraint_name AND uic.table_name = uc.table_name
+WHERE uic.table_name = ".q($R)."
+ORDER BY uc.constraint_type, uic.column_position",$h)as$K){$qd=$K["INDEX_NAME"];$J[$qd]["type"]=($K["CONSTRAINT_TYPE"]=="P"?"PRIMARY":($K["CONSTRAINT_TYPE"]=="U"?"UNIQUE":
