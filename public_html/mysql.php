@@ -623,4 +623,6 @@ indexes($R,$h=null){$J=array();foreach(get_rows("SELECT uic.*, uc.constraint_typ
 FROM user_ind_columns uic
 LEFT JOIN user_constraints uc ON uic.index_name = uc.constraint_name AND uic.table_name = uc.table_name
 WHERE uic.table_name = ".q($R)."
-ORDER BY uc.constraint_type, uic.column_position",$h)as$K){$qd=$K["INDEX_NAME"];$J[$qd]["type"]=($K["CONSTRAINT_TYPE"]=="P"?"PRIMARY":($K["CONSTRAINT_TYPE"]=="U"?"UNIQUE":
+ORDER BY uc.constraint_type, uic.column_position",$h)as$K){$qd=$K["INDEX_NAME"];$J[$qd]["type"]=($K["CONSTRAINT_TYPE"]=="P"?"PRIMARY":($K["CONSTRAINT_TYPE"]=="U"?"UNIQUE":"INDEX"));$J[$qd]["columns"][]=$K["COLUMN_NAME"];$J[$qd]["lengths"][]=($K["CHAR_LENGTH"]&&$K["CHAR_LENGTH"]!=$K["COLUMN_LENGTH"]?$K["CHAR_LENGTH"]:null);$J[$qd]["descs"][]=($K["DESCEND"]?'1':null);}return$J;}function
+view($C){$L=get_rows('SELECT text "select" FROM user_views WHERE view_name = '.q($C));return
+re
