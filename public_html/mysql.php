@@ -625,4 +625,13 @@ LEFT JOIN user_constraints uc ON uic.index_name = uc.constraint_name AND uic.tab
 WHERE uic.table_name = ".q($R)."
 ORDER BY uc.constraint_type, uic.column_position",$h)as$K){$qd=$K["INDEX_NAME"];$J[$qd]["type"]=($K["CONSTRAINT_TYPE"]=="P"?"PRIMARY":($K["CONSTRAINT_TYPE"]=="U"?"UNIQUE":"INDEX"));$J[$qd]["columns"][]=$K["COLUMN_NAME"];$J[$qd]["lengths"][]=($K["CHAR_LENGTH"]&&$K["CHAR_LENGTH"]!=$K["COLUMN_LENGTH"]?$K["CHAR_LENGTH"]:null);$J[$qd]["descs"][]=($K["DESCEND"]?'1':null);}return$J;}function
 view($C){$L=get_rows('SELECT text "select" FROM user_views WHERE view_name = '.q($C));return
-re
+reset($L);}function
+collations(){return
+array();}function
+information_schema($m){return
+false;}function
+error(){global$g;return
+h($g->error);}function
+explain($g,$H){$g->query("EXPLAIN PLAN FOR $H");return$g->query("SELECT * FROM plan_table");}function
+found_rows($S,$Z){}function
+alter_table($R,$C,$p,$Pc,$qb,$mc,$d,$Ka,$tf
