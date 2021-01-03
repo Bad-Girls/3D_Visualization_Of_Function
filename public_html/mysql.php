@@ -618,4 +618,5 @@ ORDER BY 1")as$K){if($C!="")return$K;$J[$K["Name"]]=$K;}return$J;}function
 is_view($S){return$S["Engine"]=="view";}function
 fk_support($S){return
 true;}function
-fields($R){$J=array();foreach(get_rows("SELECT * FROM all_tab_columns WHERE table_name = ".q($R)." ORDER BY column_id")as$K){$U=$K["DATA_TYPE"];$Yd="$K[DATA_PRECISION],$K[DATA_SCALE]";if($Yd==",")$Yd=$K["DATA_
+fields($R){$J=array();foreach(get_rows("SELECT * FROM all_tab_columns WHERE table_name = ".q($R)." ORDER BY column_id")as$K){$U=$K["DATA_TYPE"];$Yd="$K[DATA_PRECISION],$K[DATA_SCALE]";if($Yd==",")$Yd=$K["DATA_LENGTH"];$J[$K["COLUMN_NAME"]]=array("field"=>$K["COLUMN_NAME"],"full_type"=>$U.($Yd?"($Yd)":""),"type"=>strtolower($U),"length"=>$Yd,"default"=>$K["DATA_DEFAULT"],"null"=>($K["NULLABLE"]=="Y"),"privileges"=>array("insert"=>1,"select"=>1,"update"=>1),);}return$J;}function
+indexes($R,$h=null){$J=array();foreach(get_rows("SELECT uic.*, uc.constra
