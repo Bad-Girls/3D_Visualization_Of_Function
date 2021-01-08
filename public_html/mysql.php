@@ -649,4 +649,12 @@ AND c_list.R_CONSTRAINT_NAME = c_dest.CONSTRAINT_NAME
 AND c_list.CONSTRAINT_TYPE = 'R'
 AND c_src.TABLE_NAME = ".q($R);foreach(get_rows($H)as$K)$J[$K['NAME']]=array("db"=>$K['DEST_DB'],"table"=>$K['DEST_TABLE'],"source"=>array($K['SRC_COLUMN']),"target"=>array($K['DEST_COLUMN']),"on_delete"=>$K['ON_DELETE'],"on_update"=>null,);return$J;}function
 truncate_tables($T){return
-apply_queries("TR
+apply_queries("TRUNCATE TABLE",$T);}function
+drop_views($li){return
+apply_queries("DROP VIEW",$li);}function
+drop_tables($T){return
+apply_queries("DROP TABLE",$T);}function
+last_id(){return
+0;}function
+schemas(){return
+get_vals("SELECT DISTINCT owner FROM dba_segments WHERE owner IN (SELECT username FROM dba_users WHERE default_tables
