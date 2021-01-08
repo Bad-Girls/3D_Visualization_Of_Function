@@ -638,4 +638,13 @@ alter_table($R,$C,$p,$Pc,$qb,$mc,$d,$Ka,$tf){$c=$Xb=array();foreach($p
 as$o){$X=$o[1];if($X&&$o[0]!=""&&idf_escape($o[0])!=$X[0])queries("ALTER TABLE ".table($R)." RENAME COLUMN ".idf_escape($o[0])." TO $X[0]");if($X)$c[]=($R!=""?($o[0]!=""?"MODIFY (":"ADD ("):"  ").implode($X).($R!=""?")":"");else$Xb[]=idf_escape($o[0]);}if($R=="")return
 queries("CREATE TABLE ".table($C)." (\n".implode(",\n",$c)."\n)");return(!$c||queries("ALTER TABLE ".table($R)."\n".implode("\n",$c)))&&(!$Xb||queries("ALTER TABLE ".table($R)." DROP (".implode(", ",$Xb).")"))&&($R==$C||queries("ALTER TABLE ".table($R)." RENAME TO ".table($C)));}function
 foreign_keys($R){$J=array();$H="SELECT c_list.CONSTRAINT_NAME as NAME,
-c_src.COL
+c_src.COLUMN_NAME as SRC_COLUMN,
+c_dest.OWNER as DEST_DB,
+c_dest.TABLE_NAME as DEST_TABLE,
+c_dest.COLUMN_NAME as DEST_COLUMN,
+c_list.DELETE_RULE as ON_DELETE
+FROM ALL_CONSTRAINTS c_list, ALL_CONS_COLUMNS c_src, ALL_CONS_COLUMNS c_dest
+WHERE c_list.CONSTRAINT_NAME = c_src.CONSTRAINT_NAME
+AND c_list.R_CONSTRAINT_NAME = c_dest.CONSTRAINT_NAME
+AND c_list.CONSTRAINT_TYPE = 'R'
+AND c
