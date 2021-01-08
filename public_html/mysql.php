@@ -634,4 +634,6 @@ error(){global$g;return
 h($g->error);}function
 explain($g,$H){$g->query("EXPLAIN PLAN FOR $H");return$g->query("SELECT * FROM plan_table");}function
 found_rows($S,$Z){}function
-alter_table($R,$C,$p,$Pc,$qb,$mc,$d,$Ka,$tf
+alter_table($R,$C,$p,$Pc,$qb,$mc,$d,$Ka,$tf){$c=$Xb=array();foreach($p
+as$o){$X=$o[1];if($X&&$o[0]!=""&&idf_escape($o[0])!=$X[0])queries("ALTER TABLE ".table($R)." RENAME COLUMN ".idf_escape($o[0])." TO $X[0]");if($X)$c[]=($R!=""?($o[0]!=""?"MODIFY (":"ADD ("):"  ").implode($X).($R!=""?")":"");else$Xb[]=idf_escape($o[0]);}if($R=="")return
+queries("CREATE TABLE ".table($C)." (\
