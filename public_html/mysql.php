@@ -657,4 +657,8 @@ apply_queries("DROP TABLE",$T);}function
 last_id(){return
 0;}function
 schemas(){return
-get_vals("SELECT DISTINCT owner FROM dba_segments WHERE owner IN (SELECT username FROM dba_users WHERE default_tables
+get_vals("SELECT DISTINCT owner FROM dba_segments WHERE owner IN (SELECT username FROM dba_users WHERE default_tablespace NOT IN ('SYSTEM','SYSAUX'))");}function
+get_schema(){global$g;return$g->result("SELECT sys_context('USERENV', 'SESSION_USER') FROM dual");}function
+set_schema($vg){global$g;return$g->query("ALTER SESSION SET CURRENT_SCHEMA = ".idf_escape($vg));}function
+show_variables(){return
+get_key_vals('SELECT name, display
