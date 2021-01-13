@@ -664,4 +664,14 @@ show_variables(){return
 get_key_vals('SELECT name, display_value FROM v$parameter');}function
 process_list(){return
 get_rows('SELECT sess.process AS "process", sess.username AS "user", sess.schemaname AS "schema", sess.status AS "status", sess.wait_class AS "wait_class", sess.seconds_in_wait AS "seconds_in_wait", sql.sql_text AS "sql_text", sess.machine AS "machine", sess.port AS "port"
-FROM v$session sess LEF
+FROM v$session sess LEFT OUTER JOIN v$sql sql
+ON sql.sql_id = sess.sql_id
+WHERE sess.type = \'USER\'
+ORDER BY PROCESS
+');}function
+show_status(){$L=get_rows('SELECT * FROM v$instance');return
+reset($L);}function
+convert_field($o){}function
+unconvert_field($o,$J){return$J;}function
+support($Ec){return
+preg_match('~^(columns|database|drop_col|indexes|processlist|scheme|sql|status|table|variables
