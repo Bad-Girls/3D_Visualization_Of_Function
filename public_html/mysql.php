@@ -661,4 +661,7 @@ get_vals("SELECT DISTINCT owner FROM dba_segments WHERE owner IN (SELECT usernam
 get_schema(){global$g;return$g->result("SELECT sys_context('USERENV', 'SESSION_USER') FROM dual");}function
 set_schema($vg){global$g;return$g->query("ALTER SESSION SET CURRENT_SCHEMA = ".idf_escape($vg));}function
 show_variables(){return
-get_key_vals('SELECT name, display
+get_key_vals('SELECT name, display_value FROM v$parameter');}function
+process_list(){return
+get_rows('SELECT sess.process AS "process", sess.username AS "user", sess.schemaname AS "schema", sess.status AS "status", sess.wait_class AS "wait_class", sess.seconds_in_wait AS "seconds_in_wait", sql.sql_text AS "sql_text", sess.machine AS "machine", sess.port AS "port"
+FROM v$session sess LEF
