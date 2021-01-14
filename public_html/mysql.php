@@ -674,4 +674,4 @@ reset($L);}function
 convert_field($o){}function
 unconvert_field($o,$J){return$J;}function
 support($Ec){return
-preg_match('~^(columns|database|drop_col|indexes|processlist|scheme|sql|status|table|variables
+preg_match('~^(columns|database|drop_col|indexes|processlist|scheme|sql|status|table|variables|view|view_trigger)$~',$Ec);}$x="oracle";$Oh=array();$Vg=array();foreach(array('Numbers'=>array("number"=>38,"binary_float"=>12,"binary_double"=>21),'Date and time'=>array("date"=>10,"timestamp"=>29,"interval year"=>12,"interval day"=>28),'Strings'=>array("char"=>2000,"varchar2"=>4000,"nchar"=>2000,"nvarchar2"=>4000,"clob"=>4294967295,"nclob"=>4294967295),'Bin
