@@ -691,4 +691,10 @@ new
 Min_Result($I);$this->affected_rows=sqlsrv_rows_affected($I);return
 true;}function
 next_result(){return$this->_result?sqlsrv_next_result($this->_result):null;}function
-result($H,$o=0){$I=$this->query($H);if(!is_object($I))
+result($H,$o=0){$I=$this->query($H);if(!is_object($I))return
+false;$K=$I->fetch_row();return$K[$o];}}class
+Min_Result{var$_result,$_offset=0,$_fields,$num_rows;function
+__construct($I){$this->_result=$I;}function
+_convert($K){foreach((array)$K
+as$y=>$X){if(is_a($X,'DateTime'))$K[$y]=$X->format("Y-m-d H:i:s");}return$K;}function
+fetch_assoc(){return$this->_conv
