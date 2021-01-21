@@ -679,4 +679,10 @@ Min_DB{var$extension="sqlsrv",$_link,$_result,$server_info,$affected_rows,$errno
 _get_error(){$this->error="";foreach(sqlsrv_errors()as$n){$this->errno=$n["code"];$this->error.="$n[message]\n";}$this->error=rtrim($this->error);}function
 connect($N,$V,$G){$this->_link=@sqlsrv_connect($N,array("UID"=>$V,"PWD"=>$G,"CharacterSet"=>"UTF-8"));if($this->_link){$ud=sqlsrv_server_info($this->_link);$this->server_info=$ud['SQLServerVersion'];}else$this->_get_error();return(bool)$this->_link;}function
 quote($Q){return"'".str_replace("'","''",$Q)."'";}function
-select_db($k){return$this->query("USE ".idf_escape($k));}func
+select_db($k){return$this->query("USE ".idf_escape($k));}function
+query($H,$Ph=false){$I=sqlsrv_query($this->_link,$H);$this->error="";if(!$I){$this->_get_error();return
+false;}return$this->store_result($I);}function
+multi_query($H){$this->_result=sqlsrv_query($this->_link,$H);$this->error="";if(!$this->_result){$this->_get_error();return
+false;}return
+true;}function
+store_re
