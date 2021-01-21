@@ -685,4 +685,10 @@ false;}return$this->store_result($I);}function
 multi_query($H){$this->_result=sqlsrv_query($this->_link,$H);$this->error="";if(!$this->_result){$this->_get_error();return
 false;}return
 true;}function
-store_re
+store_result($I=null){if(!$I)$I=$this->_result;if(!$I)return
+false;if(sqlsrv_field_metadata($I))return
+new
+Min_Result($I);$this->affected_rows=sqlsrv_rows_affected($I);return
+true;}function
+next_result(){return$this->_result?sqlsrv_next_result($this->_result):null;}function
+result($H,$o=0){$I=$this->query($H);if(!is_object($I))
