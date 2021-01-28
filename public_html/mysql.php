@@ -703,4 +703,5 @@ fetch_field(){if(!$this->_fields)$this->_fields=sqlsrv_field_metadata($this->_re
 stdClass;$J->name=$o["Name"];$J->orgname=$o["Name"];$J->type=($o["Type"]==1?254:0);return$J;}function
 seek($D){for($s=0;$s<$D;$s++)sqlsrv_fetch($this->_result);}function
 __destruct(){sqlsrv_free_stmt($this->_result);}}}elseif(extension_loaded("mssql")){class
-Min_DB{var$extension="MSSQL",$_link,$_result,$server_info,$a
+Min_DB{var$extension="MSSQL",$_link,$_result,$server_info,$affected_rows,$error;function
+connect($N,$V,$G){$this->_link=@mssql_connect($N,$V,$G);if($this->_link){$I=$this->query("SELECT SERVERPROPERTY('ProductLevel'), SERVERPROPERTY('Edition')");$K=$I->fetch_row();$this->server_info=$this->result("sp_server_info 2",2)." [$K[0]] $K[1]";}else$this->error=mssql_get_last_message();return(bool)$this->
