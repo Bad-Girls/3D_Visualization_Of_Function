@@ -697,4 +697,7 @@ Min_Result{var$_result,$_offset=0,$_fields,$num_rows;function
 __construct($I){$this->_result=$I;}function
 _convert($K){foreach((array)$K
 as$y=>$X){if(is_a($X,'DateTime'))$K[$y]=$X->format("Y-m-d H:i:s");}return$K;}function
-fetch_assoc(){return$this->_conv
+fetch_assoc(){return$this->_convert(sqlsrv_fetch_array($this->_result,SQLSRV_FETCH_ASSOC));}function
+fetch_row(){return$this->_convert(sqlsrv_fetch_array($this->_result,SQLSRV_FETCH_NUMERIC));}function
+fetch_field(){if(!$this->_fields)$this->_fields=sqlsrv_field_metadata($this->_result);$o=$this->_fields[$this->_offset++];$J=new
+stdCl
