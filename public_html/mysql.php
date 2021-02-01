@@ -740,4 +740,6 @@ select_db($k){return$this->query("USE ".idf_escape($k));}}}class
 Min_Driver
 extends
 Min_SQL{function
-insertUpdate($R,$L,$Hf
+insertUpdate($R,$L,$Hf){foreach($L
+as$O){$Wh=array();$Z=array();foreach($O
+as$y=>$X){$Wh[]="$y = $X";if(isset($Hf[idf_unescape($y)]))$Z[]="$y = $X";}if(!queries("MERGE ".table($R)." USING (VALUES(".implode(", ",$O).")) AS source (c".implode(", c",range(1,count($O))).") ON ".implode(" AND ",$Z)." WHEN MATCHED THEN UPDATE SET ".implode(", ",$Wh)." WH
