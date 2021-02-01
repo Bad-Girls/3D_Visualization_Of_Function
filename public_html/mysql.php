@@ -733,4 +733,11 @@ seek($D){mssql_data_seek($this->_result,$D);}function
 __destruct(){mssql_free_result($this->_result);}}}elseif(extension_loaded("pdo_dblib")){class
 Min_DB
 extends
-Min_PDO
+Min_PDO{var$extension="PDO_DBLIB";function
+connect($N,$V,$G){$this->dsn("dblib:charset=utf8;host=".str_replace(":",";unix_socket=",preg_replace('~:(\\d)~',';port=\\1',$N)),$V,$G);return
+true;}function
+select_db($k){return$this->query("USE ".idf_escape($k));}}}class
+Min_Driver
+extends
+Min_SQL{function
+insertUpdate($R,$L,$Hf
