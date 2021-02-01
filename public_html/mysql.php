@@ -725,4 +725,12 @@ __construct($I){$this->_result=$I;$this->num_rows=mssql_num_rows($I);}function
 fetch_assoc(){return
 mssql_fetch_assoc($this->_result);}function
 fetch_row(){return
-mssql_fetch_row($this->_result);}
+mssql_fetch_row($this->_result);}function
+num_rows(){return
+mssql_num_rows($this->_result);}function
+fetch_field(){$J=mssql_fetch_field($this->_result);$J->orgtable=$J->table;$J->orgname=$J->name;return$J;}function
+seek($D){mssql_data_seek($this->_result,$D);}function
+__destruct(){mssql_free_result($this->_result);}}}elseif(extension_loaded("pdo_dblib")){class
+Min_DB
+extends
+Min_PDO
