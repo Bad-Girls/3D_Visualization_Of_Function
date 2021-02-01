@@ -718,4 +718,11 @@ store_result(){return$this->_result;}function
 next_result(){return
 mssql_next_result($this->_result->_result);}function
 result($H,$o=0){$I=$this->query($H);if(!is_object($I))return
-f
+false;return
+mssql_result($I->_result,0,$o);}}class
+Min_Result{var$_result,$_offset=0,$_fields,$num_rows;function
+__construct($I){$this->_result=$I;$this->num_rows=mssql_num_rows($I);}function
+fetch_assoc(){return
+mssql_fetch_assoc($this->_result);}function
+fetch_row(){return
+mssql_fetch_row($this->_result);}
