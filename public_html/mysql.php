@@ -710,4 +710,12 @@ select_db($k){return
 mssql_select_db($k);}function
 query($H,$Ph=false){$I=@mssql_query($H,$this->_link);$this->error="";if(!$I){$this->error=mssql_get_last_message();return
 false;}if($I===true){$this->affected_rows=mssql_rows_affected($this->_link);return
-true;
+true;}return
+new
+Min_Result($I);}function
+multi_query($H){return$this->_result=$this->query($H);}function
+store_result(){return$this->_result;}function
+next_result(){return
+mssql_next_result($this->_result->_result);}function
+result($H,$o=0){$I=$this->query($H);if(!is_object($I))return
+f
