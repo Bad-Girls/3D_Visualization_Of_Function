@@ -748,4 +748,9 @@ true;}function
 begin(){return
 queries("BEGIN TRANSACTION");}}function
 idf_escape($u){return"[".str_replace("]","]]",$u)."]";}function
-table($u){return($_GET["ns"]!=""?idf_escape($_GET["
+table($u){return($_GET["ns"]!=""?idf_escape($_GET["ns"]).".":"").idf_escape($u);}function
+connect(){global$b;$g=new
+Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2]))return$g;return$g->error;}function
+get_databases(){return
+get_vals("SELECT name FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')");}function
+limit($H,$Z,$z,$D=0,$Ag=" "){return($z!==null?" TOP (".($z+$D).")":"")."
