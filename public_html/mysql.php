@@ -742,4 +742,10 @@ extends
 Min_SQL{function
 insertUpdate($R,$L,$Hf){foreach($L
 as$O){$Wh=array();$Z=array();foreach($O
-as$y=>$X){$Wh[]="$y = $X";if(isset($Hf[idf_unescape($y)]))$Z[]="$y = $X";}if(!queries("MERGE ".table($R)." USING (VALUES(".implode(", ",$O).")) AS source (c".implode(", c",range(1,count($O))).") ON ".implode(" AND ",$Z)." WHEN MATCHED THEN UPDATE SET ".implode(", ",$Wh)." WH
+as$y=>$X){$Wh[]="$y = $X";if(isset($Hf[idf_unescape($y)]))$Z[]="$y = $X";}if(!queries("MERGE ".table($R)." USING (VALUES(".implode(", ",$O).")) AS source (c".implode(", c",range(1,count($O))).") ON ".implode(" AND ",$Z)." WHEN MATCHED THEN UPDATE SET ".implode(", ",$Wh)." WHEN NOT MATCHED THEN INSERT (".implode(", ",array_keys($O)).") VALUES (".implode(", ",$O).");"))return
+false;}return
+true;}function
+begin(){return
+queries("BEGIN TRANSACTION");}}function
+idf_escape($u){return"[".str_replace("]","]]",$u)."]";}function
+table($u){return($_GET["ns"]!=""?idf_escape($_GET["
