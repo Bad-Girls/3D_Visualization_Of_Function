@@ -753,4 +753,11 @@ connect(){global$b;$g=new
 Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2]))return$g;return$g->error;}function
 get_databases(){return
 get_vals("SELECT name FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')");}function
-limit($H,$Z,$z,$D=0,$Ag=" "){return($z!==null?" TOP (".($z+$D).")":"")."
+limit($H,$Z,$z,$D=0,$Ag=" "){return($z!==null?" TOP (".($z+$D).")":"")." $H$Z";}function
+limit1($H,$Z){return
+limit($H,$Z,1);}function
+db_collation($m,$mb){global$g;return$g->result("SELECT collation_name FROM sys.databases WHERE name =  ".q($m));}function
+engines(){return
+array();}function
+logged_user(){global$g;return$g->result("SELECT SUSER_NAME()");}function
+tables_list(){r
