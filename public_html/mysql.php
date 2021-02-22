@@ -766,3 +766,10 @@ count_tables($l){global$g;$J=array();foreach($l
 as$m){$g->select_db($m);$J[$m]=$g->result("SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES");}return$J;}function
 table_status($C=""){$J=array();foreach(get_rows("SELECT name AS Name, type_desc AS Engine FROM sys.all_objects WHERE schema_id = SCHEMA_ID(".q(get_schema()).") AND type IN ('S', 'U', 'V') ".($C!=""?"AND name = ".q($C):"ORDER BY name"))as$K){if($C!="")return$K;$J[$K["Name"]]=$K;}return$J;}function
 is_view($S){return$S["Engine"]=="VIEW";}function
+fk_support($S){return
+true;}function
+fields($R){$J=array();foreach(get_rows("SELECT c.*, t.name type, d.definition [default]
+FROM sys.all_columns c
+JOIN sys.all_objects o ON c.object_id = o.object_id
+JOIN sys.types t ON c.user_type_id = t.user_type_id
+LEFT JOIN sys.default_constraints d ON c.default_object_id = d.parent_column_id
