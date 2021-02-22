@@ -760,4 +760,8 @@ db_collation($m,$mb){global$g;return$g->result("SELECT collation_name FROM sys.d
 engines(){return
 array();}function
 logged_user(){global$g;return$g->result("SELECT SUSER_NAME()");}function
-tables_list(){r
+tables_list(){return
+get_key_vals("SELECT name, type_desc FROM sys.all_objects WHERE schema_id = SCHEMA_ID(".q(get_schema()).") AND type IN ('S', 'U', 'V') ORDER BY name");}function
+count_tables($l){global$g;$J=array();foreach($l
+as$m){$g->select_db($m);$J[$m]=$g->result("SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES");}return$J;}function
+table_status($C=
