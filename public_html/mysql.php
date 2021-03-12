@@ -789,4 +789,7 @@ nl_br(h(preg_replace('~^(\\[[^]]*])+~m','',$g->error)));}function
 create_database($m,$d){return
 queries("CREATE DATABASE ".idf_escape($m).(preg_match('~^[a-z0-9_]+$~i',$d)?" COLLATE $d":""));}function
 drop_databases($l){return
-queries("DROP DATABASE ".implode(", ",array_ma
+queries("DROP DATABASE ".implode(", ",array_map('idf_escape',$l)));}function
+rename_database($C,$d){if(preg_match('~^[a-z0-9_]+$~i',$d))queries("ALTER DATABASE ".idf_escape(DB)." COLLATE $d");queries("ALTER DATABASE ".idf_escape(DB)." MODIFY NAME = ".idf_escape($C));return
+true;}function
+auto_increment(){return" IDENTITY".($_POST["Auto_increment"]!=""?"(".
