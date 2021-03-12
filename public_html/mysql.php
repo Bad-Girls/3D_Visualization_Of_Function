@@ -783,4 +783,10 @@ view($C){global$g;return
 array("select"=>preg_replace('~^(?:[^[]|\\[[^]]*])*\\s+AS\\s+~isU','',$g->result("SELECT VIEW_DEFINITION FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = SCHEMA_NAME() AND TABLE_NAME = ".q($C))));}function
 collations(){$J=array();foreach(get_vals("SELECT name FROM fn_helpcollations()")as$d)$J[preg_replace('~_.*~','',$d)][]=$d;return$J;}function
 information_schema($m){return
-fal
+false;}function
+error(){global$g;return
+nl_br(h(preg_replace('~^(\\[[^]]*])+~m','',$g->error)));}function
+create_database($m,$d){return
+queries("CREATE DATABASE ".idf_escape($m).(preg_match('~^[a-z0-9_]+$~i',$d)?" COLLATE $d":""));}function
+drop_databases($l){return
+queries("DROP DATABASE ".implode(", ",array_ma
