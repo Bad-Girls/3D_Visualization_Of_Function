@@ -801,4 +801,8 @@ false;}return
 true;}function
 alter_indexes($R,$c){$v=array();$Xb=array();foreach($c
 as$X){if($X[2]=="DROP"){if($X[0]=="PRIMARY")$Xb[]=idf_escape($X[1]);else$v[]=idf_escape($X[1])." ON ".table($R);}elseif(!queries(($X[0]!="PRIMARY"?"CREATE $X[0] ".($X[0]!="INDEX"?"INDEX ":"").idf_escape($X[1]!=""?$X[1]:uniqid($R."_"))." ON ".table($R):"ALTER TABLE ".table($R)." ADD PRIMARY KEY")." (".implode(", ",$X[2]).")"))return
-false;}return(!$v||queries("DROP INDEX ".implode(", ",$v)))&&(!$Xb||queries("ALTER TABLE ".table($R)." DROP 
+false;}return(!$v||queries("DROP INDEX ".implode(", ",$v)))&&(!$Xb||queries("ALTER TABLE ".table($R)." DROP ".implode(", ",$Xb)));}function
+last_id(){global$g;return$g->result("SELECT SCOPE_IDENTITY()");}function
+explain($g,$H){$g->query("SET SHOWPLAN_ALL ON");$J=$g->query($H);$g->query("SET SHOWPLAN_ALL OFF");return$J;}function
+found_rows($S,$Z){}function
+foreign_keys($R){$J=array();foreach(get_rows("EXEC sp_fkeys @fktable_name = ".q($R))as$K){$q=&$J[$K
