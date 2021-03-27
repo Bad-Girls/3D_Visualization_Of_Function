@@ -810,4 +810,10 @@ truncate_tables($T){return
 apply_queries("TRUNCATE TABLE",$T);}function
 drop_views($li){return
 queries("DROP VIEW ".implode(", ",array_map('table',$li)));}function
-drop_
+drop_tables($T){return
+queries("DROP TABLE ".implode(", ",array_map('table',$T)));}function
+move_tables($T,$li,$lh){return
+apply_queries("ALTER SCHEMA ".idf_escape($lh)." TRANSFER",array_merge($T,$li));}function
+trigger($C){if($C=="")return
+array();$L=get_rows("SELECT s.name [Trigger],
+CASE WHEN OBJECTPROPERTY(s.id, 'ExecIsInsertTri
