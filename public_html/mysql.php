@@ -805,4 +805,9 @@ false;}return(!$v||queries("DROP INDEX ".implode(", ",$v)))&&(!$Xb||queries("ALT
 last_id(){global$g;return$g->result("SELECT SCOPE_IDENTITY()");}function
 explain($g,$H){$g->query("SET SHOWPLAN_ALL ON");$J=$g->query($H);$g->query("SET SHOWPLAN_ALL OFF");return$J;}function
 found_rows($S,$Z){}function
-foreign_keys($R){$J=array();foreach(get_rows("EXEC sp_fkeys @fktable_name = ".q($R))as$K){$q=&$J[$K
+foreign_keys($R){$J=array();foreach(get_rows("EXEC sp_fkeys @fktable_name = ".q($R))as$K){$q=&$J[$K["FK_NAME"]];$q["table"]=$K["PKTABLE_NAME"];$q["source"][]=$K["FKCOLUMN_NAME"];$q["target"][]=$K["PKCOLUMN_NAME"];}return$J;}function
+truncate_tables($T){return
+apply_queries("TRUNCATE TABLE",$T);}function
+drop_views($li){return
+queries("DROP VIEW ".implode(", ",array_map('table',$li)));}function
+drop_
