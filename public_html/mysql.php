@@ -816,4 +816,8 @@ move_tables($T,$li,$lh){return
 apply_queries("ALTER SCHEMA ".idf_escape($lh)." TRANSFER",array_merge($T,$li));}function
 trigger($C){if($C=="")return
 array();$L=get_rows("SELECT s.name [Trigger],
-CASE WHEN OBJECTPROPERTY(s.id, 'ExecIsInsertTri
+CASE WHEN OBJECTPROPERTY(s.id, 'ExecIsInsertTrigger') = 1 THEN 'INSERT' WHEN OBJECTPROPERTY(s.id, 'ExecIsUpdateTrigger') = 1 THEN 'UPDATE' WHEN OBJECTPROPERTY(s.id, 'ExecIsDeleteTrigger') = 1 THEN 'DELETE' END [Event],
+CASE WHEN OBJECTPROPERTY(s.id, 'ExecIsInsteadOfTrigger') = 1 THEN 'INSTEAD OF' ELSE 'AFTER' END [Timing],
+c.text
+FROM sysobjects s
+JOIN syscomments c ON s.id = c
