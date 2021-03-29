@@ -832,4 +832,15 @@ trigger_options(){return
 array("Timing"=>array("AFTER","INSTEAD OF"),"Event"=>array("INSERT","UPDATE","DELETE"),"Type"=>array("AS"),);}function
 schemas(){return
 get_vals("SELECT name FROM sys.schemas");}function
-get_schema(){global$g;if($_GET["ns"]!="")return$_GET["ns"];return$g-
+get_schema(){global$g;if($_GET["ns"]!="")return$_GET["ns"];return$g->result("SELECT SCHEMA_NAME()");}function
+set_schema($ug){return
+true;}function
+use_sql($k){return"USE ".idf_escape($k);}function
+show_variables(){return
+array();}function
+show_status(){return
+array();}function
+convert_field($o){}function
+unconvert_field($o,$J){return$J;}function
+support($Ec){return
+preg_match('~^(column
