@@ -843,4 +843,4 @@ array();}function
 convert_field($o){}function
 unconvert_field($o,$J){return$J;}function
 support($Ec){return
-preg_match('~^(column
+preg_match('~^(columns|database|drop_col|indexes|scheme|sql|table|trigger|view|view_trigger)$~',$Ec);}$x="mssql";$Oh=array();$Vg=array();foreach(array('Numbers'=>array("tinyint"=>3,"smallint"=>5,"int"=>10,"bigint"=>20,"bit"=>1,"decimal"=>0,"real"=>12,"float"=>53,"smallmoney"=>10,"money"=>20),'Date and time'=>array("date"
