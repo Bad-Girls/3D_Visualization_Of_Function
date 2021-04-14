@@ -848,4 +848,11 @@ Min_DB{var$extension="Firebird",$server_info,$affected_rows,$errno,$error,$_link
 connect($N,$V,$G){$this->_link=ibase_connect($N,$V,$G);if($this->_link){$Yh=explode(':',$N);$this->service_link=ibase_service_attach($Yh[0],$V,$G);$this->server_info=ibase_server_info($this->service_link,IBASE_SVC_SERVER_VERSION);}else{$this->errno=ibase_errcode();$this->error=ibase_errmsg();}return(bool)$this->_link;}function
 quote($Q){return"'".str_replace("'","''",$Q)."'";}function
 select_db($k){return($k=="domain");}function
-query($H,$Ph=false){$I=ibase_query($H,$this->_link);if(!$I){
+query($H,$Ph=false){$I=ibase_query($H,$this->_link);if(!$I){$this->errno=ibase_errcode();$this->error=ibase_errmsg();return
+false;}$this->error="";if($I===true){$this->affected_rows=ibase_affected_rows($this->_link);return
+true;}return
+new
+Min_Result($I);}function
+multi_query($H){return$this->_result=$this->query($H);}function
+store_result(){return$this->_result;}function
+next_result(){ret
