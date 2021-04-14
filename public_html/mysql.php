@@ -855,4 +855,13 @@ new
 Min_Result($I);}function
 multi_query($H){return$this->_result=$this->query($H);}function
 store_result(){return$this->_result;}function
-next_result(){ret
+next_result(){return
+false;}function
+result($H,$o=0){$I=$this->query($H);if(!$I||!$I->num_rows)return
+false;$K=$I->fetch_row();return$K[$o];}}class
+Min_Result{var$num_rows,$_result,$_offset=0;function
+__construct($I){$this->_result=$I;}function
+fetch_assoc(){return
+ibase_fetch_assoc($this->_result);}function
+fetch_row(){return
+iba
