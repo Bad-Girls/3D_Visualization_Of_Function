@@ -870,4 +870,11 @@ __destruct(){ibase_free_result($this->_result);}}}class
 Min_Driver
 extends
 Min_SQL{}function
-idf_escape($u){retur
+idf_escape($u){return'"'.str_replace('"','""',$u).'"';}function
+table($u){return
+idf_escape($u);}function
+connect(){global$b;$g=new
+Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2]))return$g;return$g->error;}function
+get_databases($Oc){return
+array("domain");}function
+limit($H,$Z,$z,$D=0,$Ag=" "){$J='';$J.=($z!==null?$Ag."FIRST $z".($D?" SKIP $D":""):"");
