@@ -864,4 +864,10 @@ __construct($I){$this->_result=$I;}function
 fetch_assoc(){return
 ibase_fetch_assoc($this->_result);}function
 fetch_row(){return
-iba
+ibase_fetch_row($this->_result);}function
+fetch_field(){$o=ibase_field_info($this->_result,$this->_offset++);return(object)array('name'=>$o['name'],'orgname'=>$o['name'],'type'=>$o['type'],'charsetnr'=>$o['length'],);}function
+__destruct(){ibase_free_result($this->_result);}}}class
+Min_Driver
+extends
+Min_SQL{}function
+idf_escape($u){retur
