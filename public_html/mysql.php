@@ -877,4 +877,11 @@ connect(){global$b;$g=new
 Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2]))return$g;return$g->error;}function
 get_databases($Oc){return
 array("domain");}function
-limit($H,$Z,$z,$D=0,$Ag=" "){$J='';$J.=($z!==null?$Ag."FIRST $z".($D?" SKIP $D":""):"");
+limit($H,$Z,$z,$D=0,$Ag=" "){$J='';$J.=($z!==null?$Ag."FIRST $z".($D?" SKIP $D":""):"");$J.=" $H$Z";return$J;}function
+limit1($H,$Z){return
+limit($H,$Z,1);}function
+db_collation($m,$mb){}function
+engines(){return
+array();}function
+logged_user(){global$b;$j=$b->credentials();return$j[1];}function
+tables_list(){global$g;$H='SELECT RDB$RELATION_NAME FROM rdb$relations WHERE rdb$system_flag = 0';$I=ibase_query($g->_lin
