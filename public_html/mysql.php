@@ -884,4 +884,8 @@ db_collation($m,$mb){}function
 engines(){return
 array();}function
 logged_user(){global$b;$j=$b->credentials();return$j[1];}function
-tables_list(){global$g;$H='SELECT RDB$RELATION_NAME FROM rdb$relations WHERE rdb$system_flag = 0';$I=ibase_query($g->_lin
+tables_list(){global$g;$H='SELECT RDB$RELATION_NAME FROM rdb$relations WHERE rdb$system_flag = 0';$I=ibase_query($g->_link,$H);$J=array();while($K=ibase_fetch_assoc($I))$J[$K['RDB$RELATION_NAME']]='table';ksort($J);return$J;}function
+count_tables($l){return
+array();}function
+table_status($C="",$Dc=false){global$g;$J=array();$Eb=tables_list();foreach($Eb
+as$v=>$X){$v=trim($v);$J[$v]=array('Name'=>$v,'Engine'=>'standard',);if($C==$v)return$J[$v];}
