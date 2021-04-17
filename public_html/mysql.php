@@ -888,4 +888,12 @@ tables_list(){global$g;$H='SELECT RDB$RELATION_NAME FROM rdb$relations WHERE rdb
 count_tables($l){return
 array();}function
 table_status($C="",$Dc=false){global$g;$J=array();$Eb=tables_list();foreach($Eb
-as$v=>$X){$v=trim($v);$J[$v]=array('Name'=>$v,'Engine'=>'standard',);if($C==$v)return$J[$v];}
+as$v=>$X){$v=trim($v);$J[$v]=array('Name'=>$v,'Engine'=>'standard',);if($C==$v)return$J[$v];}return$J;}function
+is_view($S){return
+false;}function
+fk_support($S){return
+preg_match('~InnoDB|IBMDB2I~i',$S["Engine"]);}function
+fields($R){global$g;$J=array();$H='SELECT r.RDB$FIELD_NAME AS field_name,
+r.RDB$DESCRIPTION AS field_description,
+r.RDB$DEFAULT_VALUE AS field_default_value,
+r.RDB$NULL_FLAG AS field_not_nul
