@@ -896,4 +896,16 @@ preg_match('~InnoDB|IBMDB2I~i',$S["Engine"]);}function
 fields($R){global$g;$J=array();$H='SELECT r.RDB$FIELD_NAME AS field_name,
 r.RDB$DESCRIPTION AS field_description,
 r.RDB$DEFAULT_VALUE AS field_default_value,
-r.RDB$NULL_FLAG AS field_not_nul
+r.RDB$NULL_FLAG AS field_not_null_constraint,
+f.RDB$FIELD_LENGTH AS field_length,
+f.RDB$FIELD_PRECISION AS field_precision,
+f.RDB$FIELD_SCALE AS field_scale,
+CASE f.RDB$FIELD_TYPE
+WHEN 261 THEN \'BLOB\'
+WHEN 14 THEN \'CHAR\'
+WHEN 40 THEN \'CSTRING\'
+WHEN 11 THEN \'D_FLOAT\'
+WHEN 27 THEN \'DOUBLE\'
+WHEN 10 THEN \'FLOAT\'
+WHEN 16 THEN \'INT64\'
+WHEN 8 THEN \'INTEGER\'
