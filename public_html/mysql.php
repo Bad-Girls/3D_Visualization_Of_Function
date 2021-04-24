@@ -934,4 +934,13 @@ array();}function
 information_schema($m){return
 false;}function
 error(){global$g;return
-h($g->error);}func
+h($g->error);}function
+types(){return
+array();}function
+schemas(){return
+array();}function
+get_schema(){return"";}function
+set_schema($ug){return
+true;}function
+support($Ec){return
+preg_match("~^(columns|sql|status|table)$~",$Ec);}$x="firebird";$Ve=array("=");$Xc=array();$cd=array();$ec=array();}$Wb["simpledb"]="SimpleDB";if(isset($_GET["simpledb"])){$E
