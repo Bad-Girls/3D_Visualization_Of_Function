@@ -946,4 +946,5 @@ support($Ec){return
 preg_match("~^(columns|sql|status|table)$~",$Ec);}$x="firebird";$Ve=array("=");$Xc=array();$cd=array();$ec=array();}$Wb["simpledb"]="SimpleDB";if(isset($_GET["simpledb"])){$Ef=array("SimpleXML");define("DRIVER","simpledb");if(class_exists('SimpleXMLElement')){class
 Min_DB{var$extension="SimpleXML",$server_info='2009-04-15',$error,$timeout,$next,$affected_rows,$_result;function
 select_db($k){return($k=="domain");}function
-query($H,$Ph=false){$F=array('SelectExpression'=>$H,'ConsistentRead'=>'true'
+query($H,$Ph=false){$F=array('SelectExpression'=>$H,'ConsistentRead'=>'true');if($this->next)$F['NextToken']=$this->next;$I=sdb_request_all('Select','Item',$F,$this->timeout);if($I===false)return$I;if(preg_match('~^\s*SELECT\s+COUNT\(~i',$H)){$Zg=0;foreach($I
+as$Gd)$Zg+=$Gd->Attribute->Value;$I=array((object)array('Attribute'=>array((object)array('Name'=>'Count','Value'=>$Zg,))));}r
