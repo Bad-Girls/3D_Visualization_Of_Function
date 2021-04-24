@@ -947,4 +947,13 @@ preg_match("~^(columns|sql|status|table)$~",$Ec);}$x="firebird";$Ve=array("=");$
 Min_DB{var$extension="SimpleXML",$server_info='2009-04-15',$error,$timeout,$next,$affected_rows,$_result;function
 select_db($k){return($k=="domain");}function
 query($H,$Ph=false){$F=array('SelectExpression'=>$H,'ConsistentRead'=>'true');if($this->next)$F['NextToken']=$this->next;$I=sdb_request_all('Select','Item',$F,$this->timeout);if($I===false)return$I;if(preg_match('~^\s*SELECT\s+COUNT\(~i',$H)){$Zg=0;foreach($I
-as$Gd)$Zg+=$Gd->Attribute->Value;$I=array((object)array('Attribute'=>array((object)array('Name'=>'Count','Value'=>$Zg,))));}r
+as$Gd)$Zg+=$Gd->Attribute->Value;$I=array((object)array('Attribute'=>array((object)array('Name'=>'Count','Value'=>$Zg,))));}return
+new
+Min_Result($I);}function
+multi_query($H){return$this->_result=$this->query($H);}function
+store_result(){return$this->_result;}function
+next_result(){return
+false;}function
+quote($Q){return"'".str_replace("'","''",$Q)."'";}}class
+Min_Result{var$num_rows,$_rows=array(),$_offset=0;function
+__construct($I){
