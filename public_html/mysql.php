@@ -959,4 +959,6 @@ Min_Result{var$num_rows,$_rows=array(),$_offset=0;function
 __construct($I){foreach($I
 as$Gd){$K=array();if($Gd->Name!='')$K['itemName()']=(string)$Gd->Name;foreach($Gd->Attribute
 as$Ha){$C=$this->_processValue($Ha->Name);$Y=$this->_processValue($Ha->Value);if(isset($K[$C])){$K[$C]=(array)$K[$C];$K[$C][]=$Y;}else$K[$C]=$Y;}$this->_rows[]=$K;foreach($K
-as$y=>$X){if(!isset($this->_rows[0][$y])
+as$y=>$X){if(!isset($this->_rows[0][$y]))$this->_rows[0][$y]=null;}}$this->num_rows=count($this->_rows);}function
+_processValue($hc){return(is_object($hc)&&$hc['encoding']=='base64'?base64_decode($hc):(string)$hc);}function
+fetch_assoc(){$K=current($this->_rows);if(!$K)return$K;$J=array();foreach($this->_rows[0]as$y=>$X)$J[$y]=$K
