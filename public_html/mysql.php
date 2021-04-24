@@ -956,4 +956,7 @@ next_result(){return
 false;}function
 quote($Q){return"'".str_replace("'","''",$Q)."'";}}class
 Min_Result{var$num_rows,$_rows=array(),$_offset=0;function
-__construct($I){
+__construct($I){foreach($I
+as$Gd){$K=array();if($Gd->Name!='')$K['itemName()']=(string)$Gd->Name;foreach($Gd->Attribute
+as$Ha){$C=$this->_processValue($Ha->Name);$Y=$this->_processValue($Ha->Value);if(isset($K[$C])){$K[$C]=(array)$K[$C];$K[$C][]=$Y;}else$K[$C]=$Y;}$this->_rows[]=$K;foreach($K
+as$y=>$X){if(!isset($this->_rows[0][$y])
