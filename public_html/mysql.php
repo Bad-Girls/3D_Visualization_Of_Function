@@ -961,4 +961,11 @@ as$Gd){$K=array();if($Gd->Name!='')$K['itemName()']=(string)$Gd->Name;foreach($G
 as$Ha){$C=$this->_processValue($Ha->Name);$Y=$this->_processValue($Ha->Value);if(isset($K[$C])){$K[$C]=(array)$K[$C];$K[$C][]=$Y;}else$K[$C]=$Y;}$this->_rows[]=$K;foreach($K
 as$y=>$X){if(!isset($this->_rows[0][$y]))$this->_rows[0][$y]=null;}}$this->num_rows=count($this->_rows);}function
 _processValue($hc){return(is_object($hc)&&$hc['encoding']=='base64'?base64_decode($hc):(string)$hc);}function
-fetch_assoc(){$K=current($this->_rows);if(!$K)return$K;$J=array();foreach($this->_rows[0]as$y=>$X)$J[$y]=$K
+fetch_assoc(){$K=current($this->_rows);if(!$K)return$K;$J=array();foreach($this->_rows[0]as$y=>$X)$J[$y]=$K[$y];next($this->_rows);return$J;}function
+fetch_row(){$J=$this->fetch_assoc();if(!$J)return$J;return
+array_values($J);}function
+fetch_field(){$Md=array_keys($this->_rows[0]);return(object)array('name'=>$Md[$this->_offset++]);}}}class
+Min_Driver
+extends
+Min_SQL{public$Hf="itemName()";function
+_chunkRequest($nd,$ua,$F,$xc=array()){global$g;foreach(arra
