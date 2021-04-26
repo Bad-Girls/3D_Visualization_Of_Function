@@ -968,4 +968,9 @@ fetch_field(){$Md=array_keys($this->_rows[0]);return(object)array('name'=>$Md[$t
 Min_Driver
 extends
 Min_SQL{public$Hf="itemName()";function
-_chunkRequest($nd,$ua,$F,$xc=array()){global$g;foreach(arra
+_chunkRequest($nd,$ua,$F,$xc=array()){global$g;foreach(array_chunk($nd,25)as$fb){$of=$F;foreach($fb
+as$s=>$t){$of["Item.$s.ItemName"]=$t;foreach($xc
+as$y=>$X)$of["Item.$s.$y"]=$X;}if(!sdb_request($ua,$of))return
+false;}$g->affected_rows=count($nd);return
+true;}function
+_extractIds($R,$Sf,$z){$J=array();if(preg_match_all("~itemName\(\) = (('[^']*+')+)~",$Sf,$he))$J=array_map('idf_unescape',$he
