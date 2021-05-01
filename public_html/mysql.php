@@ -974,4 +974,6 @@ as$y=>$X)$of["Item.$s.$y"]=$X;}if(!sdb_request($ua,$of))return
 false;}$g->affected_rows=count($nd);return
 true;}function
 _extractIds($R,$Sf,$z){$J=array();if(preg_match_all("~itemName\(\) = (('[^']*+')+)~",$Sf,$he))$J=array_map('idf_unescape',$he[1]);else{foreach(sdb_request_all('Select','Item',array('SelectExpression'=>'SELECT itemName() FROM '.table($R).$Sf.($z?" LIMIT 1":"")))as$Gd)$J[]=$Gd->Name;}return$J;}function
-select($R,$M,$Z,$ad,$af=array(),$z=1,$E=0,$Jf=false){global$g;$g->next=$_GET["next"];$J=parent::select($R,$M,$Z,$ad,$af,$z,$E,$Jf);
+select($R,$M,$Z,$ad,$af=array(),$z=1,$E=0,$Jf=false){global$g;$g->next=$_GET["next"];$J=parent::select($R,$M,$Z,$ad,$af,$z,$E,$Jf);$g->next=0;return$J;}function
+delete($R,$Sf,$z=0){return$this->_chunkRequest($this->_extractIds($R,$Sf,$z),'BatchDeleteAttributes',array('DomainName'=>$R));}function
+update($R,$O,$Sf,$z=0,$Ag="\n"){$Lb=array();$yd=array();$s=0;$nd=$this->_extractIds($R,$Sf,$z);$t=idf_unescape($O["`itemName()`"]);unset($O["`itemName()
