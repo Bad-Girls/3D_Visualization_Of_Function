@@ -980,4 +980,11 @@ update($R,$O,$Sf,$z=0,$Ag="\n"){$Lb=array();$yd=array();$s=0;$nd=$this->_extract
 as$y=>$X){$y=idf_unescape($y);if($X=="NULL"||($t!=""&&array($t)!=$nd))$Lb["Attribute.".count($Lb).".Name"]=$y;if($X!="NULL"){foreach((array)$X
 as$Id=>$W){$yd["Attribute.$s.Name"]=$y;$yd["Attribute.$s.Value"]=(is_array($X)?$W:idf_unescape($W));if(!$Id)$yd["Attribute.$s.Replace"]="true";$s++;}}}$F=array('DomainName'=>$R);return(!$yd||$this->_chunkRequest(($t!=""?array($t):$nd),'BatchPutAttributes',$F,$yd))&&(!$Lb||$this->_chunkRequest($nd,'BatchDeleteAttributes',$F,$Lb));}function
 insert($R,$O){$F=array("DomainName"=>$R);$s=0;foreach($O
-as$C=>$Y){if($Y!="NULL"){$C=idf_unescape($C);if($C=="itemName()")$F["ItemName"]=idf_unescape($Y);el
+as$C=>$Y){if($Y!="NULL"){$C=idf_unescape($C);if($C=="itemName()")$F["ItemName"]=idf_unescape($Y);else{foreach((array)$Y
+as$X){$F["Attribute.$s.Name"]=$C;$F["Attribute.$s.Value"]=(is_array($Y)?$X:idf_unescape($Y));$s++;}}}}return
+sdb_request('PutAttributes',$F);}function
+insertUpdate($R,$L,$Hf){foreach($L
+as$O){if(!$this->update($R,$O,"WHERE `itemName()` = ".q($O["`itemName()`"])))return
+false;}return
+true;}function
+begin(){return
