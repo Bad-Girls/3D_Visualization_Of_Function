@@ -1017,4 +1017,12 @@ fields($R){return
 fields_from_edit();}function
 foreign_keys($R){return
 array();}function
-tab
+table($u){return
+idf_escape($u);}function
+idf_escape($u){return"`".str_replace("`","``",$u)."`";}function
+limit($H,$Z,$z,$D=0,$Ag=" "){return" $H$Z".($z!==null?$Ag."LIMIT $z":"");}function
+unconvert_field($o,$J){return$J;}function
+fk_support($S){}function
+engines(){return
+array();}function
+alter_table($R,$C,$p,$Pc,$
