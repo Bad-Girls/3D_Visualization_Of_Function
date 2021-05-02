@@ -1006,4 +1006,15 @@ array();}function
 db_collation($m,$mb){}function
 tables_list(){global$g;$J=array();foreach(sdb_request_all('ListDomains','DomainName')as$R)$J[(string)$R]='table';if($g->error&&defined("PAGE_HEADER"))echo"<p class='error'>".error()."\n";return$J;}function
 table_status($C="",$Dc=false){$J=array();foreach(($C!=""?array($C=>true):tables_list())as$R=>$U){$K=array("Name"=>$R,"Auto_increment"=>"");if(!$Dc){$ue=sdb_request('DomainMetadata',array('DomainName'=>$R));if($ue){foreach(array("Rows"=>"ItemCount","Data_length"=>"ItemNamesSizeBytes","Index_length"=>"AttributeValuesSizeBytes","Data_free"=>"AttributeNamesSizeBytes",)as$y=>$X)$K[$y]=(string)$ue->$X;}}if($C!="")return$K;$J[$R]=$K;}return$J;}function
-explain($g,$
+explain($g,$H){}function
+error(){global$g;return
+h($g->error);}function
+information_schema(){}function
+is_view($S){}function
+indexes($R,$h=null){return
+array(array("type"=>"PRIMARY","columns"=>array("itemName()")),);}function
+fields($R){return
+fields_from_edit();}function
+foreign_keys($R){return
+array();}function
+tab
