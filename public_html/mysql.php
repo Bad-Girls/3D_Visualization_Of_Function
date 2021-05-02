@@ -1003,3 +1003,6 @@ get_databases(){return
 array("domain");}function
 collations(){return
 array();}function
+db_collation($m,$mb){}function
+tables_list(){global$g;$J=array();foreach(sdb_request_all('ListDomains','DomainName')as$R)$J[(string)$R]='table';if($g->error&&defined("PAGE_HEADER"))echo"<p class='error'>".error()."\n";return$J;}function
+table_status($C="",$Dc=false){$J=array();foreach(($C!=""?array($C=>true):tables_list())as$R=>$U){$K=array("Name"=>$
