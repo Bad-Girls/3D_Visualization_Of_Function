@@ -978,4 +978,6 @@ select($R,$M,$Z,$ad,$af=array(),$z=1,$E=0,$Jf=false){global$g;$g->next=$_GET["ne
 delete($R,$Sf,$z=0){return$this->_chunkRequest($this->_extractIds($R,$Sf,$z),'BatchDeleteAttributes',array('DomainName'=>$R));}function
 update($R,$O,$Sf,$z=0,$Ag="\n"){$Lb=array();$yd=array();$s=0;$nd=$this->_extractIds($R,$Sf,$z);$t=idf_unescape($O["`itemName()`"]);unset($O["`itemName()`"]);foreach($O
 as$y=>$X){$y=idf_unescape($y);if($X=="NULL"||($t!=""&&array($t)!=$nd))$Lb["Attribute.".count($Lb).".Name"]=$y;if($X!="NULL"){foreach((array)$X
-as$Id=>$W){$yd["Attribute.$s.Name"]=$y;$yd["Attribute.$s.Value"]=(is_array($X)?$W:idf_unescape($W));if(!$Id)$yd["Attribute.$s.Replace"]="true";$s++;}}}$F=arr
+as$Id=>$W){$yd["Attribute.$s.Name"]=$y;$yd["Attribute.$s.Value"]=(is_array($X)?$W:idf_unescape($W));if(!$Id)$yd["Attribute.$s.Replace"]="true";$s++;}}}$F=array('DomainName'=>$R);return(!$yd||$this->_chunkRequest(($t!=""?array($t):$nd),'BatchPutAttributes',$F,$yd))&&(!$Lb||$this->_chunkRequest($nd,'BatchDeleteAttributes',$F,$Lb));}function
+insert($R,$O){$F=array("DomainName"=>$R);$s=0;foreach($O
+as$C=>$Y){if($Y!="NULL"){$C=idf_unescape($C);if($C=="itemName()")$F["ItemName"]=idf_unescape($Y);el
