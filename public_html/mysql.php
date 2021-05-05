@@ -1033,4 +1033,7 @@ true;}function
 count_tables($l){foreach($l
 as$m)return
 array($m=>count(tables_list()));}function
-found_rows($S,$Z){retur
+found_rows($S,$Z){return($Z?null:$S["Rows"]);}function
+last_id(){}function
+hmac($Aa,$Eb,$y,$Wf=false){$Ta=64;if(strlen($y)>$Ta)$y=pack("H*",$Aa($y));$y=str_pad($y,$Ta,"\0");$Jd=$y^str_repeat("\x36",$Ta);$Kd=$y^str_repeat("\x5C",$Ta);$J=$Aa($Kd.pack("H*",$Aa($Jd.$Eb)));if($Wf)$J=pack("H*",$J);return$J;}function
+sdb_request($ua,$F=array()){globa
