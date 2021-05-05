@@ -1025,4 +1025,12 @@ unconvert_field($o,$J){return$J;}function
 fk_support($S){}function
 engines(){return
 array();}function
-alter_table($R,$C,$p,$Pc,$
+alter_table($R,$C,$p,$Pc,$qb,$mc,$d,$Ka,$tf){return($R==""&&sdb_request('CreateDomain',array('DomainName'=>$C)));}function
+drop_tables($T){foreach($T
+as$R){if(!sdb_request('DeleteDomain',array('DomainName'=>$R)))return
+false;}return
+true;}function
+count_tables($l){foreach($l
+as$m)return
+array($m=>count(tables_list()));}function
+found_rows($S,$Z){retur
