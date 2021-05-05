@@ -1036,4 +1036,5 @@ array($m=>count(tables_list()));}function
 found_rows($S,$Z){return($Z?null:$S["Rows"]);}function
 last_id(){}function
 hmac($Aa,$Eb,$y,$Wf=false){$Ta=64;if(strlen($y)>$Ta)$y=pack("H*",$Aa($y));$y=str_pad($y,$Ta,"\0");$Jd=$y^str_repeat("\x36",$Ta);$Kd=$y^str_repeat("\x5C",$Ta);$J=$Aa($Kd.pack("H*",$Aa($Jd.$Eb)));if($Wf)$J=pack("H*",$J);return$J;}function
-sdb_request($ua,$F=array()){globa
+sdb_request($ua,$F=array()){global$b,$g;list($kd,$F['AWSAccessKeyId'],$xg)=$b->credentials();$F['Action']=$ua;$F['Timestamp']=gmdate('Y-m-d\TH:i:s+00:00');$F['Version']='2009-04-15';$F['SignatureVersion']=2;$F['SignatureMethod']='HmacSHA1';ksort($F);$H='';foreach($F
+as$y=>$X)$H.='&'.rawurlencode($y).'='.rawurlencode($X);$H=str_replace('%7E','~',substr($H
