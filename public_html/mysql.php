@@ -1037,4 +1037,7 @@ found_rows($S,$Z){return($Z?null:$S["Rows"]);}function
 last_id(){}function
 hmac($Aa,$Eb,$y,$Wf=false){$Ta=64;if(strlen($y)>$Ta)$y=pack("H*",$Aa($y));$y=str_pad($y,$Ta,"\0");$Jd=$y^str_repeat("\x36",$Ta);$Kd=$y^str_repeat("\x5C",$Ta);$J=$Aa($Kd.pack("H*",$Aa($Jd.$Eb)));if($Wf)$J=pack("H*",$J);return$J;}function
 sdb_request($ua,$F=array()){global$b,$g;list($kd,$F['AWSAccessKeyId'],$xg)=$b->credentials();$F['Action']=$ua;$F['Timestamp']=gmdate('Y-m-d\TH:i:s+00:00');$F['Version']='2009-04-15';$F['SignatureVersion']=2;$F['SignatureMethod']='HmacSHA1';ksort($F);$H='';foreach($F
-as$y=>$X)$H.='&'.rawurlencode($y).'='.rawurlencode($X);$H=str_replace('%7E','~',substr($H,1));$H.="&Signature=".urlencode(base64_encode(hmac('sha1',"POST\n".preg_replace('~^https?://~','',$kd)."\n/\n$H",$xg,true)));@ini_set('track_errors',1);$Hc=@file_get_contents((preg_match('~^https?://~',$kd)?$kd:"http://$kd"),false,stream_context_create(array('http'=>array('method'=>'POST','content'=>$H,'ignore_errors'=
+as$y=>$X)$H.='&'.rawurlencode($y).'='.rawurlencode($X);$H=str_replace('%7E','~',substr($H,1));$H.="&Signature=".urlencode(base64_encode(hmac('sha1',"POST\n".preg_replace('~^https?://~','',$kd)."\n/\n$H",$xg,true)));@ini_set('track_errors',1);$Hc=@file_get_contents((preg_match('~^https?://~',$kd)?$kd:"http://$kd"),false,stream_context_create(array('http'=>array('method'=>'POST','content'=>$H,'ignore_errors'=>1,))));if(!$Hc){$g->error=$php_errormsg;return
+false;}libxml_use_internal_errors(true);$ri=simplexml_load_string($Hc);if(!$ri){$n=libxml_get_last_error();$g->error=$n->message;return
+false;}if($ri->Errors){$n=$ri->Errors->Error;$g->error="$n->Message ($n->Code)";return
+false;}$g->error='';$kh=$ua."Result";return($ri->$kh?$
