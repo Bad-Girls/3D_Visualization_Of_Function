@@ -1054,4 +1054,8 @@ false;}function
 select_db($k){try{$this->_db=$this->_link->selectDB($k);return
 true;}catch(Exception$tc){$this->error=$tc->getMessage();return
 false;}}function
-quote($Q){return$Q;}
+quote($Q){return$Q;}}class
+Min_Result{var$num_rows,$_rows=array(),$_offset=0,$_charset=array();function
+__construct($I){foreach($I
+as$Gd){$K=array();foreach($Gd
+as$y=>$X){if(is_a($X,'MongoBinData'))$this->_charset[$y]=63;$K[$y]=(is_a($X,'MongoId')?'ObjectId("'.strval($X).'")':(is_a($X,'MongoDate')?gmdate("Y-m-d H:i:s",$X->sec)." GMT":(is_a($X,'MongoB
