@@ -1043,4 +1043,7 @@ false;}if($ri->Errors){$n=$ri->Errors->Error;$g->error="$n->Message ($n->Code)";
 false;}$g->error='';$kh=$ua."Result";return($ri->$kh?$ri->$kh:true);}function
 sdb_request_all($ua,$kh,$F=array(),$th=0){$J=array();$Sg=($th?microtime(true):0);$z=(preg_match('~LIMIT\s+(\d+)\s*$~i',$F['SelectExpression'],$B)?$B[1]:0);do{$ri=sdb_request($ua,$F);if(!$ri)break;foreach($ri->$kh
 as$hc)$J[]=$hc;if($z&&count($J)>=$z){$_GET["next"]=$ri->NextToken;break;}if($th&&microtime(true)-$Sg>$th)return
-false;$F['NextToken']=$ri->NextToken;if($z)$F['SelectExpression']=preg_replace('~\d+\s*$~',$z-count($J),$F['SelectExpression']);}while($ri->NextToken);return$J;}$x="simpledb";$Ve=array("=","<",">","<=",">=","!=","LIKE","LIKE %%","IN","IS NULL","NOT LIKE","IS NOT NULL");$Xc=array();$cd=array("count");$ec=array(array("
+false;$F['NextToken']=$ri->NextToken;if($z)$F['SelectExpression']=preg_replace('~\d+\s*$~',$z-count($J),$F['SelectExpression']);}while($ri->NextToken);return$J;}$x="simpledb";$Ve=array("=","<",">","<=",">=","!=","LIKE","LIKE %%","IN","IS NULL","NOT LIKE","IS NOT NULL");$Xc=array();$cd=array("count");$ec=array(array("json"));}$Wb["mongo"]="MongoDB (beta)";if(isset($_GET["mongo"])){$Ef=array("mongo");define("DRIVER","mongo");if(class_exists('MongoDB')){class
+Min_DB{var$extension="Mongo",$error,$last_id,$_link,$_db;function
+connect($N,$V,$G){global$b;$m=$b->database();$Ye=array();if($V!=""){$Ye["username"]=$V;$Ye["password"]=$G;}if($m!="")$Ye["db"]=$m;try{$this->_link=@new
+M
