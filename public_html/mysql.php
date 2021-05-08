@@ -1046,4 +1046,12 @@ as$hc)$J[]=$hc;if($z&&count($J)>=$z){$_GET["next"]=$ri->NextToken;break;}if($th&
 false;$F['NextToken']=$ri->NextToken;if($z)$F['SelectExpression']=preg_replace('~\d+\s*$~',$z-count($J),$F['SelectExpression']);}while($ri->NextToken);return$J;}$x="simpledb";$Ve=array("=","<",">","<=",">=","!=","LIKE","LIKE %%","IN","IS NULL","NOT LIKE","IS NOT NULL");$Xc=array();$cd=array("count");$ec=array(array("json"));}$Wb["mongo"]="MongoDB (beta)";if(isset($_GET["mongo"])){$Ef=array("mongo");define("DRIVER","mongo");if(class_exists('MongoDB')){class
 Min_DB{var$extension="Mongo",$error,$last_id,$_link,$_db;function
 connect($N,$V,$G){global$b;$m=$b->database();$Ye=array();if($V!=""){$Ye["username"]=$V;$Ye["password"]=$G;}if($m!="")$Ye["db"]=$m;try{$this->_link=@new
-M
+MongoClient("mongodb://$N",$Ye);return
+true;}catch(Exception$tc){$this->error=$tc->getMessage();return
+false;}}function
+query($H){return
+false;}function
+select_db($k){try{$this->_db=$this->_link->selectDB($k);return
+true;}catch(Exception$tc){$this->error=$tc->getMessage();return
+false;}}function
+quote($Q){return$Q;}
