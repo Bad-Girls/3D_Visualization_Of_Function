@@ -1040,4 +1040,6 @@ sdb_request($ua,$F=array()){global$b,$g;list($kd,$F['AWSAccessKeyId'],$xg)=$b->c
 as$y=>$X)$H.='&'.rawurlencode($y).'='.rawurlencode($X);$H=str_replace('%7E','~',substr($H,1));$H.="&Signature=".urlencode(base64_encode(hmac('sha1',"POST\n".preg_replace('~^https?://~','',$kd)."\n/\n$H",$xg,true)));@ini_set('track_errors',1);$Hc=@file_get_contents((preg_match('~^https?://~',$kd)?$kd:"http://$kd"),false,stream_context_create(array('http'=>array('method'=>'POST','content'=>$H,'ignore_errors'=>1,))));if(!$Hc){$g->error=$php_errormsg;return
 false;}libxml_use_internal_errors(true);$ri=simplexml_load_string($Hc);if(!$ri){$n=libxml_get_last_error();$g->error=$n->message;return
 false;}if($ri->Errors){$n=$ri->Errors->Error;$g->error="$n->Message ($n->Code)";return
-false;}$g->error='';$kh=$ua."Result";return($ri->$kh?$
+false;}$g->error='';$kh=$ua."Result";return($ri->$kh?$ri->$kh:true);}function
+sdb_request_all($ua,$kh,$F=array(),$th=0){$J=array();$Sg=($th?microtime(true):0);$z=(preg_match('~LIMIT\s+(\d+)\s*$~i',$F['SelectExpression'],$B)?$B[1]:0);do{$ri=sdb_request($ua,$F);if(!$ri)break;foreach($ri->$kh
+as$hc)$J[]=$hc;if($z&&count($J)>=$z){$_GET["next"]=$ri->NextToken;break;}if($th&&m
