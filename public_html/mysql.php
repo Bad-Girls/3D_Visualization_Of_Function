@@ -1086,4 +1086,11 @@ count_tables($l){global$g;$J=array();foreach($l
 as$m)$J[$m]=count($g->_link->selectDB($m)->getCollectionNames(true));return$J;}function
 tables_list(){global$g;return
 array_fill_keys($g->_db->getCollectionNames(true),'table');}function
-table_status($C="",$Dc=
+table_status($C="",$Dc=false){$J=array();foreach(tables_list()as$R=>$U){$J[$R]=array("Name"=>$R);if($C==$R)return$J[$R];}return$J;}function
+information_schema(){}function
+is_view($S){}function
+drop_databases($l){global$g;foreach($l
+as$m){$hg=$g->_link->selectDB($m)->drop();if(!$hg['ok'])return
+false;}return
+true;}function
+indexes($R,$h=null){globa
