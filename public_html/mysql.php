@@ -1067,4 +1067,8 @@ fetch_field(){$Md=array_keys($this->_rows[0]);$C=$Md[$this->_offset++];return(ob
 Min_Driver
 extends
 Min_SQL{public$Hf="_id";function
-sel
+select($R,$M,$Z,$ad,$af=array(),$z=1,$E=0,$Jf=false){$M=($M==array("*")?array():array_fill_keys($M,true));$Mg=array();foreach($af
+as$X){$X=preg_replace('~ DESC$~','',$X,1,$_b);$Mg[$X]=($_b?-1:1);}return
+new
+Min_Result($this->_conn->_db->selectCollection($R)->find(array(),$M)->sort($Mg)->limit(+$z)->skip($E*$z));}function
+ins
