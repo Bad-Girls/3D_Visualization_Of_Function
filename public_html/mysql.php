@@ -1071,4 +1071,7 @@ select($R,$M,$Z,$ad,$af=array(),$z=1,$E=0,$Jf=false){$M=($M==array("*")?array():
 as$X){$X=preg_replace('~ DESC$~','',$X,1,$_b);$Mg[$X]=($_b?-1:1);}return
 new
 Min_Result($this->_conn->_db->selectCollection($R)->find(array(),$M)->sort($Mg)->limit(+$z)->skip($E*$z));}function
-ins
+insert($R,$O){try{$J=$this->_conn->_db->selectCollection($R)->insert($O);$this->_conn->errno=$J['code'];$this->_conn->error=$J['err'];$this->_conn->last_id=$O['_id'];return!$J['err'];}catch(Exception$tc){$this->_conn->error=$tc->getMessage();return
+false;}}}function
+connect(){global$b;$g=new
+Min_DB;$j=$b->credentials();if($g->co
