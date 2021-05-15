@@ -1079,4 +1079,11 @@ error(){global$g;return
 h($g->error);}function
 logged_user(){global$b;$j=$b->credentials();return$j[1];}function
 get_databases($Oc){global$g;$J=array();$Ib=$g->_link->listDBs();foreach($Ib['databases']as$m)$J[]=$m['name'];return$J;}function
-collat
+collations(){return
+array();}function
+db_collation($m,$mb){}function
+count_tables($l){global$g;$J=array();foreach($l
+as$m)$J[$m]=count($g->_link->selectDB($m)->getCollectionNames(true));return$J;}function
+tables_list(){global$g;return
+array_fill_keys($g->_db->getCollectionNames(true),'table');}function
+table_status($C="",$Dc=
