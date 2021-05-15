@@ -1074,4 +1074,9 @@ Min_Result($this->_conn->_db->selectCollection($R)->find(array(),$M)->sort($Mg)-
 insert($R,$O){try{$J=$this->_conn->_db->selectCollection($R)->insert($O);$this->_conn->errno=$J['code'];$this->_conn->error=$J['err'];$this->_conn->last_id=$O['_id'];return!$J['err'];}catch(Exception$tc){$this->_conn->error=$tc->getMessage();return
 false;}}}function
 connect(){global$b;$g=new
-Min_DB;$j=$b->credentials();if($g->co
+Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2]))return$g;return$g->error;}function
+error(){global$g;return
+h($g->error);}function
+logged_user(){global$b;$j=$b->credentials();return$j[1];}function
+get_databases($Oc){global$g;$J=array();$Ib=$g->_link->listDBs();foreach($Ib['databases']as$m)$J[]=$m['name'];return$J;}function
+collat
