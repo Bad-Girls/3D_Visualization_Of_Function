@@ -1093,4 +1093,4 @@ drop_databases($l){global$g;foreach($l
 as$m){$hg=$g->_link->selectDB($m)->drop();if(!$hg['ok'])return
 false;}return
 true;}function
-indexes($R,$h=null){globa
+indexes($R,$h=null){global$g;$J=array();foreach($g->_db->selectCollection($R)->getIndexInfo()as$v){$Ob=array();foreach($v["key"]as$e=>$U)$Ob[]=($U==-1?'1':null);$J[$v["name"]]=array("type"=>($v["name"]=="_id_"?"PRIMARY":($v["unique"]?"UNIQUE":"INDEX")),"columns"=>array_keys($v["key"]),"lengths"=>array(),"descs"=>$Ob,);}return$J
