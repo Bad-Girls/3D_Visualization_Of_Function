@@ -1093,4 +1093,15 @@ drop_databases($l){global$g;foreach($l
 as$m){$hg=$g->_link->selectDB($m)->drop();if(!$hg['ok'])return
 false;}return
 true;}function
-indexes($R,$h=null){global$g;$J=array();foreach($g->_db->selectCollection($R)->getIndexInfo()as$v){$Ob=array();foreach($v["key"]as$e=>$U)$Ob[]=($U==-1?'1':null);$J[$v["name"]]=array("type"=>($v["name"]=="_id_"?"PRIMARY":($v["unique"]?"UNIQUE":"INDEX")),"columns"=>array_keys($v["key"]),"lengths"=>array(),"descs"=>$Ob,);}return$J
+indexes($R,$h=null){global$g;$J=array();foreach($g->_db->selectCollection($R)->getIndexInfo()as$v){$Ob=array();foreach($v["key"]as$e=>$U)$Ob[]=($U==-1?'1':null);$J[$v["name"]]=array("type"=>($v["name"]=="_id_"?"PRIMARY":($v["unique"]?"UNIQUE":"INDEX")),"columns"=>array_keys($v["key"]),"lengths"=>array(),"descs"=>$Ob,);}return$J;}function
+fields($R){return
+fields_from_edit();}function
+convert_field($o){}function
+unconvert_field($o,$J){return$J;}function
+foreign_keys($R){return
+array();}function
+fk_support($S){}function
+engines(){return
+array();}function
+found_rows($S,$Z){global$g;return$g->_db->selectCollection($_GET["select"])->count($Z);}function
+alter_tab
