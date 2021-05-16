@@ -1104,4 +1104,11 @@ fk_support($S){}function
 engines(){return
 array();}function
 found_rows($S,$Z){global$g;return$g->_db->selectCollection($_GET["select"])->count($Z);}function
-alter_tab
+alter_table($R,$C,$p,$Pc,$qb,$mc,$d,$Ka,$tf){global$g;if($R==""){$g->_db->createCollection($C);return
+true;}}function
+drop_tables($T){global$g;foreach($T
+as$R){$hg=$g->_db->selectCollection($R)->drop();if(!$hg['ok'])return
+false;}return
+true;}function
+truncate_tables($T){global$g;foreach($T
+as$R){$hg=$g->_db->selectCollection($R)->remo
