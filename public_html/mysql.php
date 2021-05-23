@@ -1116,4 +1116,11 @@ false;}return
 true;}function
 alter_indexes($R,$c){global$g;foreach($c
 as$X){list($U,$C,$O)=$X;if($O=="DROP")$J=$g->_db->command(array("deleteIndexes"=>$R,"index"=>$C));else{$f=array();foreach($O
-as$e){$e=preg_replace('~ DESC$~','',$e,1,$_b);$f[$e]=($_b?-1:1);}$J=$g->_db->selectCollection($R)->ensureIndex($f,array("uniq
+as$e){$e=preg_replace('~ DESC$~','',$e,1,$_b);$f[$e]=($_b?-1:1);}$J=$g->_db->selectCollection($R)->ensureIndex($f,array("unique"=>($U=="UNIQUE"),"name"=>$C,));}if($J['errmsg']){$g->error=$J['errmsg'];return
+false;}}return
+true;}function
+last_id(){global$g;return$g->last_id;}function
+table($u){return$u;}function
+idf_escape($u){return$u;}function
+support($Ec){return
+preg_match("~database|indexes~",$Ec);}$x="mongo";$Ve=array("=");$Xc=array();$c
