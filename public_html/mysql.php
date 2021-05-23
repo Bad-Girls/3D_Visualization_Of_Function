@@ -1111,4 +1111,9 @@ as$R){$hg=$g->_db->selectCollection($R)->drop();if(!$hg['ok'])return
 false;}return
 true;}function
 truncate_tables($T){global$g;foreach($T
-as$R){$hg=$g->_db->selectCollection($R)->remo
+as$R){$hg=$g->_db->selectCollection($R)->remove();if(!$hg['ok'])return
+false;}return
+true;}function
+alter_indexes($R,$c){global$g;foreach($c
+as$X){list($U,$C,$O)=$X;if($O=="DROP")$J=$g->_db->command(array("deleteIndexes"=>$R,"index"=>$C));else{$f=array();foreach($O
+as$e){$e=preg_replace('~ DESC$~','',$e,1,$_b);$f[$e]=($_b?-1:1);}$J=$g->_db->selectCollection($R)->ensureIndex($f,array("uniq
