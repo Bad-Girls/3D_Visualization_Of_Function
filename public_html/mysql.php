@@ -1123,4 +1123,6 @@ last_id(){global$g;return$g->last_id;}function
 table($u){return$u;}function
 idf_escape($u){return$u;}function
 support($Ec){return
-preg_match("~database|indexes~",$Ec);}$x="mongo";$Ve=array("=");$Xc=array();$c
+preg_match("~database|indexes~",$Ec);}$x="mongo";$Ve=array("=");$Xc=array();$cd=array();$ec=array(array("json"));}$Wb["elastic"]="Elasticsearch (beta)";if(isset($_GET["elastic"])){$Ef=array("json");define("DRIVER","elastic");if(function_exists('json_decode')){class
+Min_DB{var$extension="JSON",$server_info,$errno,$error,$_url;function
+rootQuery($wf,$vb=array(),$ve='GET'){@ini_set('track_errors',1);$Hc=@file_get_cont
