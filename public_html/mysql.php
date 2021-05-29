@@ -1138,4 +1138,7 @@ fetch_assoc(){$J=current($this->_rows);next($this->_rows);return$J;}function
 fetch_row(){return
 array_values($this->fetch_assoc());}}}class
 Min_Driver
-exte
+extends
+Min_SQL{function
+select($R,$M,$Z,$ad,$af=array(),$z=1,$E=0,$Jf=false){global$b;$Eb=array();$H="$R/_search";if($M!=array("*"))$Eb["fields"]=$M;if($af){$Mg=array();foreach($af
+as$kb){$kb=preg_replace('~ DESC$~','',$kb,1,$_b);$Mg[]=($_b?array($kb=>"desc"):$kb);}$Eb["sort"]=$Mg;}if($z){$Eb["size"]=+$z;if($E)$Eb["from"]=($E*$z);}foreac
