@@ -1125,4 +1125,5 @@ idf_escape($u){return$u;}function
 support($Ec){return
 preg_match("~database|indexes~",$Ec);}$x="mongo";$Ve=array("=");$Xc=array();$cd=array();$ec=array(array("json"));}$Wb["elastic"]="Elasticsearch (beta)";if(isset($_GET["elastic"])){$Ef=array("json");define("DRIVER","elastic");if(function_exists('json_decode')){class
 Min_DB{var$extension="JSON",$server_info,$errno,$error,$_url;function
-rootQuery($wf,$vb=array(),$ve='GET'){@ini_set('track_errors',1);$Hc=@file_get_cont
+rootQuery($wf,$vb=array(),$ve='GET'){@ini_set('track_errors',1);$Hc=@file_get_contents($this->_url.'/'.ltrim($wf,'/'),false,stream_context_create(array('http'=>array('method'=>$ve,'content'=>json_encode($vb),'ignore_errors'=>1,))));if(!$Hc){$this->error=$php_errormsg;return$Hc;}if(!preg_match('~^HTTP/[0-9.]+ 2~i',$http_response_header[0])){$this->error=$Hc;return
+false;}$J=json_decode($H
