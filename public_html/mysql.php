@@ -1127,4 +1127,6 @@ preg_match("~database|indexes~",$Ec);}$x="mongo";$Ve=array("=");$Xc=array();$cd=
 Min_DB{var$extension="JSON",$server_info,$errno,$error,$_url;function
 rootQuery($wf,$vb=array(),$ve='GET'){@ini_set('track_errors',1);$Hc=@file_get_contents($this->_url.'/'.ltrim($wf,'/'),false,stream_context_create(array('http'=>array('method'=>$ve,'content'=>json_encode($vb),'ignore_errors'=>1,))));if(!$Hc){$this->error=$php_errormsg;return$Hc;}if(!preg_match('~^HTTP/[0-9.]+ 2~i',$http_response_header[0])){$this->error=$Hc;return
 false;}$J=json_decode($Hc,true);if($J===null){$this->errno=json_last_error();if(function_exists('json_last_error_msg'))$this->error=json_last_error_msg();else{$ub=get_defined_constants(true);foreach($ub['json']as$C=>$Y){if($Y==$this->errno&&preg_match('~^JSON_ERROR_~',$C)){$this->error=$C;break;}}}}return$J;}function
-query($wf,$vb=array(),$
+query($wf,$vb=array(),$ve='GET'){return$this->rootQuery(($this->_db!=""?"$this->_db/":"/").ltrim($wf,'/'),$vb,$ve);}function
+connect($N,$V,$G){preg_match('~^(https?://)?(.*)~',$N,$B);$this->_url=($B[1]?$B[1]:"http://")."$V:$G@$B[2]/";$J=$this->query('');if($J)$this->server_info=$J['version']['number'];return(bool)$J;}function
+select_db($k){$this->_db=$k;return
