@@ -1130,3 +1130,12 @@ false;}$J=json_decode($Hc,true);if($J===null){$this->errno=json_last_error();if(
 query($wf,$vb=array(),$ve='GET'){return$this->rootQuery(($this->_db!=""?"$this->_db/":"/").ltrim($wf,'/'),$vb,$ve);}function
 connect($N,$V,$G){preg_match('~^(https?://)?(.*)~',$N,$B);$this->_url=($B[1]?$B[1]:"http://")."$V:$G@$B[2]/";$J=$this->query('');if($J)$this->server_info=$J['version']['number'];return(bool)$J;}function
 select_db($k){$this->_db=$k;return
+true;}function
+quote($Q){return$Q;}}class
+Min_Result{var$num_rows,$_rows;function
+__construct($L){$this->num_rows=count($this->_rows);$this->_rows=$L;reset($this->_rows);}function
+fetch_assoc(){$J=current($this->_rows);next($this->_rows);return$J;}function
+fetch_row(){return
+array_values($this->fetch_assoc());}}}class
+Min_Driver
+exte
