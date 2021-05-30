@@ -1156,4 +1156,9 @@ logged_user(){global$b;$j=$b->credentials();return$j[1];}function
 get_databases(){global$g;$J=$g->rootQuery('_aliases');if($J){$J=array_keys($J);sort($J,SORT_STRING);}return$J;}function
 collations(){return
 array();}function
-db_collat
+db_collation($m,$mb){}function
+engines(){return
+array();}function
+count_tables($l){global$g;$J=$g->query('_mapping');if($J)$J=array_map('count',$J);return$J;}function
+tables_list(){global$g;$J=$g->query('_mapping');if($J)$J=array_fill_keys(array_keys($J[$g->_db]["mappings"]),'table');return$J;}function
+table_status($C="",$Dc=false){globa
