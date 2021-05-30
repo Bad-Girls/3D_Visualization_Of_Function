@@ -1149,4 +1149,11 @@ as$y=>$X){if($Eb["fields"])$X=$X[0];$K[$y]=(is_array($X)?json_encode($X):$X);}$J
 new
 Min_Result($J);}}function
 connect(){global$b;$g=new
-Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2]))return$g;return$g->error;}fu
+Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2]))return$g;return$g->error;}function
+support($Ec){return
+preg_match("~database|table|columns~",$Ec);}function
+logged_user(){global$b;$j=$b->credentials();return$j[1];}function
+get_databases(){global$g;$J=$g->rootQuery('_aliases');if($J){$J=array_keys($J);sort($J,SORT_STRING);}return$J;}function
+collations(){return
+array();}function
+db_collat
