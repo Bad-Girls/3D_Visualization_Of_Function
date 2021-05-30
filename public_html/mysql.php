@@ -1141,4 +1141,5 @@ Min_Driver
 extends
 Min_SQL{function
 select($R,$M,$Z,$ad,$af=array(),$z=1,$E=0,$Jf=false){global$b;$Eb=array();$H="$R/_search";if($M!=array("*"))$Eb["fields"]=$M;if($af){$Mg=array();foreach($af
-as$kb){$kb=preg_replace('~ DESC$~','',$kb,1,$_b);$Mg[]=($_b?array($kb=>"desc"):$kb);}$Eb["sort"]=$Mg;}if($z){$Eb["size"]=+$z;if($E)$Eb["from"]=($E*$z);}foreac
+as$kb){$kb=preg_replace('~ DESC$~','',$kb,1,$_b);$Mg[]=($_b?array($kb=>"desc"):$kb);}$Eb["sort"]=$Mg;}if($z){$Eb["size"]=+$z;if($E)$Eb["from"]=($E*$z);}foreach($Z
+as$X){list($kb,$Te,$X)=explode(" ",$X,3);if($kb=="_id")$Eb["query"]["ids"]["values"][]=$X;elseif($kb.$X!=""){$oh=array("term"=>array(($kb!=""?$kb:"_all")=>$X));if($Te=="=")$Eb["query"]["filtered"]["filter"]["and"][]=$oh;else$Eb["query"]["filtered"]["query"]["bool"]["must"][]=$oh;}}if($Eb["query"]&&!$Eb["query"]["filtered"][
