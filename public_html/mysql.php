@@ -1168,4 +1168,5 @@ information_schema(){}function
 is_view($S){}function
 indexes($R,$h=null){return
 array(array("type"=>"PRIMARY","columns"=>array("_id")),);}function
-fields($R){global$g;$I=$g->query("$R/_mapping");$J=array();if($I){$ee=$I[$R]['propert
+fields($R){global$g;$I=$g->query("$R/_mapping");$J=array();if($I){$ee=$I[$R]['properties'];if(!$ee)$ee=$I[$g->_db]['mappings'][$R]['properties'];if($ee){foreach($ee
+as$C=>$o){$J[$C]=array("field"=>$C,"full_type"=>$o["type"],"type"=>$o["type"],"privileges"=>array("insert"=>1,"select"=>1,"update"=>1),);if($o["properties"]){unset($J[$C]["privileges"]["insert"]);unset($J[$C]["privileges"]["update"]);}}}}return$J;}function
