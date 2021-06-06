@@ -1187,4 +1187,5 @@ Min_DB
 extends
 MySQLi{var$extension="MySQLi";function
 __construct(){parent::init();}function
-connect($N="",$V="",$G="",$k=null,$Af=null,$Lg=null){mysqli_report(MYSQLI_REPORT_OFF);list($kd,$
+connect($N="",$V="",$G="",$k=null,$Af=null,$Lg=null){mysqli_report(MYSQLI_REPORT_OFF);list($kd,$Af)=explode(":",$N,2);$J=@$this->real_connect(($N!=""?$kd:ini_get("mysqli.default_host")),($N.$V!=""?$V:ini_get("mysqli.default_user")),($N.$V.$G!=""?$G:ini_get("mysqli.default_pw")),$k,(is_numeric($Af)?$Af:ini_get("mysqli.default_port")),(!is_numeric($Af)?$Af:$Lg));return$J;}function
+set_charset($Za){if(p
