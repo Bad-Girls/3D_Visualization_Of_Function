@@ -1179,4 +1179,7 @@ unconvert_field($o,$J){return$J;}function
 fk_support($S){}function
 found_rows($S,$Z){return
 null;}function
-create_database($m){global$g;return$g->rootQuery(urlencode($m),array(),'PUT'
+create_database($m){global$g;return$g->rootQuery(urlencode($m),array(),'PUT');}function
+drop_databases($l){global$g;return$g->rootQuery(urlencode(implode(',',$l)),array(),'DELETE');}function
+drop_tables($T){global$g;$J=true;foreach($T
+as$R)$J=$J&&$g->query(urlencode($R),array(),'DELETE');return$J;}$x="elastic";$Ve=array("=","query");$Xc=array();$cd=array();$ec=array(array("json"));}$Wb=array
