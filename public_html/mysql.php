@@ -1170,3 +1170,13 @@ indexes($R,$h=null){return
 array(array("type"=>"PRIMARY","columns"=>array("_id")),);}function
 fields($R){global$g;$I=$g->query("$R/_mapping");$J=array();if($I){$ee=$I[$R]['properties'];if(!$ee)$ee=$I[$g->_db]['mappings'][$R]['properties'];if($ee){foreach($ee
 as$C=>$o){$J[$C]=array("field"=>$C,"full_type"=>$o["type"],"type"=>$o["type"],"privileges"=>array("insert"=>1,"select"=>1,"update"=>1),);if($o["properties"]){unset($J[$C]["privileges"]["insert"]);unset($J[$C]["privileges"]["update"]);}}}}return$J;}function
+foreign_keys($R){return
+array();}function
+table($u){return$u;}function
+idf_escape($u){return$u;}function
+convert_field($o){}function
+unconvert_field($o,$J){return$J;}function
+fk_support($S){}function
+found_rows($S,$Z){return
+null;}function
+create_database($m){global$g;return$g->rootQuery(urlencode($m),array(),'PUT'
