@@ -1188,4 +1188,8 @@ extends
 MySQLi{var$extension="MySQLi";function
 __construct(){parent::init();}function
 connect($N="",$V="",$G="",$k=null,$Af=null,$Lg=null){mysqli_report(MYSQLI_REPORT_OFF);list($kd,$Af)=explode(":",$N,2);$J=@$this->real_connect(($N!=""?$kd:ini_get("mysqli.default_host")),($N.$V!=""?$V:ini_get("mysqli.default_user")),($N.$V.$G!=""?$G:ini_get("mysqli.default_pw")),$k,(is_numeric($Af)?$Af:ini_get("mysqli.default_port")),(!is_numeric($Af)?$Af:$Lg));return$J;}function
-set_charset($Za){if(p
+set_charset($Za){if(parent::set_charset($Za))return
+true;parent::set_charset('utf8');return$this->query("SET NAMES $Za");}function
+result($H,$o=0){$I=$this->query($H);if(!$I)return
+false;$K=$I->fetch_array();return$K[$o];}function
+quote($Q){return"'".$this->escape_string($Q)."'";}}}elseif(extension_loaded("mysql")&&!(ini_get("sql.safe_mode")&&extension_loaded("pdo_m
