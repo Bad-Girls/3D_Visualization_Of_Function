@@ -1200,4 +1200,13 @@ true;mysql_set_charset('utf8',$this->_link);}return$this->query("SET NAMES $Za")
 quote($Q){return"'".mysql_real_escape_string($Q,$this->_link)."'";}function
 select_db($k){return
 mysql_select_db($k,$this->_link);}function
-query($H,$Ph=false){$I=@($Ph?mysql_unbuffered_query($H,$this->_link):mysql_query($H,$this->_link));$this->error="";if(!$I){$this->errno=mysql_errno($this->_link);$this->error=mysql_
+query($H,$Ph=false){$I=@($Ph?mysql_unbuffered_query($H,$this->_link):mysql_query($H,$this->_link));$this->error="";if(!$I){$this->errno=mysql_errno($this->_link);$this->error=mysql_error($this->_link);return
+false;}if($I===true){$this->affected_rows=mysql_affected_rows($this->_link);$this->info=mysql_info($this->_link);return
+true;}return
+new
+Min_Result($I);}function
+multi_query($H){return$this->_result=$this->query($H);}function
+store_result(){return$this->_result;}function
+next_result(){return
+false;}function
+res
