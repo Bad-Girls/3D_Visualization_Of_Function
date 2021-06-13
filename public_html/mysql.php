@@ -1209,4 +1209,12 @@ multi_query($H){return$this->_result=$this->query($H);}function
 store_result(){return$this->_result;}function
 next_result(){return
 false;}function
-res
+result($H,$o=0){$I=$this->query($H);if(!$I||!$I->num_rows)return
+false;return
+mysql_result($I->_result,0,$o);}}class
+Min_Result{var$num_rows,$_result,$_offset=0;function
+__construct($I){$this->_result=$I;$this->num_rows=mysql_num_rows($I);}function
+fetch_assoc(){return
+mysql_fetch_assoc($this->_result);}function
+fetch_row(){return
+mysql_fetch
