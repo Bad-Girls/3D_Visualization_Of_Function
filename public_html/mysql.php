@@ -1196,4 +1196,8 @@ quote($Q){return"'".$this->escape_string($Q)."'";}}}elseif(extension_loaded("mys
 Min_DB{var$extension="MySQL",$server_info,$affected_rows,$errno,$error,$_link,$_result;function
 connect($N,$V,$G){$this->_link=@mysql_connect(($N!=""?$N:ini_get("mysql.default_host")),("$N$V"!=""?$V:ini_get("mysql.default_user")),("$N$V$G"!=""?$G:ini_get("mysql.default_password")),true,131072);if($this->_link)$this->server_info=mysql_get_server_info($this->_link);else$this->error=mysql_error();return(bool)$this->_link;}function
 set_charset($Za){if(function_exists('mysql_set_charset')){if(mysql_set_charset($Za,$this->_link))return
-true;mysql_set_charset('utf8',$this->_link);}return$this->query("SET NAMES $Za");}f
+true;mysql_set_charset('utf8',$this->_link);}return$this->query("SET NAMES $Za");}function
+quote($Q){return"'".mysql_real_escape_string($Q,$this->_link)."'";}function
+select_db($k){return
+mysql_select_db($k,$this->_link);}function
+query($H,$Ph=false){$I=@($Ph?mysql_unbuffered_query($H,$this->_link):mysql_query($H,$this->_link));$this->error="";if(!$I){$this->errno=mysql_errno($this->_link);$this->error=mysql_
