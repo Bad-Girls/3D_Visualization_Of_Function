@@ -1217,4 +1217,9 @@ __construct($I){$this->_result=$I;$this->num_rows=mysql_num_rows($I);}function
 fetch_assoc(){return
 mysql_fetch_assoc($this->_result);}function
 fetch_row(){return
-mysql_fetch
+mysql_fetch_row($this->_result);}function
+fetch_field(){$J=mysql_fetch_field($this->_result,$this->_offset++);$J->orgtable=$J->table;$J->orgname=$J->name;$J->charsetnr=($J->blob?63:0);return$J;}function
+__destruct(){mysql_free_result($this->_result);}}}elseif(extension_loaded("pdo_mysql")){class
+Min_DB
+extends
+Min_PDO{var$extension="PDO_MySQL"
