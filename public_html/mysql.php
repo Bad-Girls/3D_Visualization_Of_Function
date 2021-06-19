@@ -1227,4 +1227,10 @@ connect($N,$V,$G){$this->dsn("mysql:charset=utf8;host=".str_replace(":",";unix_s
 true;}function
 set_charset($Za){$this->query("SET NAMES $Za");}function
 select_db($k){return$this->query("USE ".idf_escape($k));}function
-query($H,$Ph=false){$this->s
+query($H,$Ph=false){$this->setAttribute(1000,!$Ph);return
+parent::query($H,$Ph);}}}class
+Min_Driver
+extends
+Min_SQL{function
+insert($R,$O){return($O?parent::insert($R,$O):queries("INSERT INTO ".table($R)." ()\nVALUES ()"));}function
+insertUpdate($R,$L,$Hf){$f=array_keys(reset($L));$Ff="INSERT INTO ".table($R)." (".implode(", ",$f).") VALUES\n";$gi=arr
