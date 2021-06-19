@@ -1233,4 +1233,7 @@ Min_Driver
 extends
 Min_SQL{function
 insert($R,$O){return($O?parent::insert($R,$O):queries("INSERT INTO ".table($R)." ()\nVALUES ()"));}function
-insertUpdate($R,$L,$Hf){$f=array_keys(reset($L));$Ff="INSERT INTO ".table($R)." (".implode(", ",$f).") VALUES\n";$gi=arr
+insertUpdate($R,$L,$Hf){$f=array_keys(reset($L));$Ff="INSERT INTO ".table($R)." (".implode(", ",$f).") VALUES\n";$gi=array();foreach($f
+as$y)$gi[$y]="$y = VALUES($y)";$Yg="\nON DUPLICATE KEY UPDATE ".implode(", ",$gi);$gi=array();$Yd=0;foreach($L
+as$O){$Y="(".implode(", ",$O).")";if($gi&&(strlen($Ff)+$Yd+strlen($Y)+strlen($Yg)>1e6)){if(!queries($Ff.implode(",\n",$gi).$Yg))return
+false;$gi=array();$Yd=0;}$gi[]=$Y;$Yd+=strlen($Y)+2;}return
