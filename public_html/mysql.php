@@ -1243,4 +1243,5 @@ table($u){return
 idf_escape($u);}function
 connect(){global$b,$Oh,$Vg;$g=new
 Min_DB;$j=$b->credentials();if($g->connect($j[0],$j[1],$j[2])){$g->set_charset(charset($g));$g->query("SET sql_quote_show_create = 1, autocommit = 1");if(version_compare($g->server_info,'5.7.8')>=0){$Vg['Strings'][]="json";$Oh["json"]=4294967295;}return$g;}$J=$g->error;if(function_exists('iconv')&&!is_utf8($J)&&strlen($sg=iconv("windows-1250","utf-8",$J))>strlen($J))$J=$sg;return$J;}function
-get_databases($Oc){global$g;$J=get_session("dbs");if($J===null){
+get_databases($Oc){global$g;$J=get_session("dbs");if($J===null){$H=($g->server_info>=5?"SELECT SCHEMA_NAME FROM information_schema.SCHEMATA":"SHOW DATABASES");$J=($Oc?slow_query($H):get_vals($H));restart_session();set_session("dbs",$J);stop_session();}return$J;}function
+limit($H,$Z,$z,$D=0,$Ag=" "){return" $H$Z".($z!==null?$Ag."LIMIT $z".($D?" OFFSET $D":""):"");}function
