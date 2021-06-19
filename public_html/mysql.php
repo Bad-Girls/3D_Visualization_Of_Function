@@ -1222,4 +1222,9 @@ fetch_field(){$J=mysql_fetch_field($this->_result,$this->_offset++);$J->orgtable
 __destruct(){mysql_free_result($this->_result);}}}elseif(extension_loaded("pdo_mysql")){class
 Min_DB
 extends
-Min_PDO{var$extension="PDO_MySQL"
+Min_PDO{var$extension="PDO_MySQL";function
+connect($N,$V,$G){$this->dsn("mysql:charset=utf8;host=".str_replace(":",";unix_socket=",preg_replace('~:(\\d)~',';port=\\1',$N)),$V,$G);return
+true;}function
+set_charset($Za){$this->query("SET NAMES $Za");}function
+select_db($k){return$this->query("USE ".idf_escape($k));}function
+query($H,$Ph=false){$this->s
