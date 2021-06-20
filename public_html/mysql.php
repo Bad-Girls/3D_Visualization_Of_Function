@@ -1248,4 +1248,7 @@ limit($H,$Z,$z,$D=0,$Ag=" "){return" $H$Z".($z!==null?$Ag."LIMIT $z".($D?" OFFSE
 limit1($H,$Z){return
 limit($H,$Z,1);}function
 db_collation($m,$mb){global$g;$J=null;$i=$g->result("SHOW CREATE DATABASE ".idf_escape($m),1);if(preg_match('~ COLLATE ([^ ]+)~',$i,$B))$J=$B[1];elseif(preg_match('~ CHARACTER SET ([^ ]+)~',$i,$B))$J=$mb[$B[1]][-1];return$J;}function
-engines(){$J=array();foreach(get_rows("SHOW ENGINES
+engines(){$J=array();foreach(get_rows("SHOW ENGINES")as$K){if(preg_match("~YES|DEFAULT~",$K["Support"]))$J[]=$K["Engine"];}return$J;}function
+logged_user(){global$g;return$g->result("SELECT USER()");}function
+tables_list(){global$g;return
+get_key_vals($g->server_info>=5?"SELECT TABLE_NAME, TABLE_TYPE FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() ORDER BY TABLE_NAME":"S
