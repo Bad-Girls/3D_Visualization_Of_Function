@@ -1264,4 +1264,6 @@ foreign_keys($R){global$g,$Qe;static$yf='`(?:[^`]|``)+`';$J=array();$Ab=$g->resu
 as$B){preg_match_all("~$yf~",$B[2],$Ng);preg_match_all("~$yf~",$B[5],$lh);$J[idf_unescape($B[1])]=array("db"=>idf_unescape($B[4]!=""?$B[3]:$B[4]),"table"=>idf_unescape($B[4]!=""?$B[4]:$B[3]),"source"=>array_map('idf_unescape',$Ng[0]),"target"=>array_map('idf_unescape',$lh[0]),"on_delete"=>($B[6]?$B[6]:"RESTRICT"),"on_update"=>($B[7]?$B[7]:"RESTRICT"),);}}return$J;}function
 view($C){global$g;return
 array("select"=>preg_replace('~^(?:[^`]|`[^`]*`)*\\s+AS\\s+~isU','',$g->result("SHOW CREATE VIEW ".table($C),1)));}function
-collations(){$J=array();foreach(get_rows("SHOW COLLATION")as$K){if($K["Default"])$
+collations(){$J=array();foreach(get_rows("SHOW COLLATION")as$K){if($K["Default"])$J[$K["Charset"]][-1]=$K["Collation"];else$J[$K["Charset"]][]=$K["Collation"];}ksort($J);foreach($J
+as$y=>$X)asort($J[$y]);return$J;}function
+information_schema($m){global$g;return($g->server_info>=5&&$m=="information_schema")||($g->server_info>=5.5&&$m=="performance_schema");}functio
