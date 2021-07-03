@@ -1266,4 +1266,9 @@ view($C){global$g;return
 array("select"=>preg_replace('~^(?:[^`]|`[^`]*`)*\\s+AS\\s+~isU','',$g->result("SHOW CREATE VIEW ".table($C),1)));}function
 collations(){$J=array();foreach(get_rows("SHOW COLLATION")as$K){if($K["Default"])$J[$K["Charset"]][-1]=$K["Collation"];else$J[$K["Charset"]][]=$K["Collation"];}ksort($J);foreach($J
 as$y=>$X)asort($J[$y]);return$J;}function
-information_schema($m){global$g;return($g->server_info>=5&&$m=="information_schema")||($g->server_info>=5.5&&$m=="performance_schema");}functio
+information_schema($m){global$g;return($g->server_info>=5&&$m=="information_schema")||($g->server_info>=5.5&&$m=="performance_schema");}function
+error(){global$g;return
+h(preg_replace('~^You have an error.*syntax to use~U',"Syntax error",$g->error));}function
+create_database($m,$d){return
+queries("CREATE DATABASE ".idf_escape($m).($d?" COLLATE ".q($d):""));}function
+drop_databases($l){$J=apply_queries("DROP DATABASE",$l,'idf_escape');restart_session();set_session("dbs",null);return
