@@ -1271,4 +1271,6 @@ error(){global$g;return
 h(preg_replace('~^You have an error.*syntax to use~U',"Syntax error",$g->error));}function
 create_database($m,$d){return
 queries("CREATE DATABASE ".idf_escape($m).($d?" COLLATE ".q($d):""));}function
-drop_databases($l){$J=apply_queries("DROP DATABASE",$l,'idf_escape');restart_session();set_session("dbs",null);return
+drop_databases($l){$J=apply_queries("DROP DATABASE",$l,'idf_escape');restart_session();set_session("dbs",null);return$J;}function
+rename_database($C,$d){$J=false;if(create_database($C,$d)){$fg=array();foreach(tables_list()as$R=>$U)$fg[]=table($R)." TO ".idf_escape($C).".".table($R);$J=(!$fg||queries("RENAME TABLE ".implode(", ",$fg)));if($J)queries("DROP DATABASE ".idf_escape(DB));restart_session();set_session("dbs",null);}return$J;}function
+auto_i
