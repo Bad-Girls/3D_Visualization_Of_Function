@@ -1288,4 +1288,7 @@ drop_tables($T){return
 queries("DROP TABLE ".implode(", ",array_map('table',$T)));}function
 move_tables($T,$li,$lh){$fg=array();foreach(array_merge($T,$li)as$R)$fg[]=table($R)." TO ".idf_escape($lh).".".table($R);return
 queries("RENAME TABLE ".implode(", ",$fg));}function
-copy_tables($T,$li,$lh){queries("SET sql_mode = 'NO_AUTO_VALUE_ON_ZER
+copy_tables($T,$li,$lh){queries("SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO'");foreach($T
+as$R){$C=($lh==DB?table("copy_$R"):idf_escape($lh).".".table($R));if(!queries("\nDROP TABLE IF EXISTS $C")||!queries("CREATE TABLE $C LIKE ".table($R))||!queries("INSERT INTO $C SELECT * FROM ".table($R)))return
+false;}foreach($li
+as$R){$C=($lh==DB?table("copy_$R"):idf_escape($
