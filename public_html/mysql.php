@@ -1284,4 +1284,8 @@ truncate_tables($T){return
 apply_queries("TRUNCATE TABLE",$T);}function
 drop_views($li){return
 queries("DROP VIEW ".implode(", ",array_map('table',$li)));}function
-drop_
+drop_tables($T){return
+queries("DROP TABLE ".implode(", ",array_map('table',$T)));}function
+move_tables($T,$li,$lh){$fg=array();foreach(array_merge($T,$li)as$R)$fg[]=table($R)." TO ".idf_escape($lh).".".table($R);return
+queries("RENAME TABLE ".implode(", ",$fg));}function
+copy_tables($T,$li,$lh){queries("SET sql_mode = 'NO_AUTO_VALUE_ON_ZER
