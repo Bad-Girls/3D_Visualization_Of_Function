@@ -1291,4 +1291,10 @@ queries("RENAME TABLE ".implode(", ",$fg));}function
 copy_tables($T,$li,$lh){queries("SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO'");foreach($T
 as$R){$C=($lh==DB?table("copy_$R"):idf_escape($lh).".".table($R));if(!queries("\nDROP TABLE IF EXISTS $C")||!queries("CREATE TABLE $C LIKE ".table($R))||!queries("INSERT INTO $C SELECT * FROM ".table($R)))return
 false;}foreach($li
-as$R){$C=($lh==DB?table("copy_$R"):idf_escape($
+as$R){$C=($lh==DB?table("copy_$R"):idf_escape($lh).".".table($R));$ki=view($R);if(!queries("DROP VIEW IF EXISTS $C")||!queries("CREATE VIEW $C AS $ki[select]"))return
+false;}return
+true;}function
+trigger($C){if($C=="")return
+array();$L=get_rows("SHOW TRIGGERS WHERE `Trigger` = ".q($C));return
+reset($L);}function
+triggers($R){$J=array();foreach(get_rows("SHOW TRIGGER
