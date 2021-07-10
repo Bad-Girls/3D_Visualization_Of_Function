@@ -1278,4 +1278,10 @@ alter_table($R,$C,$p,$Pc,$qb,$mc,$d,$Ka,$tf){$c=array();foreach($p
 as$o)$c[]=($o[1]?($R!=""?($o[0]!=""?"CHANGE ".idf_escape($o[0]):"ADD"):" ")." ".implode($o[1]).($R!=""?$o[2]:""):"DROP ".idf_escape($o[0]));$c=array_merge($c,$Pc);$P=($qb!==null?" COMMENT=".q($qb):"").($mc?" ENGINE=".q($mc):"").($d?" COLLATE ".q($d):"").($Ka!=""?" AUTO_INCREMENT=$Ka":"");if($R=="")return
 queries("CREATE TABLE ".table($C)." (\n".implode(",\n",$c)."\n)$P$tf");if($R!=$C)$c[]="RENAME TO ".table($C);if($P)$c[]=ltrim($P);return($c||$tf?queries("ALTER TABLE ".table($R)."\n".implode(",\n",$c).$tf):true);}function
 alter_indexes($R,$c){foreach($c
-as$y=>$X)$c[$y]=($X[2]=="DROP"?"\nDROP INDEX ".idf_escape($X[1]):"\nADD $X[0] ".($X[0
+as$y=>$X)$c[$y]=($X[2]=="DROP"?"\nDROP INDEX ".idf_escape($X[1]):"\nADD $X[0] ".($X[0]=="PRIMARY"?"KEY ":"").($X[1]!=""?idf_escape($X[1])." ":"")."(".implode(", ",$X[2]).")");return
+queries("ALTER TABLE ".table($R).implode(",",$c));}function
+truncate_tables($T){return
+apply_queries("TRUNCATE TABLE",$T);}function
+drop_views($li){return
+queries("DROP VIEW ".implode(", ",array_map('table',$li)));}function
+drop_
