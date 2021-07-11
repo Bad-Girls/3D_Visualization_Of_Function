@@ -1297,4 +1297,7 @@ true;}function
 trigger($C){if($C=="")return
 array();$L=get_rows("SHOW TRIGGERS WHERE `Trigger` = ".q($C));return
 reset($L);}function
-triggers($R){$J=array();foreach(get_rows("SHOW TRIGGER
+triggers($R){$J=array();foreach(get_rows("SHOW TRIGGERS LIKE ".q(addcslashes($R,"%_\\")))as$K)$J[$K["Trigger"]]=array($K["Timing"],$K["Event"]);return$J;}function
+trigger_options(){return
+array("Timing"=>array("BEFORE","AFTER"),"Event"=>array("INSERT","UPDATE","DELETE"),"Type"=>array("FOR EACH ROW"),);}function
+routine($C,$U){global$g,$oc,$wd,$Oh;$Ba=array("bool","boolean","int
