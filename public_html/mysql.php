@@ -1300,4 +1300,4 @@ reset($L);}function
 triggers($R){$J=array();foreach(get_rows("SHOW TRIGGERS LIKE ".q(addcslashes($R,"%_\\")))as$K)$J[$K["Trigger"]]=array($K["Timing"],$K["Event"]);return$J;}function
 trigger_options(){return
 array("Timing"=>array("BEFORE","AFTER"),"Event"=>array("INSERT","UPDATE","DELETE"),"Type"=>array("FOR EACH ROW"),);}function
-routine($C,$U){global$g,$oc,$wd,$Oh;$Ba=array("bool","boolean","int
+routine($C,$U){global$g,$oc,$wd,$Oh;$Ba=array("bool","boolean","integer","double precision","real","dec","numeric","fixed","national char","national varchar");$Nh="((".implode("|",array_merge(array_keys($Oh),$Ba)).")\\b(?:\\s*\\(((?:[^'\")]|$oc)++)\\))?\\s*(zerofill\\s*)?(unsigned(?:\\s+zerofill)?)?)(?:\\s*(?:CHARSET|CHARACTER\\s+SET)\\s*['\"]?([^'\"\\s,]+)['\"]?)?";$yf="\\s*(".($U=="FUNCTION"?"":$wd).")?\\s*(?:`((?:[^`
