@@ -1315,4 +1315,9 @@ types(){return
 array();}function
 schemas(){return
 array();}function
-get_
+get_schema(){return"";}function
+set_schema($ug){return
+true;}function
+create_sql($R,$Ka){global$g;$J=$g->result("SHOW CREATE TABLE ".table($R),1);if(!$Ka)$J=preg_replace('~ AUTO_INCREMENT=\\d+~','',$J);return$J;}function
+truncate_sql($R){return"TRUNCATE ".table($R);}function
+use_sql($k){return"USE ".idf_escape($k);}function
