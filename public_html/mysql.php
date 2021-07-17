@@ -1308,4 +1308,11 @@ routines(){return
 get_rows("SELECT ROUTINE_NAME, ROUTINE_TYPE, DTD_IDENTIFIER FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = ".q(DB));}function
 routine_languages(){return
 array();}function
-la
+last_id(){global$g;return$g->result("SELECT LAST_INSERT_ID()");}function
+explain($g,$H){return$g->query("EXPLAIN ".($g->server_info>=5.1?"PARTITIONS ":"").$H);}function
+found_rows($S,$Z){return($Z||$S["Engine"]!="InnoDB"?null:$S["Rows"]);}function
+types(){return
+array();}function
+schemas(){return
+array();}function
+get_
