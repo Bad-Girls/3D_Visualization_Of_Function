@@ -1303,4 +1303,9 @@ array("Timing"=>array("BEFORE","AFTER"),"Event"=>array("INSERT","UPDATE","DELETE
 routine($C,$U){global$g,$oc,$wd,$Oh;$Ba=array("bool","boolean","integer","double precision","real","dec","numeric","fixed","national char","national varchar");$Nh="((".implode("|",array_merge(array_keys($Oh),$Ba)).")\\b(?:\\s*\\(((?:[^'\")]|$oc)++)\\))?\\s*(zerofill\\s*)?(unsigned(?:\\s+zerofill)?)?)(?:\\s*(?:CHARSET|CHARACTER\\s+SET)\\s*['\"]?([^'\"\\s,]+)['\"]?)?";$yf="\\s*(".($U=="FUNCTION"?"":$wd).")?\\s*(?:`((?:[^`]|``)*)`\\s*|\\b(\\S+)\\s+)$Nh";$i=$g->result("SHOW CREATE $U ".idf_escape($C),2);preg_match("~\\(((?:$yf\\s*,?)*)\\)\\s*".($U=="FUNCTION"?"RETURNS\\s+$Nh\\s+":"")."(.*)~is",$i,$B);$p=array();preg_match_all("~$yf\\s*,?~is",$B[1],$he,PREG_SET_ORDER);foreach($he
 as$nf){$C=str_replace("``","`",$nf[2]).$nf[3];$p[]=array("field"=>$C,"type"=>strtolower($nf[5]),"length"=>preg_replace_callback("~$oc~s",'normalize_enum',$nf[6]),"unsigned"=>strtolower(preg_replace('~\\s+~',' ',trim("$nf[8] $nf[7]"))),"null"=>1,"full_type"=>$nf[4],"inout"=>strtoupper($nf[1]),"collation"=>strtolower($nf[9]),);}if($U!="FUNCTION")return
 array("fields"=>$p,"definition"=>$B[11]);return
-array("fields"=>$
+array("fields"=>$p,"returns"=>array("type"=>$B[12],"length"=>$B[13],"unsigned"=>$B[15],"collation"=>$B[16]),"definition"=>$B[17],"language"=>"SQL",);}function
+routines(){return
+get_rows("SELECT ROUTINE_NAME, ROUTINE_TYPE, DTD_IDENTIFIER FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = ".q(DB));}function
+routine_languages(){return
+array();}function
+la
