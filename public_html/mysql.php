@@ -1321,4 +1321,13 @@ true;}function
 create_sql($R,$Ka){global$g;$J=$g->result("SHOW CREATE TABLE ".table($R),1);if(!$Ka)$J=preg_replace('~ AUTO_INCREMENT=\\d+~','',$J);return$J;}function
 truncate_sql($R){return"TRUNCATE ".table($R);}function
 use_sql($k){return"USE ".idf_escape($k);}function
-trigger_sql($R,$Wg){$J="";foreach(get_rows("SHOW TRIGGERS LIKE ".q(addcslashes($R,"%_\\")),null,"-- ")as$K)$J.="\n".($Wg=='CREATE+ALTER'?"DROP TRIGGER IF EXISTS ".idf_escape($K["Trigger"]).";;\n":"")."CREATE TRIGGER ".idf_escape($K["Trigger"])." $K[Timing] $K[Event] ON ".table($K["Table"])." FOR EACH ROW\n$K
+trigger_sql($R,$Wg){$J="";foreach(get_rows("SHOW TRIGGERS LIKE ".q(addcslashes($R,"%_\\")),null,"-- ")as$K)$J.="\n".($Wg=='CREATE+ALTER'?"DROP TRIGGER IF EXISTS ".idf_escape($K["Trigger"]).";;\n":"")."CREATE TRIGGER ".idf_escape($K["Trigger"])." $K[Timing] $K[Event] ON ".table($K["Table"])." FOR EACH ROW\n$K[Statement];;\n";return$J;}function
+show_variables(){return
+get_key_vals("SHOW VARIABLES");}function
+process_list(){return
+get_rows("SHOW FULL PROCESSLIST");}function
+show_status(){return
+get_key_vals("SHOW STATUS");}function
+replication_status($U){return
+get_rows("SHOW $U STATUS");}function
+convert_field($o){if(preg_match("~binary
