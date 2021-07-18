@@ -1330,4 +1330,5 @@ show_status(){return
 get_key_vals("SHOW STATUS");}function
 replication_status($U){return
 get_rows("SHOW $U STATUS");}function
-convert_field($o){if(preg_match("~binary
+convert_field($o){if(preg_match("~binary~",$o["type"]))return"HEX(".idf_escape($o["field"]).")";if($o["type"]=="bit")return"BIN(".idf_escape($o["field"])." + 0)";if(preg_match("~geometry|point|linestring|polygon~",$o["type"]))return"AsWKT(".idf_escape($o["field"]).")";}function
+unconvert_field($o,$J){if(preg_match("~binary~",$o["type"]))$J="UNHEX($J)";if($o["type"]=="bit")$J="CONV($J, 2, 10) + 0";if(pre
