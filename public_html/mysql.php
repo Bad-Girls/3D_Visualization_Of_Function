@@ -1347,3 +1347,14 @@ bruteForceKey(){return$_SERVER["REMOTE_ADDR"];}function
 database(){return
 DB;}function
 databases($Oc=true){return
+get_databases($Oc);}function
+schemas(){return
+schemas();}function
+queryTimeout(){return
+5;}function
+headers(){return
+true;}function
+head(){return
+true;}function
+loginForm(){global$Wb;echo'<table cellspacing="0">
+<tr><th>System<td>',html_select("auth[driver]",$Wb,DRIVER),'<tr><th>Server<td><input name="auth[server]" value="',h(SERVER),'" ti
