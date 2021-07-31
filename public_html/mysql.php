@@ -1357,4 +1357,7 @@ true;}function
 head(){return
 true;}function
 loginForm(){global$Wb;echo'<table cellspacing="0">
-<tr><th>System<td>',html_select("auth[driver]",$Wb,DRIVER),'<tr><th>Server<td><input name="auth[server]" value="',h(SERVER),'" ti
+<tr><th>System<td>',html_select("auth[driver]",$Wb,DRIVER),'<tr><th>Server<td><input name="auth[server]" value="',h(SERVER),'" title="hostname[:port]" placeholder="localhost" autocapitalize="off">
+<tr><th>Username<td><input name="auth[username]" id="username" value="',h($_GET["username"]),'" autocapitalize="off">
+<tr><th>Password<td><input type="password" name="auth[password]">
+<tr><th>Database<td><input name="auth[db]" value="',h($
