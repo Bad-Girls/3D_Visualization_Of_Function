@@ -1360,4 +1360,10 @@ loginForm(){global$Wb;echo'<table cellspacing="0">
 <tr><th>System<td>',html_select("auth[driver]",$Wb,DRIVER),'<tr><th>Server<td><input name="auth[server]" value="',h(SERVER),'" title="hostname[:port]" placeholder="localhost" autocapitalize="off">
 <tr><th>Username<td><input name="auth[username]" id="username" value="',h($_GET["username"]),'" autocapitalize="off">
 <tr><th>Password<td><input type="password" name="auth[password]">
-<tr><th>Database<td><input name="auth[db]" value="',h($
+<tr><th>Database<td><input name="auth[db]" value="',h($_GET["db"]),'" autocapitalize="off">
+</table>
+<script type="text/javascript">
+focus(document.getElementById(\'username\'));
+</script>
+',"<p><input type='submit' value='".'Login'."'>\n",checkbox("auth[permanent]",1,$_COOKIE["adminer_permanent"],'Permanent login')."\n";}function
+login($ce,$G){global$x
