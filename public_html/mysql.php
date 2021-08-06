@@ -1366,4 +1366,9 @@ loginForm(){global$Wb;echo'<table cellspacing="0">
 focus(document.getElementById(\'username\'));
 </script>
 ',"<p><input type='submit' value='".'Login'."'>\n",checkbox("auth[permanent]",1,$_COOKIE["adminer_permanent"],'Permanent login')."\n";}function
-login($ce,$G){global$x
+login($ce,$G){global$x;if($x=="sqlite")return
+sprintf('<a href="https://www.adminer.org/en/extension/" target="_blank">Implement</a> %s method to use SQLite.','<code>login()</code>');return
+true;}function
+tableName($ch){return
+h($ch["Name"]);}function
+fieldName($o,$af=0){return'<span title="'.h($o["full_type"]).'">'.h($
