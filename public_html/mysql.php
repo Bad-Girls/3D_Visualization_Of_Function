@@ -1371,4 +1371,5 @@ sprintf('<a href="https://www.adminer.org/en/extension/" target="_blank">Impleme
 true;}function
 tableName($ch){return
 h($ch["Name"]);}function
-fieldName($o,$af=0){return'<span title="'.h($o["full_type"]).'">'.h($
+fieldName($o,$af=0){return'<span title="'.h($o["full_type"]).'">'.h($o["field"]).'</span>';}function
+selectLinks($ch,$O=""){echo'<p class="links">';$be=array("select"=>'Select data');if(support("table")||support("indexes"))$be["table"]='Show structure';if(support("table")){if(is_view($ch))$be["view"]='Alter view';else$be["create"]='Alter table';}if($O!==null)$be["edit"]='New it
