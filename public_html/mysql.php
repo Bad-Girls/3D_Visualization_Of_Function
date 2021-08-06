@@ -1372,4 +1372,11 @@ true;}function
 tableName($ch){return
 h($ch["Name"]);}function
 fieldName($o,$af=0){return'<span title="'.h($o["full_type"]).'">'.h($o["field"]).'</span>';}function
-selectLinks($ch,$O=""){echo'<p class="links">';$be=array("select"=>'Select data');if(support("table")||support("indexes"))$be["table"]='Show structure';if(support("table")){if(is_view($ch))$be["view"]='Alter view';else$be["create"]='Alter table';}if($O!==null)$be["edit"]='New it
+selectLinks($ch,$O=""){echo'<p class="links">';$be=array("select"=>'Select data');if(support("table")||support("indexes"))$be["table"]='Show structure';if(support("table")){if(is_view($ch))$be["view"]='Alter view';else$be["create"]='Alter table';}if($O!==null)$be["edit"]='New item';foreach($be
+as$y=>$X)echo" <a href='".h(ME)."$y=".urlencode($ch["Name"]).($y=="edit"?$O:"")."'".bold(isset($_GET[$y])).">$X</a>";echo"\n";}function
+foreignKeys($R){return
+foreign_keys($R);}function
+backwardKeys($R,$bh){return
+array();}function
+backwardKeysPrint($Na,$K){}function
+selectQuery($H,$sh){global$x;return"<p
