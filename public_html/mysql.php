@@ -1383,4 +1383,6 @@ selectQuery($H,$sh){global$x;return"<p><code class='jush-$x'>".h(str_replace("\n
 sqlCommandQuery($H){return
 shorten_utf8(trim($H),1000);}function
 rowDescription($R){return"";}function
-rowDescript
+rowDescriptions($L,$Qc){return$L;}function
+selectLink($X,$o){}function
+selectVal($X,$_,$o,$if){$J=($X===null?"<i>NULL</i>":(preg_match("~char|binary~",$o["type"])&&!preg_match("~var~",$o["type"])?"<code>$X</code>":$X));if(preg_match('~blob|bytea|raw|file~',$o["type"])&&!is_utf8($X))$J="<i>".lang(array('%d byte','%d bytes'),strlen($if))."</i>";if(preg_match('~json~'
