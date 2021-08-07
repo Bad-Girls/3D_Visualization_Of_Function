@@ -1379,4 +1379,8 @@ foreign_keys($R);}function
 backwardKeys($R,$bh){return
 array();}function
 backwardKeysPrint($Na,$K){}function
-selectQuery($H,$sh){global$x;return"<p
+selectQuery($H,$sh){global$x;return"<p><code class='jush-$x'>".h(str_replace("\n"," ",$H))."</code> <span class='time'>($sh)</span>".(support("sql")?" <a href='".h(ME)."sql=".urlencode($H)."'>".'Edit'."</a>":"")."</p>";}function
+sqlCommandQuery($H){return
+shorten_utf8(trim($H),1000);}function
+rowDescription($R){return"";}function
+rowDescript
