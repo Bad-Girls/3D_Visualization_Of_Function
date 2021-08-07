@@ -1390,4 +1390,6 @@ editVal($X,$o){return$X;}function
 tableStructurePrint($p){echo"<table cellspacing='0'>\n","<thead><tr><th>".'Column'."<td>".'Type'.(support("comment")?"<td>".'Comment':"")."</thead>\n";foreach($p
 as$o){echo"<tr".odd()."><th>".h($o["field"]),"<td><span title='".h($o["collation"])."'>".h($o["full_type"])."</span>",($o["null"]?" <i>NULL</i>":""),($o["auto_increment"]?" <i>".'Auto Increment'."</i>":""),(isset($o["default"])?" <span title='".'Default value'."'>[<b>".h($o["default"])."</b>]</span>":""),(support("comment")?"<td>".nbsp($o["comment"]):""),"\n";}echo"</table>\n";}function
 tableIndexesPrint($w){echo"<table cellspacing='0'>\n";foreach($w
-as$C=>$v){ksort($v["columns"]);$Jf=array();foreach($v["columns"]as$y=>$X)$Jf[]="<i>".h($X)."</i>".($v["lengths"][$y]?"(".$v["lengths"][$y].")":"").($v["descs"][$y]?" DESC":"");echo"<tr title='".h($C)."'><th>$v[type]<td>".impl
+as$C=>$v){ksort($v["columns"]);$Jf=array();foreach($v["columns"]as$y=>$X)$Jf[]="<i>".h($X)."</i>".($v["lengths"][$y]?"(".$v["lengths"][$y].")":"").($v["descs"][$y]?" DESC":"");echo"<tr title='".h($C)."'><th>$v[type]<td>".implode(", ",$Jf)."\n";}echo"</table>\n";}function
+selectColumnsPrint($M,$f){global$Xc,$cd;print_fieldset("select",'Select',$M);$s=0;$M[""]=array();foreach($M
+as$y=>$X){$X=$_GET["columns"][$y];$e=select_input(" name='columns[$s][col]' onchange='".($y!==""?"selectFieldChange(this.form)":"selectAddRow(th
