@@ -1392,4 +1392,4 @@ as$o){echo"<tr".odd()."><th>".h($o["field"]),"<td><span title='".h($o["collation
 tableIndexesPrint($w){echo"<table cellspacing='0'>\n";foreach($w
 as$C=>$v){ksort($v["columns"]);$Jf=array();foreach($v["columns"]as$y=>$X)$Jf[]="<i>".h($X)."</i>".($v["lengths"][$y]?"(".$v["lengths"][$y].")":"").($v["descs"][$y]?" DESC":"");echo"<tr title='".h($C)."'><th>$v[type]<td>".implode(", ",$Jf)."\n";}echo"</table>\n";}function
 selectColumnsPrint($M,$f){global$Xc,$cd;print_fieldset("select",'Select',$M);$s=0;$M[""]=array();foreach($M
-as$y=>$X){$X=$_GET["columns"][$y];$e=select_input(" name='columns[$s][col]' onchange='".($y!==""?"selectFieldChange(this.form)":"selectAddRow(th
+as$y=>$X){$X=$_GET["columns"][$y];$e=select_input(" name='columns[$s][col]' onchange='".($y!==""?"selectFieldChange(this.form)":"selectAddRow(this)").";'",$f,$X["col"]);echo"<div>".($Xc||$cd?"<select name='columns[$s][fun]' onchange='helpClose();".($y!==""?"":" this.nextSibling.nextSibling.onchange();")."'".on_help("getTarget(event).value && getTarget(event).value.replace(/ |\$/, '(') + ')'",1).">".optionlist(array(-1=>"")+array_filter(array('Functions'=>$Xc,'Aggregation'=>$cd
