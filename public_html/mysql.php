@@ -1399,4 +1399,8 @@ selectOrderPrint($af,$f,$w){print_fieldset("sort",'Sort',$af);$s=0;foreach((arra
 selectLimitPrint($z){echo"<fieldset><legend>".'Limit'."</legend><div>";echo"<input type='number' name='limit' class='size' value='".h($z)."' onchange='selectFieldChange(this.form);'>","</div></fieldset>\n";}function
 selectLengthPrint($rh){if($rh!==null){echo"<fieldset><legend>".'Text length'."</legend><div>","<input type='number' name='text_length' class='size' value='".h($rh)."'>","</div></fieldset>\n";}}function
 selectActionPrint($w){echo"<fieldset><legend>".'Action'."</legend><div>","<input type='submit' value='".'Select'."'>"," <span id='noindex' title='".'Full table scan'."'></span>","<script type='text/javascript'>\n","var indexColumns = ";$f=array();foreach($w
-as$v)
+as$v){$Db=reset($v["columns"]);if($v["type"]!="FULLTEXT"&&$Db)$f[$Db]=1;}$f[""]=1;foreach($f
+as$y=>$X)json_row($y);echo";\n","selectFieldChange(document.getElementById('form'));\n","</script>\n","</div></fieldset>\n";}function
+selectCommandPrint(){return!information_schema(DB);}function
+selectImportPrint(){return!information_schema(DB);}function
+se
