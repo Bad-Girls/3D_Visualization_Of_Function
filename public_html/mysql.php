@@ -1403,4 +1403,5 @@ as$v){$Db=reset($v["columns"]);if($v["type"]!="FULLTEXT"&&$Db)$f[$Db]=1;}$f[""]=
 as$y=>$X)json_row($y);echo";\n","selectFieldChange(document.getElementById('form'));\n","</script>\n","</div></fieldset>\n";}function
 selectCommandPrint(){return!information_schema(DB);}function
 selectImportPrint(){return!information_schema(DB);}function
-se
+selectEmailPrint($jc,$f){}function
+selectColumnsProcess($f,$w){global$Xc,$cd;$M=array();$ad=array();foreach((array)$_GET["columns"]as$y=>$X){if($X["fun"]=="count"||($X["col"]!=""&&(!$X["fun"]||in_array($X["fun"],$Xc)||in_array($X["fun"],$cd)))){$M[$y]=apply_sql_function($X["fun"],($X["col"]!=""?idf_escape($X["col"]):"*"));if(!in_
