@@ -1404,4 +1404,7 @@ as$y=>$X)json_row($y);echo";\n","selectFieldChange(document.getElementById('form
 selectCommandPrint(){return!information_schema(DB);}function
 selectImportPrint(){return!information_schema(DB);}function
 selectEmailPrint($jc,$f){}function
-selectColumnsProcess($f,$w){global$Xc,$cd;$M=array();$ad=array();foreach((array)$_GET["columns"]as$y=>$X){if($X["fun"]=="count"||($X["col"]!=""&&(!$X["fun"]||in_array($X["fun"],$Xc)||in_array($X["fun"],$cd)))){$M[$y]=apply_sql_function($X["fun"],($X["col"]!=""?idf_escape($X["col"]):"*"));if(!in_
+selectColumnsProcess($f,$w){global$Xc,$cd;$M=array();$ad=array();foreach((array)$_GET["columns"]as$y=>$X){if($X["fun"]=="count"||($X["col"]!=""&&(!$X["fun"]||in_array($X["fun"],$Xc)||in_array($X["fun"],$cd)))){$M[$y]=apply_sql_function($X["fun"],($X["col"]!=""?idf_escape($X["col"]):"*"));if(!in_array($X["fun"],$cd))$ad[]=$M[$y];}}return
+array($M,$ad);}function
+selectSearchProcess($p,$w){global$g,$x;$J=array();foreach($w
+as$s=>$v){if($v["type"]=="FULLTEXT"&&$_GET["fulltext"][$s]!="")$J[]="MATCH (".implode(", ",array_map('idf_escape',$v["columns"])).") AGAINST (".q($_GET["fulltext"][$s]).(isset($_GET["boolean"]
