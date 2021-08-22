@@ -1415,4 +1415,4 @@ selectLengthProcess(){return(isset($_GET["text_length"])?$_GET["text_length"]:"1
 selectEmailProcess($Z,$Qc){return
 false;}function
 selectQueryBuild($M,$Z,$ad,$af,$z,$E){return"";}function
-messageQuery($H,$sh){global$x;restart_session();$hd=&get_session("queries");$t="sql-".count($hd[$_GET["db"]]);if(s
+messageQuery($H,$sh){global$x;restart_session();$hd=&get_session("queries");$t="sql-".count($hd[$_GET["db"]]);if(strlen($H)>1e6)$H=preg_replace('~[\x80-\xFF]+$~','',substr($H,0,1e6))."\n...";$hd[$_GET["db"]][]=array($H,time(),$sh);return" <span class='time'>".@date("H:i:s")."</span> <a href='#$t' onclick=\"return !toggle('$t');\">".'SQL command'."</a>"."<div id='$t' class='hidden'><pre><code class='jush-$x'>".sho
