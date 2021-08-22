@@ -1411,4 +1411,8 @@ as$s=>$v){if($v["type"]=="FULLTEXT"&&$_GET["fulltext"][$s]!="")$J[]="MATCH (".im
 as$C=>$o){$Ed=preg_match('~char|text|enum|set~',$o["type"]);if((is_numeric($X["val"])||!preg_match('~(^|[^o])int|float|double|decimal|bit~',$o["type"]))&&(!preg_match("~[\x80-\xFF]~",$X["val"])||$Ed)){$C=idf_escape($C);$nb[]=($x=="sql"&&$Ed&&!preg_match("~^utf8_~",$o["collation"])?"CONVERT($C USING ".charset($g).")":$C);}}$J[]=($nb?"(".implode("$sb OR ",$nb)."$sb)":"0");}}}return$J;}function
 selectOrderProcess($p,$w){$J=array();foreach((array)$_GET["order"]as$y=>$X){if($X!="")$J[]=(preg_match('~^((COUNT\\(DISTINCT |[A-Z0-9_]+\\()(`(?:[^`]|``)+`|"(?:[^"]|"")+")\\)|COUNT\\(\\*\\))$~',$X)?$X:idf_escape($X)).(isset($_GET["desc"][$y])?" DESC":"");}return$J;}function
 selectLimitProcess(){return(isset($_GET["limit"])?$_GET["limit"]:"50");}function
-selec
+selectLengthProcess(){return(isset($_GET["text_length"])?$_GET["text_length"]:"100");}function
+selectEmailProcess($Z,$Qc){return
+false;}function
+selectQueryBuild($M,$Z,$ad,$af,$z,$E){return"";}function
+messageQuery($H,$sh){global$x;restart_session();$hd=&get_session("queries");$t="sql-".count($hd[$_GET["db"]]);if(s
