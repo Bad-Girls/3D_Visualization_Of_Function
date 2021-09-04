@@ -1427,4 +1427,5 @@ dumpOutput(){$J=array('text'=>'open','file'=>'save');if(function_exists('gzencod
 dumpFormat(){return
 array('sql'=>'SQL','csv'=>'CSV,','csv;'=>'CSV;','tsv'=>'TSV');}function
 dumpDatabase($m){}function
-dumpTable($R,$Wg,$Fd=0){if($_POST["format"]!="sql"){echo"\xef\xbb\xbf";if($Wg)dump_csv(array_keys(fields($R)));}else{if($Fd==2){$p=array();foreach(fields($R)as$C=>$o)$p[]=idf_escape(
+dumpTable($R,$Wg,$Fd=0){if($_POST["format"]!="sql"){echo"\xef\xbb\xbf";if($Wg)dump_csv(array_keys(fields($R)));}else{if($Fd==2){$p=array();foreach(fields($R)as$C=>$o)$p[]=idf_escape($C)." $o[full_type]";$i="CREATE TABLE ".table($R)." (".implode(", ",$p).")";}else$i=create_sql($R,$_POST["auto_increment"]);set_utf8mb4($i);if($Wg&&$i){if($Wg=="DROP+CREATE"||$Fd==1)echo"DROP ".($Fd==2?"VIEW":"TABLE")." IF EXISTS ".table($R).";\n";if($Fd==1)$i=remove_definer($i);echo"$i;\n\n";}}}function
+dumpData($R
