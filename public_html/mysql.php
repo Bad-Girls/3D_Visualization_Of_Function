@@ -1428,4 +1428,6 @@ dumpFormat(){return
 array('sql'=>'SQL','csv'=>'CSV,','csv;'=>'CSV;','tsv'=>'TSV');}function
 dumpDatabase($m){}function
 dumpTable($R,$Wg,$Fd=0){if($_POST["format"]!="sql"){echo"\xef\xbb\xbf";if($Wg)dump_csv(array_keys(fields($R)));}else{if($Fd==2){$p=array();foreach(fields($R)as$C=>$o)$p[]=idf_escape($C)." $o[full_type]";$i="CREATE TABLE ".table($R)." (".implode(", ",$p).")";}else$i=create_sql($R,$_POST["auto_increment"]);set_utf8mb4($i);if($Wg&&$i){if($Wg=="DROP+CREATE"||$Fd==1)echo"DROP ".($Fd==2?"VIEW":"TABLE")." IF EXISTS ".table($R).";\n";if($Fd==1)$i=remove_definer($i);echo"$i;\n\n";}}}function
-dumpData($R
+dumpData($R,$Wg,$H){global$g,$x;$je=($x=="sqlite"?0:1048576);if($Wg){if($_POST["format"]=="sql"){if($Wg=="TRUNCATE+INSERT")echo
+truncate_sql($R).";\n";$p=fields($R);}$I=$g->query($H,1);if($I){$yd="";$Wa="";$Md=array();$Yg="";$Fc=($R!=''?'fetch_assoc':'fetch_row');while($K=$I->$Fc()){if(!$Md){$gi=array();foreach($K
+as$X){$o=$I->fetch_fi
