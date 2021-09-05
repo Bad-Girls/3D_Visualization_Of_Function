@@ -1435,4 +1435,6 @@ as$y=>$X){$o=$p[$y];$K[$y]=($X!==null?unconvert_field($o,preg_match('~(^|[^o])in
 dumpFilename($md){return
 friendly_url($md!=""?$md:(SERVER!=""?SERVER:"localhost"));}function
 dumpHeaders($md,$ye=false){$lf=$_POST["output"];$_c=(preg_match('~sql~',$_POST["format"])?"sql":($ye?"tar":"csv"));header("Content-Type: ".($lf=="gz"?"application/x-gzip":($_c=="tar"?"application/x-tar":($_c=="sql"||$lf!="file"?"text/plain":"text/csv")."; charset=utf-8")));if($lf=="gz")ob_start('ob_gzencode',1e6);return$_c;}function
-homepage(){echo'<p class="links">'.($_GET["ns"]==""&&support("database")?'<a href="'.h(ME).'database=">'.'Alter 
+homepage(){echo'<p class="links">'.($_GET["ns"]==""&&support("database")?'<a href="'.h(ME).'database=">'.'Alter database'."</a>\n":""),(support("scheme")?"<a href='".h(ME)."scheme='>".($_GET["ns"]!=""?'Alter schema':'Create schema')."</a>\n":""),($_GET["ns"]!==""?'<a href="'.h(ME).'schema=">'.'Database schema'."</a>\n":""),(support("privileges")?"<a href='".h(ME)."privileges='>".'Privileges'."</a>\n":"");return
+true;}function
+navigation($xe){global$ia
