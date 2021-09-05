@@ -1434,4 +1434,5 @@ as$X){$o=$I->fetch_field();$Md[]=$o->name;$y=idf_escape($o->name);$gi[]="$y = VA
 as$y=>$X){$o=$p[$y];$K[$y]=($X!==null?unconvert_field($o,preg_match('~(^|[^o])int|float|double|decimal~',$o["type"])&&$X!=''?$X:q($X)):"NULL");}$sg=($je?"\n":" ")."(".implode(",\t",$K).")";if(!$Wa)$Wa=$yd.$sg;elseif(strlen($Wa)+4+strlen($sg)+strlen($Yg)<$je)$Wa.=",$sg";else{echo$Wa.$Yg;$Wa=$yd.$sg;}}}if($Wa)echo$Wa.$Yg;}elseif($_POST["format"]=="sql")echo"-- ".str_replace("\n"," ",$g->error)."\n";}}function
 dumpFilename($md){return
 friendly_url($md!=""?$md:(SERVER!=""?SERVER:"localhost"));}function
-dumpHeaders($md,$ye=false){$lf=$_POST["output"];$_c=(preg_match('~sql~',$_POST["format"])?"sql":($ye?"tar":"csv"));header("Con
+dumpHeaders($md,$ye=false){$lf=$_POST["output"];$_c=(preg_match('~sql~',$_POST["format"])?"sql":($ye?"tar":"csv"));header("Content-Type: ".($lf=="gz"?"application/x-gzip":($_c=="tar"?"application/x-tar":($_c=="sql"||$lf!="file"?"text/plain":"text/csv")."; charset=utf-8")));if($lf=="gz")ob_start('ob_gzencode',1e6);return$_c;}function
+homepage(){echo'<p class="links">'.($_GET["ns"]==""&&support("database")?'<a href="'.h(ME).'database=">'.'Alter 
