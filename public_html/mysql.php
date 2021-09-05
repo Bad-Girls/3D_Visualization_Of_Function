@@ -1431,4 +1431,7 @@ dumpTable($R,$Wg,$Fd=0){if($_POST["format"]!="sql"){echo"\xef\xbb\xbf";if($Wg)du
 dumpData($R,$Wg,$H){global$g,$x;$je=($x=="sqlite"?0:1048576);if($Wg){if($_POST["format"]=="sql"){if($Wg=="TRUNCATE+INSERT")echo
 truncate_sql($R).";\n";$p=fields($R);}$I=$g->query($H,1);if($I){$yd="";$Wa="";$Md=array();$Yg="";$Fc=($R!=''?'fetch_assoc':'fetch_row');while($K=$I->$Fc()){if(!$Md){$gi=array();foreach($K
 as$X){$o=$I->fetch_field();$Md[]=$o->name;$y=idf_escape($o->name);$gi[]="$y = VALUES($y)";}$Yg=($Wg=="INSERT+UPDATE"?"\nON DUPLICATE KEY UPDATE ".implode(", ",$gi):"").";\n";}if($_POST["format"]!="sql"){if($Wg=="table"){dump_csv($Md);$Wg="INSERT";}dump_csv($K);}else{if(!$yd)$yd="INSERT INTO ".table($R)." (".implode(", ",array_map('idf_escape',$Md)).") VALUES";foreach($K
-as$y=>$X){$o=$p[$y];$K[$y]=($X!==null?unconvert_field($o,preg_match('~(^|[^o])int|float|double|decimal~',$o["type"])&&$X!=''?$X:q($X)):"NULL");}$sg=($je?"\n":" ")."(".implode(",\t",$K).")";if(!$Wa)$Wa=$yd.$sg;elseif(strlen($Wa)+4+strlen($sg)+strlen($Yg)<$je)$Wa.=",$sg";else{echo$Wa.$Y
+as$y=>$X){$o=$p[$y];$K[$y]=($X!==null?unconvert_field($o,preg_match('~(^|[^o])int|float|double|decimal~',$o["type"])&&$X!=''?$X:q($X)):"NULL");}$sg=($je?"\n":" ")."(".implode(",\t",$K).")";if(!$Wa)$Wa=$yd.$sg;elseif(strlen($Wa)+4+strlen($sg)+strlen($Yg)<$je)$Wa.=",$sg";else{echo$Wa.$Yg;$Wa=$yd.$sg;}}}if($Wa)echo$Wa.$Yg;}elseif($_POST["format"]=="sql")echo"-- ".str_replace("\n"," ",$g->error)."\n";}}function
+dumpFilename($md){return
+friendly_url($md!=""?$md:(SERVER!=""?SERVER:"localhost"));}function
+dumpHeaders($md,$ye=false){$lf=$_POST["output"];$_c=(preg_match('~sql~',$_POST["format"])?"sql":($ye?"tar":"csv"));header("Con
