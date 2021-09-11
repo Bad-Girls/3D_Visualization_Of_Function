@@ -1441,4 +1441,6 @@ navigation($xe){global$ia,$x,$Wb,$g;echo'<h1>
 ',$this->name(),' <span class="version">',$ia,'</span>
 <a href="https://www.adminer.org/#download" target="_blank" id="version">',(version_compare($ia,$_COOKIE["adminer_version"])<0?h($_COOKIE["adminer_version"]):""),'</a>
 </h1>
-';if($xe=="auth"){$Kc=true;foreach((array)$_SESSION["pwds"]as$ii=>$Fg){for
+';if($xe=="auth"){$Kc=true;foreach((array)$_SESSION["pwds"]as$ii=>$Fg){foreach($Fg
+as$N=>$di){foreach($di
+as$V=>$G){if($G!==null){if($Kc){echo"<p id='logins' onmouseover='menuOver(this, event);' onmouseout='menuOut(this);'>\n";$Kc=false;}$Ib=$_SESSION["db"][$ii][$N][$V];foreach(($Ib?array_keys($Ib):array(""))as$m)echo"<a href='".h(auth_url($ii,$N,$V,$m))."'>($Wb[$ii]) ".h($V.($N!=""?"@$N":"").($m!=""?" - $m":""))."</a><br>\n";}}
