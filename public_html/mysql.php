@@ -1455,4 +1455,10 @@ databasesPrint($xe){global$b,$g;$l=$this->databases();echo'<form action="">
 tablesPrint($T){echo"<ul id='tables' onmouseover='menuOver(this, event);' onmouseout='menuOut(this);'>\n";foreach($T
 as$R=>$P){echo'<li><a href="'.h(ME).'select='.urlencode($R).'"'.bold($_GET["select"]==$R||$_GET["edit"]==$R,"select").">".'select'."</a> ";$C=$this->tableName($P);echo(support("table")||support("indexes")?'<a href="'.h(ME).'table='.urlencode($R).'"'.bold(in_array($R,array($_GET["table"],$_GET["create"],$_GET["indexes"],$_GET["foreign"],$_GET["trigger"])),(is_view($P)?"view":"structure"))." title='".'Show structure'."'>$C</a>":"<span>$C</span>")."\n";}echo"</ul>\n";}}$b=(function_exists('adminer_object')?adminer_object():new
 Adminer);if($b->operators===null)$b->operators=$Ve;function
-page_header($vh,$n="",$Va=array(),$wh=""){global$ca,$ia,$b,$Wb,$x;page_headers();if(is_ajax()&&$n){page_messages($n);exit;}$xh=$vh.($wh!=""?": $wh":"");$yh=strip_tags($xh.(SERVER!=""&&SERVER!=
+page_header($vh,$n="",$Va=array(),$wh=""){global$ca,$ia,$b,$Wb,$x;page_headers();if(is_ajax()&&$n){page_messages($n);exit;}$xh=$vh.($wh!=""?": $wh":"");$yh=strip_tags($xh.(SERVER!=""&&SERVER!="localhost"?h(" - ".SERVER):"")." - ".$b->name());echo'<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="origin-when-crossorigin">
+<title>',
