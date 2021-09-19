@@ -1461,4 +1461,7 @@ page_header($vh,$n="",$Va=array(),$wh=""){global$ca,$ia,$b,$Wb,$x;page_headers()
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta name="robots" content="noindex">
 <meta name="referrer" content="origin-when-crossorigin">
-<title>',
+<title>',$yh,'</title>
+<link rel="stylesheet" type="text/css" href="',h(preg_replace("~\\?.*~","",ME))."?file=default.css&amp;version=4.3.1",'">
+<script type="text/javascript" src="',h(preg_replace("~\\?.*~","",ME))."?file=functions.js&amp;version=4.3.1",'"></script>
+';if($b->head()){echo'<link rel="shortcut icon" 
