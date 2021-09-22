@@ -1472,4 +1472,10 @@ page_header($vh,$n="",$Va=array(),$wh=""){global$ca,$ia,$b,$Wb,$x;page_headers()
 <script type="text/javascript">
 document.body.className = document.body.className.replace(/ nojs/, ' js');
 var offlineMessage = '<?php echo
-js_escape
+js_escape('You are offline.'),'\';
+</script>
+
+<div id="help" class="jush-',$x,' jsonly hidden" onmouseover="helpOpen = 1;" onmouseout="helpMouseout(this, event);"></div>
+
+<div id="content">
+';if($Va!==null){$_=substr(preg_replace('~\b(username|db|ns)=[^&]*&~','',ME),0,-1);echo'<p id="breadcrumb"><a href="'.h($_?$_:".").'">'.$Wb[DRIVER].'</a> 
