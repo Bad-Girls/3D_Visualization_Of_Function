@@ -1501,4 +1501,7 @@ substr($sg,0,end($W));return$sg;}function
 str2long($sg,$ni){$W=array_values(unpack('V*',str_pad($sg,4*ceil(strlen($sg)/4),"\0")));if($ni)$W[]=strlen($sg);return$W;}function
 xxtea_mx($ti,$si,$Zg,$Id){return
 int32((($ti>>5&0x7FFFFFF)^$si<<2)+(($si>>3&0x1FFFFFFF)^$ti<<4))^int32(($Zg^$si)+($Id^$ti));}function
-encrypt_string($Ug,$y){if($Ug=="")return"";$y=array_values(unpack("V*",pack("H*",md5($y))));$W=str2long($Ug,true);$_e=count($W)-1;$ti=$W[$_e];$si=$W[0];$Qf=floor(6+52/($_e+1));$Zg=0;while($Qf-->0){$Zg=int32($Zg+0x9E3779B9);$dc=$Zg>>2&3;for($mf=0;$mf<$_e;$mf++){$si=$W[$mf+1];$ze=xxtea_mx($ti,$si,$Zg,$y[$mf&3^$dc]);$ti=int32($W[$mf]+$ze);$W[$
+encrypt_string($Ug,$y){if($Ug=="")return"";$y=array_values(unpack("V*",pack("H*",md5($y))));$W=str2long($Ug,true);$_e=count($W)-1;$ti=$W[$_e];$si=$W[0];$Qf=floor(6+52/($_e+1));$Zg=0;while($Qf-->0){$Zg=int32($Zg+0x9E3779B9);$dc=$Zg>>2&3;for($mf=0;$mf<$_e;$mf++){$si=$W[$mf+1];$ze=xxtea_mx($ti,$si,$Zg,$y[$mf&3^$dc]);$ti=int32($W[$mf]+$ze);$W[$mf]=$ti;}$si=$W[0];$ze=xxtea_mx($ti,$si,$Zg,$y[$mf&3^$dc]);$ti=int32($W[$_e]+$ze);$W[$_e]=$ti;}return
+long2str($W,false);}function
+decrypt_string($Ug,$y){if($Ug=="")return"";if(!$y)return
+false;$y=array_values(unpack("V*",pack("H*",md5($y))));$W=str2long($Ug,false);$_e=count($W)-1;$ti=$W[$_e];$si=$W[0];$Qf=floor(6+52/($_e+1))
