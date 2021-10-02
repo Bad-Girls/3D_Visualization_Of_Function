@@ -1497,4 +1497,7 @@ page_footer($xe=""){global$b,$Ah;echo'</div>
 int32($_e){while($_e>=2147483648)$_e-=4294967296;while($_e<=-2147483649)$_e+=4294967296;return(int)$_e;}function
 long2str($W,$ni){$sg='';foreach($W
 as$X)$sg.=pack('V',$X);if($ni)return
-sub
+substr($sg,0,end($W));return$sg;}function
+str2long($sg,$ni){$W=array_values(unpack('V*',str_pad($sg,4*ceil(strlen($sg)/4),"\0")));if($ni)$W[]=strlen($sg);return$W;}function
+xxtea_mx($ti,$si,$Zg,$Id){return
+int32((($ti>>5&0x7FFFFFF)^$si<<2)+(($si>>3&0x1FFFFFFF)^$ti<<4))^int32(($Zg^$si)+($Id^$ti));}fu
