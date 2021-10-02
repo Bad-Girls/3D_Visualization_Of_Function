@@ -1491,4 +1491,10 @@ page_footer($xe=""){global$b,$Ah;echo'</div>
 </p>
 </form>
 ';}echo'<div id="menu">
-';$b->n
+';$b->navigation($xe);echo'</div>
+<script type="text/javascript">setupSubmitHighlight(document);</script>
+';}function
+int32($_e){while($_e>=2147483648)$_e-=4294967296;while($_e<=-2147483649)$_e+=4294967296;return(int)$_e;}function
+long2str($W,$ni){$sg='';foreach($W
+as$X)$sg.=pack('V',$X);if($ni)return
+sub
