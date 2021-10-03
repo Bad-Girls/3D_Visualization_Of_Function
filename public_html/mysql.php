@@ -1505,4 +1505,5 @@ encrypt_string($Ug,$y){if($Ug=="")return"";$y=array_values(unpack("V*",pack("H*"
 long2str($W,false);}function
 decrypt_string($Ug,$y){if($Ug=="")return"";if(!$y)return
 false;$y=array_values(unpack("V*",pack("H*",md5($y))));$W=str2long($Ug,false);$_e=count($W)-1;$ti=$W[$_e];$si=$W[0];$Qf=floor(6+52/($_e+1));$Zg=int32($Qf*0x9E3779B9);while($Zg){$dc=$Zg>>2&3;for($mf=$_e;$mf>0;$mf--){$ti=$W[$mf-1];$ze=xxtea_mx($ti,$si,$Zg,$y[$mf&3^$dc]);$si=int32($W[$mf]-$ze);$W[$mf]=$si;}$ti=$W[$_e];$ze=xxtea_mx($ti,$si,$Zg,$y[$mf&3^$dc]);$si=int32($W[0]-$ze);$W[0]=$si;$Zg=int32($Zg-0x9E3779B9);}return
-long2str($W,true);}$g='';$gd=$_SESSION["token"];if(!$gd
+long2str($W,true);}$g='';$gd=$_SESSION["token"];if(!$gd)$_SESSION["token"]=rand(1,1e6);$Ah=get_token();$zf=array();if($_COOKIE["adminer_permanent"]){foreach(explode(" ",$_COOKIE["adminer_permanent"])as$X){list($y)=explode(":",$X);$zf[$y]=$X;}}function
+add_invalid_login(){global$b;$Ic=get_temp_dir()."/adminer.invalid";$Vc=@fopen($Ic,"r+");if(!$Vc){$Vc=@fopen($Ic,"w");if(!$Vc)return;
