@@ -1520,4 +1520,5 @@ textarea($C,$Y,$L=10,$nb=80){global$x;echo"<textarea name='$C' rows='$L' cols='$
 as$X)echo
 h($X[0])."\n\n\n";}else
 echo
-h($Y);echo"</textar
+h($Y);echo"</textarea>";}function
+edit_type($y,$o,$mb,$Rc=array()){global$Vg,$Oh,$Vh,$Qe;$U=$o["type"];echo'<td><select name="',h($y),'[type]" class="type" onfocus="lastType = selectValue(this);" onchange="editingTypeChange(this);"',on_help("getTarget(event).value",1),' aria-labelledby="label-type">';if($U&&!isset($Oh[$U])&&!isset($Rc[$U]))array_unshift($Vg,$
