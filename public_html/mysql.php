@@ -1521,4 +1521,6 @@ as$X)echo
 h($X[0])."\n\n\n";}else
 echo
 h($Y);echo"</textarea>";}function
-edit_type($y,$o,$mb,$Rc=array()){global$Vg,$Oh,$Vh,$Qe;$U=$o["type"];echo'<td><select name="',h($y),'[type]" class="type" onfocus="lastType = selectValue(this);" onchange="editingTypeChange(this);"',on_help("getTarget(event).value",1),' aria-labelledby="label-type">';if($U&&!isset($Oh[$U])&&!isset($Rc[$U]))array_unshift($Vg,$
+edit_type($y,$o,$mb,$Rc=array()){global$Vg,$Oh,$Vh,$Qe;$U=$o["type"];echo'<td><select name="',h($y),'[type]" class="type" onfocus="lastType = selectValue(this);" onchange="editingTypeChange(this);"',on_help("getTarget(event).value",1),' aria-labelledby="label-type">';if($U&&!isset($Oh[$U])&&!isset($Rc[$U]))array_unshift($Vg,$U);if($Rc)$Vg['Foreign keys']=$Rc;echo
+optionlist($Vg,$U),'</select>
+<td><input name="',h($y),'[length]" value="',h($o["length"]),'" size="3" onfocus="editingLengthFocus(this);"',(!$o["length"]&&preg_match('~var(char|binary)$~',$U)?" class='required'":""),' onchange="editingLengthChange(this);" onkeyup="this
