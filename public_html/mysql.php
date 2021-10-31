@@ -1532,4 +1532,6 @@ type_class($U){foreach(array('char'=>'text','date'=>'time|year','binary'=>'blob'
 edit_fields($p,$mb,$U="TABLE",$Rc=array(),$rb=false){global$g,$wd;$p=array_values($p);echo'<thead><tr class="wrap">
 ';if($U=="PROCEDURE"){echo'<td>&nbsp;';}echo'<th id="label-name">',($U=="TABLE"?'Column name':'Parameter name'),'<td id="label-type">Type<textarea id="enum-edit" rows="4" cols="12" wrap="off" style="display: none;" onblur="editingLengthBlur(this);"></textarea>
 <td id="label-length">Length
-<td>','Options';i
+<td>','Options';if($U=="TABLE"){echo'<td id="label-null">NULL
+<td><input type="radio" name="auto_increment_col" value=""><acronym id="label-ai" title="Auto Increment">AI</acronym>',doc_link(array('sql'=>"example-auto-increment.html",'sqlite'=>"autoinc.html",'pgsql'=>"datatype.html#DATATYPE-SERIAL",'mssql'=>"ms186775.aspx",)),'<td id="label-default">Default value
+',(support("co
