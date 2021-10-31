@@ -1529,4 +1529,7 @@ process_type($o,$lb="COLLATE"){global$Vh;return" $o[type]".process_length($o["le
 process_field($o,$Mh){global$x;$Kb=$o["default"];return
 array(idf_escape(trim($o["field"])),process_type($Mh),($o["null"]?" NULL":" NOT NULL"),(isset($Kb)?" DEFAULT ".((preg_match('~time~',$o["type"])&&preg_match('~^CURRENT_TIMESTAMP$~i',$Kb))||($x=="sqlite"&&preg_match('~^CURRENT_(TIME|TIMESTAMP|DATE)$~i',$Kb))||($o["type"]=="bit"&&preg_match("~^([0-9]+|b'[0-1]+')\$~",$Kb))||($x=="pgsql"&&preg_match("~^[a-z]+\\(('[^']*')+\\)\$~",$Kb))?$Kb:q($Kb)):""),(preg_match('~timestamp|datetime~',$o["type"])&&$o["on_update"]?" ON UPDATE $o[on_update]":""),(support("comment")&&$o["comment"]!=""?" COMMENT ".q($o["comment"]):""),($o["auto_increment"]?auto_increment():null),);}function
 type_class($U){foreach(array('char'=>'text','date'=>'time|year','binary'=>'blob','enum'=>'set',)as$y=>$X){if(preg_match("~$y|$X~",$U))return" class='$y'";}}function
-edit_fields($p,$mb,$U="TABLE",$Rc=array(),$rb=false){global$g,$w
+edit_fields($p,$mb,$U="TABLE",$Rc=array(),$rb=false){global$g,$wd;$p=array_values($p);echo'<thead><tr class="wrap">
+';if($U=="PROCEDURE"){echo'<td>&nbsp;';}echo'<th id="label-name">',($U=="TABLE"?'Column name':'Parameter name'),'<td id="label-type">Type<textarea id="enum-edit" rows="4" cols="12" wrap="off" style="display: none;" onblur="editingLengthBlur(this);"></textarea>
+<td id="label-length">Length
+<td>','Options';i
