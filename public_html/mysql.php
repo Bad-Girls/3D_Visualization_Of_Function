@@ -1534,4 +1534,9 @@ edit_fields($p,$mb,$U="TABLE",$Rc=array(),$rb=false){global$g,$wd;$p=array_value
 <td id="label-length">Length
 <td>','Options';if($U=="TABLE"){echo'<td id="label-null">NULL
 <td><input type="radio" name="auto_increment_col" value=""><acronym id="label-ai" title="Auto Increment">AI</acronym>',doc_link(array('sql'=>"example-auto-increment.html",'sqlite'=>"autoinc.html",'pgsql'=>"datatype.html#DATATYPE-SERIAL",'mssql'=>"ms186775.aspx",)),'<td id="label-default">Default value
-',(support("comment")?"<td id='label-comment'".($rb?"":" class='hidden'").">".'Comment':"");}echo'<td>',"<input type='image' class='icon' name='add[".(support("move_col")?0:count($p))."]' src='".h(preg_replace("~\\?.*~","",ME))."?file=plus.gif&amp;version=4.3.1' alt='+' title='".'Add next'."'>",'<script type="text/javascript">row_count = ',co
+',(support("comment")?"<td id='label-comment'".($rb?"":" class='hidden'").">".'Comment':"");}echo'<td>',"<input type='image' class='icon' name='add[".(support("move_col")?0:count($p))."]' src='".h(preg_replace("~\\?.*~","",ME))."?file=plus.gif&amp;version=4.3.1' alt='+' title='".'Add next'."'>",'<script type="text/javascript">row_count = ',count($p),';</script>
+</thead>
+<tbody onkeydown="return editingKeydown(event);">
+';foreach($p
+as$s=>$o){$s++;$ef=$o[($_POST?"orig":"field")];$Rb=(isset($_POST["add"][$s-1])||(isset($o["field"])&&!$_POST["drop_col"][$s]))&&(support("drop_col")||$ef=="");echo'<tr',($Rb?"":" style='display: none;'"),'>
+',($U=="PROCE
