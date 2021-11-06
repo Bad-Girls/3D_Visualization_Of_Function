@@ -1540,4 +1540,6 @@ edit_fields($p,$mb,$U="TABLE",$Rc=array(),$rb=false){global$g,$wd;$p=array_value
 ';foreach($p
 as$s=>$o){$s++;$ef=$o[($_POST?"orig":"field")];$Rb=(isset($_POST["add"][$s-1])||(isset($o["field"])&&!$_POST["drop_col"][$s]))&&(support("drop_col")||$ef=="");echo'<tr',($Rb?"":" style='display: none;'"),'>
 ',($U=="PROCEDURE"?"<td>".html_select("fields[$s][inout]",explode("|",$wd),$o["inout"]):""),'<th>';if($Rb){echo'<input name="fields[',$s,'][field]" value="',h($o["field"]),'" onchange="editingNameChange(this);',($o["field"]!=""||count($p)>1?'':' editingAddRow(this);" onkeyup="if (this.value) editingAddRow(this);'),'" maxlength="64" autocapitalize="off" aria-labelledby="label-name">';}echo'<input type="hidden" name="fields[',$s,'][orig]" value="',h($ef),'">
-';edit_type("fields[$s]",$o,$mb,$Rc);if($U=="TABLE"){echo'<td>',checkbox("fields[$s][null]",1,$o["null"],"","","block","label-null"),'<td><label class="block"><input type="radio" name="auto_incremen
+';edit_type("fields[$s]",$o,$mb,$Rc);if($U=="TABLE"){echo'<td>',checkbox("fields[$s][null]",1,$o["null"],"","","block","label-null"),'<td><label class="block"><input type="radio" name="auto_increment_col" value="',$s,'"';if($o["auto_increment"]){echo' checked';}?> onclick="var field = this.form['fields[' + this.value + '][field]']; if (!field.value) { field.value = 'id'; field.onchange(); }" aria-labelledby="label-ai"></label><td><?php
+echo
+checkbox("fields[$s][has_default]",1,$o["has_default"],"",
