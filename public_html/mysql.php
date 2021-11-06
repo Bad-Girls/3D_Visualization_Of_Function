@@ -1539,4 +1539,4 @@ edit_fields($p,$mb,$U="TABLE",$Rc=array(),$rb=false){global$g,$wd;$p=array_value
 <tbody onkeydown="return editingKeydown(event);">
 ';foreach($p
 as$s=>$o){$s++;$ef=$o[($_POST?"orig":"field")];$Rb=(isset($_POST["add"][$s-1])||(isset($o["field"])&&!$_POST["drop_col"][$s]))&&(support("drop_col")||$ef=="");echo'<tr',($Rb?"":" style='display: none;'"),'>
-',($U=="PROCE
+',($U=="PROCEDURE"?"<td>".html_select("fields[$s][inout]",explode("|",$wd),$o["inout"]):""),'<th>';if($Rb){echo'<input name="fields[',$s,'][field]" value="',h($o["field"]),'" onchange="editingNameChange(this);',($o["field"]!=""||count($p)>1?'':' editingAddRow(this);" onkeyup="if (this.value) editingAddRow(this);'),'
