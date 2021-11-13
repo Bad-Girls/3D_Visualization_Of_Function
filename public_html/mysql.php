@@ -1549,4 +1549,7 @@ as$y=>$o){if(key($_POST["up"])==$y){unset($p[$y]);array_splice($p,$Sd,0,array($o
 as$y=>$o){if(isset($o["field"])&&$Tc){unset($p[key($_POST["down"])]);array_splice($p,$D,0,array($Tc));break;}if(key($_POST["down"])==$y)$Tc=$o;$D++;}}elseif($_POST["add"]){$p=array_values($p);array_splice($p,key($_POST["add"]),0,array(array()));}elseif(!$_POST["drop_col"])return
 false;return
 true;}function
-normalize_enum($B){return"'".str_replace("'","''",addcslashes(stripcslashes(str_replace($B[0][0].$B[0][0],$B[0][0],substr($B[0],1,-1))),
+normalize_enum($B){return"'".str_replace("'","''",addcslashes(stripcslashes(str_replace($B[0][0].$B[0][0],$B[0][0],substr($B[0],1,-1))),'\\'))."'";}function
+grant($Yc,$Mf,$f,$Pe){if(!$Mf)return
+true;if($Mf==array("ALL PRIVILEGES","GRANT OPTION"))return($Yc=="GRANT"?queries("$Yc ALL PRIVILEGES$Pe WITH GRANT OPTION"):queries("$Yc ALL PRIVILEGES$Pe")&&queries("$Yc GRANT OPTION$Pe"));return
+queries("$Yc ".preg_replace('~(GRANT OPTION)\\([^)]*\\)~','\\1',implode("$f, 
