@@ -1554,4 +1554,6 @@ grant($Yc,$Mf,$f,$Pe){if(!$Mf)return
 true;if($Mf==array("ALL PRIVILEGES","GRANT OPTION"))return($Yc=="GRANT"?queries("$Yc ALL PRIVILEGES$Pe WITH GRANT OPTION"):queries("$Yc ALL PRIVILEGES$Pe")&&queries("$Yc GRANT OPTION$Pe"));return
 queries("$Yc ".preg_replace('~(GRANT OPTION)\\([^)]*\\)~','\\1',implode("$f, ",$Mf).$f).$Pe);}function
 drop_create($Xb,$i,$Yb,$ph,$ac,$A,$se,$qe,$re,$Me,$Ce){if($_POST["drop"])query_redirect($Xb,$A,$se);elseif($Me=="")query_redirect($i,$A,$re);elseif($Me!=$Ce){$Bb=queries($i);queries_redirect($A,$qe,$Bb&&queries($Xb));if($Bb)queries($Yb);}else
-queries_redirect($A,$qe,queries($ph)&&querie
+queries_redirect($A,$qe,queries($ph)&&queries($ac)&&queries($Xb)&&queries($i));}function
+create_trigger($Pe,$K){global$x;$uh=" $K[Timing] $K[Event]".($K["Event"]=="UPDATE OF"?" ".idf_escape($K["Of"]):"");return"CREATE TRIGGER ".idf_escape($K["Trigger"]).($x=="mssql"?$Pe.$uh:$uh.$Pe).rtrim(" $K[Type]\n$K[Statement]",";").";";}function
+create_routine($og,$K){global$wd;$O=array();$
