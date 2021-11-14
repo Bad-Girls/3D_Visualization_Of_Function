@@ -1560,4 +1560,5 @@ create_routine($og,$K){global$wd;$O=array();$p=(array)$K["fields"];ksort($p);for
 as$o){if($o["field"]!="")$O[]=(preg_match("~^($wd)\$~",$o["inout"])?"$o[inout] ":"").idf_escape($o["field"]).process_type($o,"CHARACTER SET");}return"CREATE $og ".idf_escape(trim($K["name"]))." (".implode(", ",$O).")".(isset($_GET["function"])?" RETURNS".process_type($K["returns"],"CHARACTER SET"):"").($K["language"]?" LANGUAGE $K[language]":"").rtrim("\n$K[definition]",";").";";}function
 remove_definer($H){return
 preg_replace('~^([A-Z =]+) DEFINER=`'.preg_replace('~@(.*)~','`@`(%|\\1)',logged_user()).'`~','\\1',$H);}function
-format_foreign_key($q){global$Qe;return" FOREIGN KEY (".i
+format_foreign_key($q){global$Qe;return" FOREIGN KEY (".implode(", ",array_map('idf_escape',$q["source"])).") REFERENCES ".table($q["table"])." (".implode(", ",array_map('idf_escape',$q["target"])).")".(preg_match("~^($Qe)\$~",$q["on_delete"])?" ON DELETE $q[on_delete]":"").(preg_match("~^($Qe)\$~",$q["on_update"])?" ON UPDATE $q[on_update]":"");}function
+tar_file($Ic,$zh){$J=pack("a100a8a8a8a12a12",
