@@ -1556,4 +1556,5 @@ queries("$Yc ".preg_replace('~(GRANT OPTION)\\([^)]*\\)~','\\1',implode("$f, ",$
 drop_create($Xb,$i,$Yb,$ph,$ac,$A,$se,$qe,$re,$Me,$Ce){if($_POST["drop"])query_redirect($Xb,$A,$se);elseif($Me=="")query_redirect($i,$A,$re);elseif($Me!=$Ce){$Bb=queries($i);queries_redirect($A,$qe,$Bb&&queries($Xb));if($Bb)queries($Yb);}else
 queries_redirect($A,$qe,queries($ph)&&queries($ac)&&queries($Xb)&&queries($i));}function
 create_trigger($Pe,$K){global$x;$uh=" $K[Timing] $K[Event]".($K["Event"]=="UPDATE OF"?" ".idf_escape($K["Of"]):"");return"CREATE TRIGGER ".idf_escape($K["Trigger"]).($x=="mssql"?$Pe.$uh:$uh.$Pe).rtrim(" $K[Type]\n$K[Statement]",";").";";}function
-create_routine($og,$K){global$wd;$O=array();$
+create_routine($og,$K){global$wd;$O=array();$p=(array)$K["fields"];ksort($p);foreach($p
+as$o){if($o["field"]!="")$O[]=(preg_match("~^($wd)\$~",$o["inout"])?"$o[inout] ":"").idf_escape($o["field"]).process_type($o,"CHARACTER SET");}return"CREATE $og ".idf_escape(trim($K["name"]))." (".implode(", ",$O).")".(isset($_GET["function"])?" RETURNS".process_type($K["returns"],"CHARACTE
