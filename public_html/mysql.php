@@ -1557,4 +1557,7 @@ drop_create($Xb,$i,$Yb,$ph,$ac,$A,$se,$qe,$re,$Me,$Ce){if($_POST["drop"])query_r
 queries_redirect($A,$qe,queries($ph)&&queries($ac)&&queries($Xb)&&queries($i));}function
 create_trigger($Pe,$K){global$x;$uh=" $K[Timing] $K[Event]".($K["Event"]=="UPDATE OF"?" ".idf_escape($K["Of"]):"");return"CREATE TRIGGER ".idf_escape($K["Trigger"]).($x=="mssql"?$Pe.$uh:$uh.$Pe).rtrim(" $K[Type]\n$K[Statement]",";").";";}function
 create_routine($og,$K){global$wd;$O=array();$p=(array)$K["fields"];ksort($p);foreach($p
-as$o){if($o["field"]!="")$O[]=(preg_match("~^($wd)\$~",$o["inout"])?"$o[inout] ":"").idf_escape($o["field"]).process_type($o,"CHARACTER SET");}return"CREATE $og ".idf_escape(trim($K["name"]))." (".implode(", ",$O).")".(isset($_GET["function"])?" RETURNS".process_type($K["returns"],"CHARACTE
+as$o){if($o["field"]!="")$O[]=(preg_match("~^($wd)\$~",$o["inout"])?"$o[inout] ":"").idf_escape($o["field"]).process_type($o,"CHARACTER SET");}return"CREATE $og ".idf_escape(trim($K["name"]))." (".implode(", ",$O).")".(isset($_GET["function"])?" RETURNS".process_type($K["returns"],"CHARACTER SET"):"").($K["language"]?" LANGUAGE $K[language]":"").rtrim("\n$K[definition]",";").";";}function
+remove_definer($H){return
+preg_replace('~^([A-Z =]+) DEFINER=`'.preg_replace('~@(.*)~','`@`(%|\\1)',logged_user()).'`~','\\1',$H);}function
+format_foreign_key($q){global$Qe;return" FOREIGN KEY (".i
