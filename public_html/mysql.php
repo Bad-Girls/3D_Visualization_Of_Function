@@ -1564,4 +1564,7 @@ format_foreign_key($q){global$Qe;return" FOREIGN KEY (".implode(", ",array_map('
 tar_file($Ic,$zh){$J=pack("a100a8a8a8a12a12",$Ic,644,0,0,decoct($zh->size),decoct(time()));$eb=8*32;for($s=0;$s<strlen($J);$s++)$eb+=ord($J[$s]);$J.=sprintf("%06o",$eb)."\0 ";echo$J,str_repeat("\0",512-strlen($J));$zh->send();echo
 str_repeat("\0",511-($zh->size+511)%512);}function
 ini_bytes($vd){$X=ini_get($vd);switch(strtolower(substr($X,-1))){case'g':$X*=1024;case'm':$X*=1024;case'k':$X*=1024;}return$X;}function
-doc_link($xf){global$x,$g;$Zh=array('sql'=>"http://dev.mysql.com/doc/refman/".substr($g->server_info,0,3)."/en/",'sqlite'=>"http://www.sqlite.org/",'pgsql'=>"http://www.postgresql.org/docs/".substr($g->server_info,0,3)."/static/",'mssql'=>"http://msdn.microsoft.com/libra
+doc_link($xf){global$x,$g;$Zh=array('sql'=>"http://dev.mysql.com/doc/refman/".substr($g->server_info,0,3)."/en/",'sqlite'=>"http://www.sqlite.org/",'pgsql'=>"http://www.postgresql.org/docs/".substr($g->server_info,0,3)."/static/",'mssql'=>"http://msdn.microsoft.com/library/",'oracle'=>"http://download.oracle.com/docs/cd/B19306_01/server.102/b14200/",);return($xf[$x]?"<a href='$Zh[$x]$xf[$x]' target='_blank' rel='noreferrer'><sup>?</sup></a>":"");}function
+ob_gzencode($Q){return
+gzencode($Q);}function
+db_size($m){global$g;if(!$g->select_db($m))return"?";$J=0;foreach(table_status()as$S)$J+=$
