@@ -1567,4 +1567,7 @@ ini_bytes($vd){$X=ini_get($vd);switch(strtolower(substr($X,-1))){case'g':$X*=102
 doc_link($xf){global$x,$g;$Zh=array('sql'=>"http://dev.mysql.com/doc/refman/".substr($g->server_info,0,3)."/en/",'sqlite'=>"http://www.sqlite.org/",'pgsql'=>"http://www.postgresql.org/docs/".substr($g->server_info,0,3)."/static/",'mssql'=>"http://msdn.microsoft.com/library/",'oracle'=>"http://download.oracle.com/docs/cd/B19306_01/server.102/b14200/",);return($xf[$x]?"<a href='$Zh[$x]$xf[$x]' target='_blank' rel='noreferrer'><sup>?</sup></a>":"");}function
 ob_gzencode($Q){return
 gzencode($Q);}function
-db_size($m){global$g;if(!$g->select_db($m))return"?";$J=0;foreach(table_status()as$S)$J+=$
+db_size($m){global$g;if(!$g->select_db($m))return"?";$J=0;foreach(table_status()as$S)$J+=$S["Data_length"]+$S["Index_length"];return
+format_number($J);}function
+set_utf8mb4($i){global$g;static$O=false;if(!$O&&preg_match('~\butf8mb4~i',$i)){$O=true;echo"SET NAMES ".charset($g).";\n\n";}}function
+connect_error(){global$b,$g,$Ah,$n,$Wb;if(DB!=""){header("HTTP/1.1 404 Not Found");page_header('Database'.": "
