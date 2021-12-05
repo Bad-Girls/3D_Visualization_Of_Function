@@ -1575,4 +1575,4 @@ as$m=>$T){$ng=h(ME)."db=".urlencode($m);$t=h("Db-".$m);echo"<tr".odd().">".(supp
 TmpFile{var$handler;var$size;function
 __construct(){$this->handler=tmpfile();}function
 write($wb){$this->size+=strlen($wb);fwrite($this->handler,$wb);}function
-send(){fseek($this->handler,0);fpassthru($this->handler);fclose($this->handler);}}$oc="'(?:''|[^'\\\\]|\\\\.)*'";$wd="IN|OUT|INOUT";if(isset($_GET["select"])&&($_POST["edit"]||$_POST["clone"])&&!$_POST["save"])$_GET["edit"]=$_GET["select"];if(isset($_GET["callf"]))$_GET["call"]=$_GET["call
+send(){fseek($this->handler,0);fpassthru($this->handler);fclose($this->handler);}}$oc="'(?:''|[^'\\\\]|\\\\.)*'";$wd="IN|OUT|INOUT";if(isset($_GET["select"])&&($_POST["edit"]||$_POST["clone"])&&!$_POST["save"])$_GET["edit"]=$_GET["select"];if(isset($_GET["callf"]))$_GET["call"]=$_GET["callf"];if(isset($_GET["function"]))$_GET["procedure"]=$_GET["function"];if(isset($_GET["download"])){$a=$_GET["download"];$p=fields($a);header("Content-Type: application/octet-stream");header("Content-Disposition: attachment; filename=".friendly_url("$a-".implode("_",$_GET["where"])).".".friendly_url($_GET["field"]));$M=array(idf
