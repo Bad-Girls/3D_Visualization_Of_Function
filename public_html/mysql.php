@@ -1579,4 +1579,13 @@ send(){fseek($this->handler,0);fpassthru($this->handler);fclose($this->handler);
 as$C=>$q){echo"<tr title='".h($C)."'>","<th><i>".implode("</i>, <i>",array_map('h',$q["source"]))."</i>","<td><a href='".h($q["db"]!=""?preg_replace('~db=[^&]*~',"db=".urlencode($q["db"]),ME):($q["ns"]!=""?preg_replace('~ns=[^&]*~',"ns=".urlencode($q["ns"]),ME):ME))."table=".urlencode($q["table"])."'>".($q["db"]!=""?"<b>".h($q["db"])."</b>.":"").($q["ns"]!=""?"<b>".h($q["ns"])."</b>.":"").h($q["table"])."</a>","(<i>".implode("</i>, <i>",array_map('h',$q["target"]))."</i>)","<td>".nbsp($q["on_delete"])."\n","<td>".nbsp($q["on_update"])."\n",'<td><a href="'.h(ME.'foreign='.urlencode($a).'&name='.urlencode($C)).'">'.'Alter'.'</a>';}echo"</table>\n";}echo'<p class="links"><a href="'.h(ME).'foreign='.urlencode($a).'">'.'Add foreign key'."</a>\n";}}if(support(is_view($S)?"view_trigger":"trigger")){echo"<h3 id='triggers'>".'Triggers'."</h3>\n";$Lh=triggers($a);if($Lh){echo"<table cellspacing='0'>\n";foreach($Lh
 as$y=>$X)echo"<tr valign='top'><td>".h($X[0])."<td>".h($X[1])."<th>".h($y)."<td><a href='".h(ME.'trigger='.urlencode($a).'&name='.urlencode($y))."'>".'Alter'."</a>\n";echo"</table>\n";}echo'<p class="links"><a href="'.h(ME).'trigger='.urlencode($a).'">'.'Add trigger'."</a>\n";}}elseif(isset($_GET["schema"])){page_header('Database schema',"",array(),h(DB.($_GET["ns"]?".$_GET[ns]":"")));$fh=array();$gh=array();$ea=($_GET["schema"]?$_GET["schema"]:$_COOKIE["adminer_schema-".str_replace(".","_",DB)]);preg_match_all('~([^:]+):([-0-9.]+)x([-0-9.]+)(_|$)~',$ea,$he,PREG_SET_ORDER);foreach($he
 as$s=>$B){$fh[$B[1]]=array($B[2],$B[3]);$gh[]="\n\t'".js_escape($B[1])."': [ $B[2], $B[3] ]";}$Bh=0;$Pa=-1;$ug=array();$bg=array();$Wd=array();foreach(table_status('',true)as$R=>$S){if(is_view($S))continue;$Bf=0;$ug[$R]["fields"]=array();foreach(fields($R)as$C=>$o){$Bf+=1.25;$o["pos"]=$Bf;$ug[$R]["fields"][$C]=$o;}$ug[$R]["pos"]=($fh[$R]?$fh[$R]:array($Bh,0));foreach($b->foreignKeys($R)as$X){if(!$X["db"]){$Ud=$Pa;if($fh[$R][1]||$fh[$X["table"]][1])$Ud=min(floatval($fh[$R][1]),floatval($fh[$X["table"]][1]))-1;else$Pa-=.1;while($Wd[(string)$Ud])$Ud-=.0001;$ug[$R]["references"][$X["table"]][(string)$Ud]=array($X["source"],$X["target"]);$bg[$X["table"]][$R][(string)$Ud]=$X["target"];$Wd[(string)$Ud]=true;}}$Bh=max($Bh,$ug[$R]["pos"][0]+2.5+$Bf);}echo'<div id="schema" style="height: ',$Bh,'em;" onselectstart="return false;">
-<
+<script type="text/javascript">
+var tablePos = {',implode(",",$gh)."\n",'};
+var em = document.getElementById(\'schema\').offsetHeight / ',$Bh,';
+document.onmousemove = schemaMousemove;
+document.onmouseup = function (ev) {
+	schemaMouseup(ev, \'',js_escape(DB),'\');
+};
+</script>
+';foreach($ug
+as$C=>$R){echo"<div class='table' 
