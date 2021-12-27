@@ -1589,4 +1589,6 @@ document.onmouseup = function (ev) {
 </script>
 ';foreach($ug
 as$C=>$R){echo"<div class='table' style='top: ".$R["pos"][0]."em; left: ".$R["pos"][1]."em;' onmousedown='schemaMousedown(this, event);'>",'<a href="'.h(ME).'table='.urlencode($C).'"><b>'.h($C)."</b></a>";foreach($R["fields"]as$o){$X='<span'.type_class($o["type"]).' title="'.h($o["full_type"].($o["null"]?" NULL":'')).'">'.h($o["field"]).'</span>';echo"<br>".($o["primary"]?"<i>$X</i>":$X);}foreach((array)$R["references"]as$mh=>$cg){foreach($cg
-as$Ud=>$Yf){$Vd=$Ud-$fh[$C][1];$s=0;foreach($Yf[0]as$Ng)echo"\n<div class='references' title='".h($mh)."' id='refs$Ud-".($s++)."' style='left: $Vd"."em; top: ".$R["fields"][$Ng]["pos"]."em; padding-to
+as$Ud=>$Yf){$Vd=$Ud-$fh[$C][1];$s=0;foreach($Yf[0]as$Ng)echo"\n<div class='references' title='".h($mh)."' id='refs$Ud-".($s++)."' style='left: $Vd"."em; top: ".$R["fields"][$Ng]["pos"]."em; padding-top: .5em;'><div style='border-top: 1px solid Gray; width: ".(-$Vd)."em;'></div></div>";}}foreach((array)$bg[$C]as$mh=>$cg){foreach($cg
+as$Ud=>$f){$Vd=$Ud-$fh[$C][1];$s=0;foreach($f
+as$lh)echo"\n<div class='references' title='".h($mh)."' id='refd$Ud-".($s++)."' style='left: $Vd"."em; top: ".$R["fields"][$lh]["pos"].
