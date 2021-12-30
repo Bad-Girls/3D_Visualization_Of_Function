@@ -1595,4 +1595,10 @@ as$lh)echo"\n<div class='references' title='".h($mh)."' id='refd$Ud-".($s++)."' 
 as$C=>$R){foreach((array)$R["references"]as$mh=>$cg){foreach($cg
 as$Ud=>$Yf){$we=$Bh;$le=-10;foreach($Yf[0]as$y=>$Ng){$Cf=$R["pos"][0]+$R["fields"][$Ng]["pos"];$Df=$ug[$mh]["pos"][0]+$ug[$mh]["fields"][$Yf[1][$y]]["pos"];$we=min($we,$Cf,$Df);$le=max($le,$Cf,$Df);}echo"<div class='references' id='refl$Ud' style='left: $Ud"."em; top: $we"."em; padding: .5em 0;'><div style='border-right: 1px solid Gray; margin-top: 1px; height: ".($le-$we)."em;'></div></div>\n";}}}echo'</div>
 <p class="links"><a href="',h(ME."schema=".urlencode($ea)),'" id="schema-link">Permanent link</a>
-';}elseif(isset($_GET["dump"])){$a=$_GET["dump"];if($_POST&&!$n){$zb="";foreach(array("output","format","db_style","routines","events","table_style","auto_increment","triggers","data_style")as$y)$zb.="&$y=".urlencode($_POST[$y]);cookie("adminer_export",substr($zb,1));$T=array_flip((array)$_POST["tables"])+array_flip((array)$_POST["data"]);$_c=dump_headers((count($T)==1?key($T):DB),(DB==""||count($T)>1));$Dd=preg_match('~sql~',$_POST["format"]);if($Dd){echo"-- Adminer $ia ".$Wb[DRIVER]." dump\n\n";if($x=="sql")
+';}elseif(isset($_GET["dump"])){$a=$_GET["dump"];if($_POST&&!$n){$zb="";foreach(array("output","format","db_style","routines","events","table_style","auto_increment","triggers","data_style")as$y)$zb.="&$y=".urlencode($_POST[$y]);cookie("adminer_export",substr($zb,1));$T=array_flip((array)$_POST["tables"])+array_flip((array)$_POST["data"]);$_c=dump_headers((count($T)==1?key($T):DB),(DB==""||count($T)>1));$Dd=preg_match('~sql~',$_POST["format"]);if($Dd){echo"-- Adminer $ia ".$Wb[DRIVER]." dump\n\n";if($x=="sql"){echo"SET NAMES utf8;
+SET time_zone = '+00:00';
+".($_POST["data_style"]?"SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+":"")."
+";$g->query("SET time_zone = '+00:00';");}}$Wg=$_POST["db_style"];$l=array(DB);if(DB==""){$l=$_POST["databases"];if(is_string($l))$l=explode("\n",rtrim(str_replace("\r","",$l),"\n"));}foreach((array)$l
+as
