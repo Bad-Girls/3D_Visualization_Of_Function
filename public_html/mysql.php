@@ -1593,3 +1593,4 @@ as$Ud=>$Yf){$Vd=$Ud-$fh[$C][1];$s=0;foreach($Yf[0]as$Ng)echo"\n<div class='refer
 as$Ud=>$f){$Vd=$Ud-$fh[$C][1];$s=0;foreach($f
 as$lh)echo"\n<div class='references' title='".h($mh)."' id='refd$Ud-".($s++)."' style='left: $Vd"."em; top: ".$R["fields"][$lh]["pos"]."em; height: 1.25em; background: url(".h(preg_replace("~\\?.*~","",ME))."?file=arrow.gif) no-repeat right center;&amp;version=4.3.1'><div style='height: .5em; border-bottom: 1px solid Gray; width: ".(-$Vd)."em;'></div></div>";}}echo"\n</div>\n";}foreach($ug
 as$C=>$R){foreach((array)$R["references"]as$mh=>$cg){foreach($cg
+as$Ud=>$Yf){$we=$Bh;$le=-10;foreach($Yf[0]as$y=>$Ng){$Cf=$R["pos"][0]+$R["fields"][$Ng]["pos"];$Df=$ug[$mh]["pos"][0]+$ug[$mh]["fields"][$Yf[1][$y]]["pos"];$we=min($we,$Cf,$Df);$le=max($le,$Cf,$Df);}echo"<div class='references' id='refl$Ud' style='left: $Ud"."em; top: $we"."em; padding: .5em 0;'><div style='bord
