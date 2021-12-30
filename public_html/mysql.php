@@ -1601,4 +1601,5 @@ SET time_zone = '+00:00';
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 ":"")."
 ";$g->query("SET time_zone = '+00:00';");}}$Wg=$_POST["db_style"];$l=array(DB);if(DB==""){$l=$_POST["databases"];if(is_string($l))$l=explode("\n",rtrim(str_replace("\r","",$l),"\n"));}foreach((array)$l
-as
+as$m){$b->dumpDatabase($m);if($g->select_db($m)){if($Dd&&preg_match('~CREATE~',$Wg)&&($i=$g->result("SHOW CREATE DATABASE ".idf_escape($m),1))){set_utf8mb4($i);if($Wg=="DROP+CREATE")echo"DROP DATABASE IF EXISTS ".idf_escape($m).";\n";echo"$i;\n";}if($Dd){if($Wg)echo
+use_sql($m).";\n\n";$kf="";if($_POST["routines"]){foreach(arra
