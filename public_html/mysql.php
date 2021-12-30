@@ -1608,4 +1608,4 @@ as$ki)$b->dumpTable($ki,$_POST["table_style"],1);if($_c=="tar")echo
 pack("x512");}}}if($Dd)echo"-- ".$g->result("SELECT NOW()")."\n";exit;}page_header('Export',$n,($_GET["export"]!=""?array("table"=>$_GET["export"]):array()),h(DB));echo'
 <form action="" method="post">
 <table cellspacing="0">
-';$Hb=array('','USE','DROP+CREATE','CREATE');$hh=array('','DROP+CREATE','CREATE');$Fb=array('','TRUNCATE+INS
+';$Hb=array('','USE','DROP+CREATE','CREATE');$hh=array('','DROP+CREATE','CREATE');$Fb=array('','TRUNCATE+INSERT','INSERT');if($x=="sql")$Fb[]='INSERT+UPDATE';parse_str($_COOKIE["adminer_export"],$K);if(!$K)$K=array("output"=>"text","format"=>"sql","db_style"=>(DB!=""?"":"CREATE"),"table_style"=>"DROP+CREATE","data_style"=>"INSERT");if(!isset($K["events"])){$K["routines"]=$K["events"]=($_GET["dump"]=="");$K["triggers"]=$K["table_style"];}echo"<tr><th>".'Outpu
