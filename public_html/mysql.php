@@ -1614,4 +1614,5 @@ pack("x512");}}}if($Dd)echo"-- ".$g->result("SELECT NOW()")."\n";exit;}page_head
 
 <table cellspacing="0">
 ';$Gf=array();if(DB!=""){$cb=($a!=""?"":" checked");echo"<thead><tr>","<th style='text-align: left;'><label class='block'><input type='checkbox' id='check-tables'$cb onclick='formCheck(this, /^tables\\[/);'>".'Tables'."</label>","<th style='text-align: right;'><label class='block'>".'Data'."<input type='checkbox' id='check-data'$cb onclick='formCheck(this, /^data\\[/);'></label>","</thead>\n";$li="";$ih=tables_list();foreach($ih
-as$C=>$U){$Ff=preg_replace('~_.*~','',$C);$cb=($a==""||$a==(substr($a,-1)=="%"?"$Ff%":$C));$Jf="<tr><td>".ch
+as$C=>$U){$Ff=preg_replace('~_.*~','',$C);$cb=($a==""||$a==(substr($a,-1)=="%"?"$Ff%":$C));$Jf="<tr><td>".checkbox("tables[]",$C,$cb,$C,"checkboxClick(event, this); formUncheck('check-tables');","block");if($U!==null&&!preg_match('~table~i',$U))$li.="$Jf\n";else
+echo"$Jf<td align='right'><label class='block'><span id='Rows-".h($C)."'></span>".checkbox("data[]",$C,$cb,"","checkboxClick(event, this); formUncheck('check-data');")."<
