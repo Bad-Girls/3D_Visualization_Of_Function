@@ -1617,4 +1617,7 @@ pack("x512");}}}if($Dd)echo"-- ".$g->result("SELECT NOW()")."\n";exit;}page_head
 as$C=>$U){$Ff=preg_replace('~_.*~','',$C);$cb=($a==""||$a==(substr($a,-1)=="%"?"$Ff%":$C));$Jf="<tr><td>".checkbox("tables[]",$C,$cb,$C,"checkboxClick(event, this); formUncheck('check-tables');","block");if($U!==null&&!preg_match('~table~i',$U))$li.="$Jf\n";else
 echo"$Jf<td align='right'><label class='block'><span id='Rows-".h($C)."'></span>".checkbox("data[]",$C,$cb,"","checkboxClick(event, this); formUncheck('check-data');")."</label>\n";$Gf[$Ff]++;}echo$li;if($ih)echo"<script type='text/javascript'>ajaxSetHtml('".js_escape(ME)."script=db');</script>\n";}else{echo"<thead><tr><th style='text-align: left;'><label class='block'><input type='checkbox' id='check-databases'".($a==""?" checked":"")." onclick='formCheck(this, /^databases\\[/);'>".'Database'."</label></thead>\n";$l=$b->databases();if($l){foreach($l
 as$m){if(!information_schema($m)){$Ff=preg_replace('~_.*~','',$m);echo"<tr><td>".checkbox("databases[]",$m,$a==""||$a=="$Ff%",$m,"formUncheck('check-databases');","block")."\n";$Gf[$Ff]++;}}}else
-echo"<tr><td><textarea name='databases' rows='10' cols='20'></textar
+echo"<tr><td><textarea name='databases' rows='10' cols='20'></textarea>";}echo'</table>
+</form>
+';$Kc=true;foreach($Gf
+as$y=>$X){if($y!=""&&$X>1){echo($Kc?"<p>":" ")."<a href='".h(ME)."dump=".urlencode("$y%")."'>".h($y)."</a>";$Kc=false;}}}elseif(isset($_GET["privileges"])){page_header('Privileges');echo'<p class="links"><a href="'.h(ME).'user=">'.'Create user'
