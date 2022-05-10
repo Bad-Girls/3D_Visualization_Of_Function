@@ -1648,4 +1648,8 @@ Auto Increment: <input type="number" name="Auto_increment" size="6" value="',h($
 <input type="submit" value="Save">
 ';}echo'
 ';if($a!=""){echo'<input type="submit" name="drop" value="Drop"',confirm(),'>';}if(support("partitioning")){$sf=preg_match('~RANGE|LIST~',$K["partition_by"]);print_fieldset("partition",'Partition by',$K["partition_by"]);echo'<p>
-',"<select name='partition_by' onchange='partitionByChange(this);'".on_help("getTarget(event).value.replace(/./, 'PARTITION BY \$&')",1).">".optionlist(array(""=>"")+$rf,$K["partition_by"])."</select>",'(<input name="partition" value="',h($K["parti
+',"<select name='partition_by' onchange='partitionByChange(this);'".on_help("getTarget(event).value.replace(/./, 'PARTITION BY \$&')",1).">".optionlist(array(""=>"")+$rf,$K["partition_by"])."</select>",'(<input name="partition" value="',h($K["partition"]),'">)
+Partitions: <input type="number" name="partitions" class="size',($sf||!$K["partition_by"]?" hidden":""),'" value="',h($K["partitions"]),'">
+<table cellspacing="0" id="partition-table"',($sf?"":" class='hidden'"),'>
+<thead><tr><th>Partition name<th>Values</thead>
+';foreach($K["partition_names"]as$y=>$X){echo'<tr>','<td>
