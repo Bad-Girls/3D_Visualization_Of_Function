@@ -1652,4 +1652,7 @@ Auto Increment: <input type="number" name="Auto_increment" size="6" value="',h($
 Partitions: <input type="number" name="partitions" class="size',($sf||!$K["partition_by"]?" hidden":""),'" value="',h($K["partitions"]),'">
 <table cellspacing="0" id="partition-table"',($sf?"":" class='hidden'"),'>
 <thead><tr><th>Partition name<th>Values</thead>
-';foreach($K["partition_names"]as$y=>$X){echo'<tr>','<td>
+';foreach($K["partition_names"]as$y=>$X){echo'<tr>','<td><input name="partition_names[]" value="'.h($X).'"'.($y==count($K["partition_names"])-1?' onchange="partitionNameChange(this);"':'').' autocapitalize="off">','<td><input name="partition_values[]" value="'.h($K["partition_values"][$y]).'">';}echo'</table>
+</div></fieldset>
+';}echo'<input type="hidden" name="token" value="',$Ah,'">
+</fo
