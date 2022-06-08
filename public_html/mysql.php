@@ -1655,4 +1655,5 @@ Partitions: <input type="number" name="partitions" class="size',($sf||!$K["parti
 ';foreach($K["partition_names"]as$y=>$X){echo'<tr>','<td><input name="partition_names[]" value="'.h($X).'"'.($y==count($K["partition_names"])-1?' onchange="partitionNameChange(this);"':'').' autocapitalize="off">','<td><input name="partition_values[]" value="'.h($K["partition_values"][$y]).'">';}echo'</table>
 </div></fieldset>
 ';}echo'<input type="hidden" name="token" value="',$Ah,'">
-</fo
+</form>
+';}elseif(isset($_GET["indexes"])){$a=$_GET["indexes"];$rd=array("PRIMARY","UNIQUE","INDEX");$S=table_status($a,true);if(preg_match('~MyISAM|M?aria'.($g->server_info>=5.6?'|InnoDB':'').'~i',$S["Engine"]))$rd[]="FULLTEXT";if(preg_match('~MyISAM|M?aria'.($g->server_info>=5.7?'|InnoDB':'').'~i',$S["Engine"]))$rd[]="SPATIAL";$w=indexes($a);$Hf=
