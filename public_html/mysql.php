@@ -1675,3 +1675,4 @@ select_input(" disabled",$p,$e),"<label><input disabled type='checkbox'>".'desce
 <input type="submit" value="Save">
 <input type="hidden" name="token" value="',$Ah,'">
 </form>
+';}elseif(isset($_GET["database"])){$K=$_POST;if($_POST&&!$n&&!isset($_POST["add_x"])){$C=trim($K["name"]);if($_POST["drop"]){$_GET["db"]="";queries_redirect(remove_from_uri("db|database"),'Database has been dropped.',drop_databases(array(DB)));}elseif(DB!==$C){if(DB!=""){$_GET["db"]=$C;queries_redirect(preg_replace('~\bdb=[^&]*&~','',
