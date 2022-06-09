@@ -1665,4 +1665,9 @@ as$y=>$v){$w[$y]["name"]=$y;$w[$y]["columns"][]="";}$w[]=array("columns"=>array(
 <thead><tr>
 <th id="label-type">Index Type
 <th><input type="submit" class="wayoff">Column (length)
-<th id="label-
+<th id="label-name">Name
+<th><noscript><input type='image' class='icon' name='add[0]' src='" . h(preg_replace("~\\?.*~", "", ME)) . "?file=plus.gif&amp;version=4.3.1' alt='+' title='Add next'></noscript>&nbsp;
+</thead>
+<?php
+if($Hf){echo"<tr><td>PRIMARY<td>";foreach($Hf["columns"]as$y=>$e){echo
+select_input(" disabled",$p,$e),"<label><input disabled type='checkbox'>".'desce
