@@ -1670,4 +1670,4 @@ as$y=>$v){$w[$y]["name"]=$y;$w[$y]["columns"][]="";}$w[]=array("columns"=>array(
 </thead>
 <?php
 if($Hf){echo"<tr><td>PRIMARY<td>";foreach($Hf["columns"]as$y=>$e){echo
-select_input(" disabled",$p,$e),"<label><input disabled type='checkbox'>".'desce
+select_input(" disabled",$p,$e),"<label><input disabled type='checkbox'>".'descending'."</label> ";}echo"<td><td>\n";}$Hd=1;foreach($K["indexes"]as$v){if(!$_POST["drop_col"]||$Hd!=key($_POST["drop_col"])){echo"<tr><td>".html_select("indexes[$Hd][type]",array(-1=>"")+$rd,$v["type"],($Hd==count($K["indexes"])?"indexesAddRow(this);":1),"label-type"),"<td>";ksort($v["columns"])
