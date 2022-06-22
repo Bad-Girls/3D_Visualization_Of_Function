@@ -1683,4 +1683,6 @@ as$m){if(count($l)==1||$m!=""){if(!create_database($m,$K["collation"]))$Xg=false
 <script type='text/javascript'>focus(document.getElementById('name'));</script>
 <input type="submit" value="Save">
 <?php
-if(DB!="")echo"<input type='submit' name='drop' value='".'Drop'."'".confirm().">\n";elseif(!$_POST["add_x"]&&$_GET["db"]=="")echo"<input type='image' class='icon' name='add' src='".h(preg_repla
+if(DB!="")echo"<input type='submit' name='drop' value='".'Drop'."'".confirm().">\n";elseif(!$_POST["add_x"]&&$_GET["db"]=="")echo"<input type='image' class='icon' name='add' src='".h(preg_replace("~\\?.*~","",ME))."?file=plus.gif&amp;version=4.3.1' alt='+' title='".'Add next'."'>\n";echo'<input type="hidden" name="token" value="',$Ah,'">
+</form>
+';}elseif(isset($_GET["scheme"])){$K=$_POST;if($_POST&&!$n){$_=preg_replace('~ns=[^&]*&~','',ME)."ns=";if($_POST["drop"])query_redirect("DROP SCHEMA ".idf_escape($_GET["ns"]),
