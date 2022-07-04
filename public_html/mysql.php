@@ -1690,4 +1690,8 @@ redirect($_);}}page_header($_GET["ns"]!=""?'Alter schema':'Create schema',$n);if
 <form action="" method="post">
 <p><input name="name" id="name" value="',h($K["name"]);?>" autocapitalize="off">
 <script type='text/javascript'>focus(document.getElementById('name'));</script>
-<input type="submit"
+<input type="submit" value="Save">
+<?php
+if($_GET["ns"]!="")echo"<input type='submit' name='drop' value='".'Drop'."'".confirm().">\n";echo'<input type="hidden" name="token" value="',$Ah,'">
+</form>
+';}elseif(isset($_GET["call"])){$da=$_GET["call"];page_header('Call'.": ".h($da),$n);$og=routine($da,(isset($_GET["callf"])?"FUNCTION":"PROCEDURE"));$pd=a
