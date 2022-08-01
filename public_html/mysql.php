@@ -1702,4 +1702,4 @@ as$y){$o=$og["fields"][$y];$C=$o["field"];echo"<tr><th>".$b->fieldName($o);$Y=$_
 <input type="submit" value="Call">
 <input type="hidden" name="token" value="',$Ah,'">
 </form>
-';}elseif(isset($_GET["foreign"])){$a=$_GET["foreign"];$C=$_GET["name"];$K=$_POST;if($_POST&&!$n&&!$_POST["add"]&&!$_POST["change"]&&!$_POST["change-js"]){$pe=($_POST[
+';}elseif(isset($_GET["foreign"])){$a=$_GET["foreign"];$C=$_GET["name"];$K=$_POST;if($_POST&&!$n&&!$_POST["add"]&&!$_POST["change"]&&!$_POST["change-js"]){$pe=($_POST["drop"]?'Foreign key has been dropped.':($C!=""?'Foreign key has been altered.':'Foreign key has been created.'));$A=ME."table=".urlencode($a);if(!$_POST["drop"]){$K["source"]=array_filter($K["source"],'strlen');ksort($K["source"]);$lh=array();foreach($K["source"]as$y=>$X)$lh[$y]=$K["target"][$y];$K["target"]=$lh;}if($x=="sqli
