@@ -1720,4 +1720,8 @@ ON DELETE: ',html_select("on_delete",array(-1=>"")+explode("|",$Qe),$K["on_delet
 ';}elseif(isset($_GET["view"])){$a=$_GET["view"];$K=$_POST;$hf="VIEW";if($x=="pgsql"&&$a!=""){$P=table_status($a);$hf=strtoupper($P["Engine"]);}if($_POST&&!$n){$C=trim($K["name"]);$Fa=" AS\n$K[select]";$A=ME."table=".urlencode($C);$pe='View has been altered.';$U=($_POST["materialized"]?"MATERIALIZED VIEW":"VIEW");if(!$_POST["drop"]&&$a==$C&&$x!="sqlite"&&$U=="VIEW"&&$hf=="VIEW")query_redirect(($x=="mssql"?"ALTER":"CREATE OR REPLACE")." VIEW ".table($C).$Fa,$A,$pe);else{$nh=$C."_adminer_".uniqid();drop_create("DROP $hf ".table($a),"CREATE $U ".table($C).$Fa,"DROP $U ".table($C),"CREATE $U ".table($nh).$Fa,"DROP $U ".table($nh),($_POST["drop"]?substr(ME,0,-1):$A),'View has been dropped.',$pe,'View has been created.',$a,$C);}}if(!$_POST&&$a!=""){$K=view($a);$K["name"]=$a;$K["materialized"]=($hf!="VIEW");if(!$n)$n=error();}page_header(($a!=""?'Alter view':'Create view'),$n,array("table"=>$a),h($a));echo'
 <form action="" method="post">
 <p>Name: <input name="name" value="',h($K["name"]),'" maxlength="64" autocapitalize="off">
-',(support(
+',(support("materializedview")?" ".checkbox("materialized",1,$K["materialized"],'Materialized view'):""),'<p>';textarea("select",$K["select"]);echo'<p>
+<input type="submit" value="Save">
+';if($_GET["view"]!=""){echo'<input type="submit" name="drop" value="Drop"',confirm(),'>';}echo'<input type="hidden" name="token" value="',$Ah,'">
+</form>
+';}elseif(isse
