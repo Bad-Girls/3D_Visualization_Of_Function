@@ -1712,4 +1712,9 @@ as$y){$o=$og["fields"][$y];$C=$o["field"];echo"<tr><th>".$b->fieldName($o);$Y=$_
 <thead><tr><th id="label-source">Source<th id="label-target">Target</thead>
 ';$Hd=0;foreach($K["source"]as$y=>$X){echo"<tr>","<td>".html_select("source[".(+$y)."]",array(-1=>"")+$Ng,$X,($Hd==count($K["source"])-1?"foreignAddRow(this);":1),"label-source"),"<td>".html_select("target[".(+$y)."]",$lh,$K["target"][$y],1,"label-target");$Hd++;}echo'</table>
 <p>
-ON DELETE: ',html_select("on_delete",array(-1=>"")+explode("|",$Qe),$K["on_delete"]),' ON UPDATE: ',html_select("on_update",array(-1=>"")+explode("|",$Qe),$K["on_update"]),doc_link(array('sql'=>"innodb-foreign-key-constraints.html",'pgsql'=>"sql-createtable.html#SQL-CREATETABLE-REFERENCES",
+ON DELETE: ',html_select("on_delete",array(-1=>"")+explode("|",$Qe),$K["on_delete"]),' ON UPDATE: ',html_select("on_update",array(-1=>"")+explode("|",$Qe),$K["on_update"]),doc_link(array('sql'=>"innodb-foreign-key-constraints.html",'pgsql'=>"sql-createtable.html#SQL-CREATETABLE-REFERENCES",'mssql'=>"ms174979.aspx",'oracle'=>"clauses002.htm#sthref2903",)),'<p>
+<input type="submit" value="Save">
+<noscript><p><input type="submit" name="add" value="Add column"></noscript>
+';}if($C!=""){echo'<input type="submit" name="drop" value="Drop"',confirm(),'>';}echo'<input type="hidden" name="token" value="',$Ah,'">
+</form>
+';}el
