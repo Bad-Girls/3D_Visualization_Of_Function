@@ -1703,4 +1703,10 @@ as$y){$o=$og["fields"][$y];$C=$o["field"];echo"<tr><th>".$b->fieldName($o);$Y=$_
 <input type="hidden" name="token" value="',$Ah,'">
 </form>
 ';}elseif(isset($_GET["foreign"])){$a=$_GET["foreign"];$C=$_GET["name"];$K=$_POST;if($_POST&&!$n&&!$_POST["add"]&&!$_POST["change"]&&!$_POST["change-js"]){$pe=($_POST["drop"]?'Foreign key has been dropped.':($C!=""?'Foreign key has been altered.':'Foreign key has been created.'));$A=ME."table=".urlencode($a);if(!$_POST["drop"]){$K["source"]=array_filter($K["source"],'strlen');ksort($K["source"]);$lh=array();foreach($K["source"]as$y=>$X)$lh[$y]=$K["target"][$y];$K["target"]=$lh;}if($x=="sqlite")queries_redirect($A,$pe,recreate_table($a,$a,array(),array(),array(" $C"=>($_POST["drop"]?"":" ".format_foreign_key($K)))));else{$c="ALTER TABLE ".table($a);$Xb="\nDROP ".($x=="sql"?"FOREIGN KEY ":"CONSTRAINT ").idf_escape($C);if($_POST["drop"])query_redirect($c.$Xb,$A,$pe);else{query_redirect($c.($C!=""?"$Xb,":"")."\nADD".format_foreign_key($K),$A,$pe);$n='Source and target columns must have the same data type, there must be an index on the target columns and referenced data must exist.'."<br>$n";}}}page_header('Foreign key',$n,array("table"=>$a),h($a));if($_POST){ksort($K["source"]);if($_POST["add"])$K["source"][]="";elseif($_POST["change"]||$_POST["change-js"])$K["target"]=array();}elseif($C!=""){$Rc=foreign_keys($a);$K=$Rc[$C];$K["source"][]="";}else{$K["table"]=$a;$K["source"]=array("");}$Ng=array_keys(fields($a));$lh=($a===$K["table"]?$Ng:array_keys(fields($K["table"])));$Zf=array_keys(array_filter(table_status('',true),'fk_support'));echo'
-<fo
+<form action="" method="post">
+<p>
+';if($K["db"]==""&&$K["ns"]==""){echo'Target table:
+',html_select("table",$Zf,$K["table"],"this.form['change-js'].value = '1'; this.form.submit();"),'<input type="hidden" name="change-js" value="">
+<noscript><p><input type="submit" name="change" value="Change"></noscript>
+<table cellspacing="0">
+<thead><tr>
