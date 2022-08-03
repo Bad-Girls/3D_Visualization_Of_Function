@@ -1717,4 +1717,4 @@ ON DELETE: ',html_select("on_delete",array(-1=>"")+explode("|",$Qe),$K["on_delet
 <noscript><p><input type="submit" name="add" value="Add column"></noscript>
 ';}if($C!=""){echo'<input type="submit" name="drop" value="Drop"',confirm(),'>';}echo'<input type="hidden" name="token" value="',$Ah,'">
 </form>
-';}el
+';}elseif(isset($_GET["view"])){$a=$_GET["view"];$K=$_POST;$hf="VIEW";if($x=="pgsql"&&$a!=""){$P=table_status($a);$hf=strtoupper($P["Engine"]);}if($_POST&&!$n){$C=trim($K["name"]);$Fa=" AS\n$K[select]";$A=ME."table=".urlencode($C);$pe='View has been altered.';$U=($_POST["materialized"]?"MATERIALIZED VIEW":"VIEW");if(!$_POST["drop"]&&$a==$C
