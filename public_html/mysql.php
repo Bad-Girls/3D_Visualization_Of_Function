@@ -1729,4 +1729,5 @@ ON DELETE: ',html_select("on_delete",array(-1=>"")+explode("|",$Qe),$K["on_delet
 <table cellspacing="0">
 <tr><th>Name<td><input name="EVENT_NAME" value="',h($K["EVENT_NAME"]),'" maxlength="64" autocapitalize="off">
 <tr><th title="datetime">Start<td><input name="STARTS" value="',h("$K[EXECUTE_AT]$K[STARTS]"),'">
-<tr><th title="datetime">End<td><input name="ENDS" value="',h($K["ENDS"]
+<tr><th title="datetime">End<td><input name="ENDS" value="',h($K["ENDS"]),'">
+<tr><th>Every<td><input type="number" name="INTERVAL_VALUE" value="',h($K["INTERVAL_VALUE"]),'" class="size"> ',html_select("INTERVAL_FIELD",$zd,$K["INTERVAL_FIELD"]),'<tr><th>Status<td>',html_select("STATUS",$Tg,$K["STATUS"]),'<tr><th>Comment<td><input name="EVENT_COMMENT" value="',h($K["EVENT_COMMENT"]),'" maxlength
