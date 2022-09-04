@@ -1734,4 +1734,6 @@ ON DELETE: ',html_select("on_delete",array(-1=>"")+explode("|",$Qe),$K["on_delet
 <tr><th>&nbsp;<td>',checkbox("ON_COMPLETION","PRESERVE",$K["ON_COMPLETION"]=="PRESERVE",'On completion preserve'),'</table>
 <p>';textarea("EVENT_DEFINITION",$K["EVENT_DEFINITION"]);echo'<p>
 <input type="submit" value="Save">
-';if($aa!=""){echo'<input type="submit" name="drop" value="Drop"',confirm(),'>';}echo'<input type="hidden
+';if($aa!=""){echo'<input type="submit" name="drop" value="Drop"',confirm(),'>';}echo'<input type="hidden" name="token" value="',$Ah,'">
+</form>
+';}elseif(isset($_GET["procedure"])){$da=$_GET["procedure"];$og=(isset($_GET["function"])?"FUNCTION":"PROCEDURE");$K=$_POST;$K["fields"]=(array)$K["fields"];if($_POST&&!process_fields($K["fields"])&&!$n){$nh="$K[name]_adminer_".uniqid();drop_create("DROP $og ".i
