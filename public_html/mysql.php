@@ -1736,4 +1736,4 @@ ON DELETE: ',html_select("on_delete",array(-1=>"")+explode("|",$Qe),$K["on_delet
 <input type="submit" value="Save">
 ';if($aa!=""){echo'<input type="submit" name="drop" value="Drop"',confirm(),'>';}echo'<input type="hidden" name="token" value="',$Ah,'">
 </form>
-';}elseif(isset($_GET["procedure"])){$da=$_GET["procedure"];$og=(isset($_GET["function"])?"FUNCTION":"PROCEDURE");$K=$_POST;$K["fields"]=(array)$K["fields"];if($_POST&&!process_fields($K["fields"])&&!$n){$nh="$K[name]_adminer_".uniqid();drop_create("DROP $og ".i
+';}elseif(isset($_GET["procedure"])){$da=$_GET["procedure"];$og=(isset($_GET["function"])?"FUNCTION":"PROCEDURE");$K=$_POST;$K["fields"]=(array)$K["fields"];if($_POST&&!process_fields($K["fields"])&&!$n){$nh="$K[name]_adminer_".uniqid();drop_create("DROP $og ".idf_escape($da),create_routine($og,$K),"DROP $og ".idf_escape($K["name"]),create_routine($og,array("name"=>$nh)+$K),"DROP $og ".idf_escape($nh),substr(ME,0,-1),'Routine has been dropped.','Routine has been altered.','Routine has been created.',$da,$K["name"]);}page_header(($da!=""?(isset($_GET["function"])?'Alter function':'Alter procedure
