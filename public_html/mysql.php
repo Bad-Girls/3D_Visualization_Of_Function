@@ -1751,4 +1751,7 @@ redirect($_);}page_header($fa!=""?'Alter sequence'.": ".h($fa):'Create sequence'
 <form action="" method="post">
 <p><input name="name" value="',h($K["name"]),'" autocapitalize="off">
 <input type="submit" value="Save">
-';if($fa!="")echo"<input type='submit' name='drop' val
+';if($fa!="")echo"<input type='submit' name='drop' value='".'Drop'."'".confirm().">\n";echo'<input type="hidden" name="token" value="',$Ah,'">
+</form>
+';}elseif(isset($_GET["type"])){$ga=$_GET["type"];$K=$_POST;if($_POST&&!$n){$_=substr(ME,0,-1);if($_POST["drop"])query_redirect("DROP TYPE ".idf_escape($ga),$_,'Type has been dropped.');else
+query_redirect("CREATE TYPE ".idf_escape(trim($K["name"]))
