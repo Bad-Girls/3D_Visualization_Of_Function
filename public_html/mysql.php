@@ -1742,4 +1742,8 @@ ON DELETE: ',html_select("on_delete",array(-1=>"")+explode("|",$Qe),$K["on_delet
 ',($pg?'Language'.": ".html_select("language",$pg,$K["language"]):""),'<input type="submit" value="Save">
 <table cellspacing="0" class="nowrap">
 ';edit_fields($K["fields"],$mb,$og);if(isset($_GET["function"])){echo"<tr><td>".'Return type';edit_type("returns",$K["returns"],$mb);}echo'</table>
-<p>';textarea("de
+<p>';textarea("definition",$K["definition"]);echo'<p>
+<input type="submit" value="Save">
+';if($da!=""){echo'<input type="submit" name="drop" value="Drop"',confirm(),'>';}echo'<input type="hidden" name="token" value="',$Ah,'">
+</form>
+';}elseif(isset($_GET["sequence"])){$fa=$_GET["sequence"];$K=$_POST;if($_POST&&!$n){$_=substr(ME,0,-1);$C=trim
