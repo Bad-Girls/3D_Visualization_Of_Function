@@ -1762,4 +1762,9 @@ query_redirect("CREATE TYPE ".idf_escape(trim($K["name"]))." $K[as]",$_,'Type ha
 ';}elseif(isset($_GET["trigger"])){$a=$_GET["trigger"];$C=$_GET["name"];$Kh=trigger_options();$K=(array)trigger($C)+array("Trigger"=>$a."_bi");if($_POST){if(!$n&&in_array($_POST["Timing"],$Kh["Timing"])&&in_array($_POST["Event"],$Kh["Event"])&&in_array($_POST["Type"],$Kh["Type"])){$Pe=" ON ".table($a);$Xb="DROP TRIGGER ".idf_escape($C).($x=="pgsql"?$Pe:"");$A=ME."table=".urlencode($a);if($_POST["drop"])query_redirect($Xb,$A,'Trigger has been dropped.');else{if($C!="")queries($Xb);queries_redirect($A,($C!=""?'Trigger has been altered.':'Trigger has been created.'),queries(create_trigger($Pe,$_POST)));if($C!="")queries(create_trigger($Pe,$K+array("Type"=>reset($Kh["Type"]))));}}$K=$_POST;}page_header(($C!=""?'Alter trigger'.": ".h($C):'Create trigger'),$n,array("table"=>$a));echo'
 <form action="" method="post" id="form">
 <table cellspacing="0">
-<tr><th>Time<td>',html_select("Timing",$Kh["Timing"],$K["Timing"],"triggerChange(/^".preg_quote($a,"/")."_[ba][iud]$/, '".js_escape($a)."', this.form);"),'<tr><th>Event<td>',html_select("Event",$Kh["Event"],$K["Event"],"this.form['Timing'].onchange();"),(in_array("UPDATE OF",$Kh["Event"])?" <input name='Of' value='".h($K["Of"])."' class='hidden'>":""),'<tr><th>Ty
+<tr><th>Time<td>',html_select("Timing",$Kh["Timing"],$K["Timing"],"triggerChange(/^".preg_quote($a,"/")."_[ba][iud]$/, '".js_escape($a)."', this.form);"),'<tr><th>Event<td>',html_select("Event",$Kh["Event"],$K["Event"],"this.form['Timing'].onchange();"),(in_array("UPDATE OF",$Kh["Event"])?" <input name='Of' value='".h($K["Of"])."' class='hidden'>":""),'<tr><th>Type<td>',html_select("Type",$Kh["Type"],$K["Type"]),'</table>
+<p>Name: <input name="Trigger" value="',h($K["Trigger"]);?>" maxlength="64" autocapitalize="off">
+<script type="text/javascript">document.getElementById('form')['Timing'].onchange();</script>
+<p><?php textarea("Statement",$K["Statement"]);echo'<p>
+<input type="submit" value="Save">
+';
