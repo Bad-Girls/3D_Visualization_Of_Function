@@ -1769,4 +1769,4 @@ query_redirect("CREATE TYPE ".idf_escape(trim($K["name"]))." $K[as]",$_,'Type ha
 <input type="submit" value="Save">
 ';if($C!=""){echo'<input type="submit" name="drop" value="Drop"',confirm(),'>';}echo'<input type="hidden" name="token" value="',$Ah,'">
 </form>
-';}elseif(isset($_GET["user"])){$ha=$_GET["user"];$Mf=array(""=>array("All privileges"=>""));foreach(get_rows("SHOW PRIVILEGES")as$K){foreach(explode(",",($K["
+';}elseif(isset($_GET["user"])){$ha=$_GET["user"];$Mf=array(""=>array("All privileges"=>""));foreach(get_rows("SHOW PRIVILEGES")as$K){foreach(explode(",",($K["Privilege"]=="Grant option"?"":$K["Context"]))as$xb)$Mf[$xb][$K["Privilege"]]=$K["Comment"];}$Mf["Server Admin"]+=$Mf["File access on server"];$Mf["Databases"]["Create routine"]=$Mf["Procedures"]["Create routine"];unset($Mf["Procedures"]["Create routine"]);$Mf["Columns"]=array();foreach(array("Select","Insert
