@@ -1767,4 +1767,6 @@ query_redirect("CREATE TYPE ".idf_escape(trim($K["name"]))." $K[as]",$_,'Type ha
 <script type="text/javascript">document.getElementById('form')['Timing'].onchange();</script>
 <p><?php textarea("Statement",$K["Statement"]);echo'<p>
 <input type="submit" value="Save">
-';
+';if($C!=""){echo'<input type="submit" name="drop" value="Drop"',confirm(),'>';}echo'<input type="hidden" name="token" value="',$Ah,'">
+</form>
+';}elseif(isset($_GET["user"])){$ha=$_GET["user"];$Mf=array(""=>array("All privileges"=>""));foreach(get_rows("SHOW PRIVILEGES")as$K){foreach(explode(",",($K["
