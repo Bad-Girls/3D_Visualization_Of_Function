@@ -1775,4 +1775,7 @@ as$Ie=>$Yc){if(isset($_GET["grant"]))$Yc=array_filter($Yc);$Yc=array_keys($Yc);i
 as$Ie=>$lg){if(preg_match('~^(.+)(\\(.*\\))?$~U',$Ie,$B))grant("REVOKE",array_keys($lg),$B[2]," ON $B[1] FROM $De");}}}queries_redirect(ME."privileges=",(isset($_GET["host"])?'User has been altered.':'User has been created.'),!$n);if($Bb)$g->query("DROP USER $De");}}page_header((isset($_GET["host"])?'Username'.": ".h("$ha@$_GET[host]"):'Create user'),$n,array("privileges"=>array('','Privileges')));if($_POST){$K=$_POST;$Zc=$Be;}else{$K=$_GET+array("host"=>$g->result("SELECT SUBSTRING_INDEX(CURRENT_USER, '@', -1)"));$K["pass"]=$Ne;if($Ne!="")$K["hashed"]=true;$Zc[(DB==""||$Zc?"":idf_escape(addcslashes(DB,"%_\\"))).".*"]=array();}echo'<form action="" method="post">
 <table cellspacing="0">
 <tr><th>Server<td><input name="host" maxlength="60" value="',h($K["host"]),'" autocapitalize="off">
-<tr><th>Username<td><input 
+<tr><th>Username<td><input name="user" maxlength="16" value="',h($K["user"]),'" autocapitalize="off">
+<tr><th>Password<td><input name="pass" id="pass" value="',h($K["pass"]),'">
+';if(!$K["hashed"]){echo'<script type="text/javascript">typePassword(document.getElementById(\'pass\'));</script>';}echo
+checkbox("hashed",1,$K["hashed"],'Hashed',"type
