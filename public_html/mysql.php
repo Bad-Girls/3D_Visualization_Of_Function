@@ -1778,4 +1778,7 @@ as$Ie=>$lg){if(preg_match('~^(.+)(\\(.*\\))?$~U',$Ie,$B))grant("REVOKE",array_ke
 <tr><th>Username<td><input name="user" maxlength="16" value="',h($K["user"]),'" autocapitalize="off">
 <tr><th>Password<td><input name="pass" id="pass" value="',h($K["pass"]),'">
 ';if(!$K["hashed"]){echo'<script type="text/javascript">typePassword(document.getElementById(\'pass\'));</script>';}echo
-checkbox("hashed",1,$K["hashed"],'Hashed',"type
+checkbox("hashed",1,$K["hashed"],'Hashed',"typePassword(this.form['pass'], this.checked);"),'</table>
+
+';echo"<table cellspacing='0'>\n","<thead><tr><th colspan='2'>".'Privileges'.doc_link(array('sql'=>"grant.html#priv_level"));$s=0;foreach($Zc
+as$Ie=>$Yc){echo'<th>'.($Ie!="*.*"?"<input name='objects[$s]' value='".h($Ie)."' size='10' autocapitalize='off'>":"<input type='hidd
