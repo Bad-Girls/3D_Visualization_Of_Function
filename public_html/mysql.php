@@ -1781,4 +1781,4 @@ as$Ie=>$lg){if(preg_match('~^(.+)(\\(.*\\))?$~U',$Ie,$B))grant("REVOKE",array_ke
 checkbox("hashed",1,$K["hashed"],'Hashed',"typePassword(this.form['pass'], this.checked);"),'</table>
 
 ';echo"<table cellspacing='0'>\n","<thead><tr><th colspan='2'>".'Privileges'.doc_link(array('sql'=>"grant.html#priv_level"));$s=0;foreach($Zc
-as$Ie=>$Yc){echo'<th>'.($Ie!="*.*"?"<input name='objects[$s]' value='".h($Ie)."' size='10' autocapitalize='off'>":"<input type='hidd
+as$Ie=>$Yc){echo'<th>'.($Ie!="*.*"?"<input name='objects[$s]' value='".h($Ie)."' size='10' autocapitalize='off'>":"<input type='hidden' name='objects[$s]' value='*.*' size='10'>*.*");$s++;}echo"</thead>\n";foreach(array(""=>"","Server Admin"=>'Server',"Databases"=>'Database',"Tables"=>'Table',"Columns"=>'Column',"Procedures"=>'Routine',)as$xb=>$Nb){foreach((array)$Mf[$xb]as$Lf=>$qb){echo"<tr".odd()."><td".($Nb?">$Nb<td":" colspan='2'").' lang="en" title="'.h($qb).'">'.h
