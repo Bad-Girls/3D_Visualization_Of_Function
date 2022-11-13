@@ -1789,4 +1789,6 @@ echo"<td align='center'><label class='block'><input type='checkbox' name=$C valu
 </form>
 ';}elseif(isset($_GET["processlist"])){if(support("kill")&&$_POST&&!$n){$Od=0;foreach((array)$_POST["kill"]as$X){if(kill_process($X))$Od++;}queries_redirect(ME."processlist=",lang(array('%d process has been killed.','%d processes have been killed.'),$Od),$Od||!$_POST["kill"]);}page_header('Process list',$n);echo'
 <form action="" method="post">
-<table cellspacing="0" onclick="tableClick(event);" ondblclick="tableClick(event, true);" cl
+<table cellspacing="0" onclick="tableClick(event);" ondblclick="tableClick(event, true);" class="nowrap checkable">
+';$s=-1;foreach(process_list()as$s=>$K){if(!$s){echo"<thead><tr lang='en'>".(support("kill")?"<th>&nbsp;":"");foreach($K
+as$y=>$X)echo"<th>$y".doc_link(array('sql'=>"show-processlist.html#processlist_".strtolower($y),'pgsql'=>"monitoring-stats.html#PG-STAT-ACTIVITY-VIEW",'oracle'=>"../b14237/dynviews_208
