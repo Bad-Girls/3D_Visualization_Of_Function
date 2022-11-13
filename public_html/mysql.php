@@ -1787,4 +1787,6 @@ echo"<td align='center'><label class='block'><input type='checkbox' name=$C valu
 <input type="submit" value="Save">
 ';if(isset($_GET["host"])){echo'<input type="submit" name="drop" value="Drop"',confirm(),'>';}echo'<input type="hidden" name="token" value="',$Ah,'">
 </form>
-';}elseif(isset($_GET["processlist"])){if(support("kill")&&$_POST&&!$n){$Od=0;foreach((array)$_POST["
+';}elseif(isset($_GET["processlist"])){if(support("kill")&&$_POST&&!$n){$Od=0;foreach((array)$_POST["kill"]as$X){if(kill_process($X))$Od++;}queries_redirect(ME."processlist=",lang(array('%d process has been killed.','%d processes have been killed.'),$Od),$Od||!$_POST["kill"]);}page_header('Process list',$n);echo'
+<form action="" method="post">
+<table cellspacing="0" onclick="tableClick(event);" ondblclick="tableClick(event, true);" cl
