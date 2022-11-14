@@ -1797,4 +1797,4 @@ as$y=>$X)echo"<td>".(($x=="sql"&&$y=="Info"&&preg_match("~Query|Killed~",$K["Com
 <p>
 ';if(support("kill")){echo($s+1)."/".sprintf('%d in total',max_connections()),"<p><input type='submit' value='".'Kill'."'>\n";}echo'<input type="hidden" name="token" value="',$Ah,'">
 </form>
-';}elseif(isset($_GET["replication"])){page_header('Replication');echo"<h3>".'Master status'.doc_link(array("sql"=>"show-master-status.html"))."</h3>\n";$fe=replication_status("
+';}elseif(isset($_GET["replication"])){page_header('Replication');echo"<h3>".'Master status'.doc_link(array("sql"=>"show-master-status.html"))."</h3>\n";$fe=replication_status("MASTER");if(!$fe)echo"<p class='message'>".'No rows.'."\n";else{echo"<table cellspacing='0'>\n";foreach($fe[0]as$y=>$X){echo"<tr>","<th>".h($y),"<td>".nbsp($X);}echo"</table>\n";}$Kg=replication_status("SLAVE");if($Kg){echo"<h3>".'Slave status'.doc_link(array("sql"=>"show-slave-status.html"))."</h3>\n";foreach($Kg[0]as$Jg)
