@@ -1818,4 +1818,7 @@ checkbox("all",1,0,'whole result',"var checked = formChecked(this, /check/); sel
 </div></fieldset>
 <fieldset><legend>Selected <span id="selected"></span></legend><div>
 <input type="submit" name="edit" value="Edit">
-<input type="submit" name="clone" value="Clone
+<input type="submit" name="clone" value="Clone">
+<input type="submit" name="delete" value="Delete"',confirm(),'>
+</div></fieldset>
+';}$Sc=$b->dumpFormat();foreach((array)$_GET["columns"]as$e){if($e["fun"]){unset($Sc['sql']);break;}}if($Sc){print_fieldset("export",'Export'." <span id='selected2'></span>");$lf=$b->dumpOutput();echo($lf?html_select("output",$lf,$xa["output"])." ":""),html_select("format",$S
